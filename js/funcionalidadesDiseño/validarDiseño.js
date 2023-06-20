@@ -1,147 +1,241 @@
 (() => {
-    const formulario = document.querySelector('#formularioAgregarDiseño');
+    const formulario = document.querySelector('#formularioAgregarDiseño')
+    const formularioModificar=document.querySelector('#formularioModificar')
+    const  formularioEditar=document.querySelector('#formularioEditarDiseño')
 
-    const submit = document.querySelector(
-        '#formularioAgregarDiseño input[type="submit"]'
-    );
+const submit = document.querySelector('#disenosA');
+const submitModificar= document.querySelector('#ModificarDiseno')
+const sumitEditar=document.querySelector('#EditarDiseno')
 
-    const cancelar = document.querySelector('#guardarCancelado');
-    const atras = document.querySelector('#xAgregar');
+const cancelar = document.querySelector('#guardarCancelado');
+const atras = document.querySelector('#xAgregar');
 
-    window.addEventListener('load', () => {
-        submit.addEventListener('click', crearClientes);
-        cancelar.addEventListener('click', recetearFormulario);
-        atras.addEventListener('click', recetearFormulario);
-    });
+window.addEventListener('load', () => {
 
-    function recetearFormulario(e) {
-        e.preventDefault();
+    if (submit){ submit.addEventListener('click', crearDisenos);}
+
+    if(submitModificar){submitModificar.addEventListener('click',Modificar)}
+    
+    if (sumitEditar){
+        sumitEditar.addEventListener('click',EditarDisenos)
+    }
+
+
+    cancelar.addEventListener('click', recetearFormulario);
+    atras.addEventListener('click', recetearFormulario);
+});
+
+function recetearFormulario(e) {
+    e.preventDefault();
+    formulario.reset();
+    formularioModificar.reset();
+}
+
+function crearDisenos(e) {
+    e.preventDefault();
+    /// Validar el formulario
+    Disenos();
+}
+
+function Modificar(e){
+    e.preventDefault();
+    Modificacion()
+}
+
+
+function EditarDisenos(e){
+    e.preventDefault(),
+    Editar()
+}
+
+function variable(){
+const nombre = document.querySelector('#NombreDiseno');
+const nombreDiseno=document.querySelector('#nombreEditar');
+const imagen = document.querySelector('#formFile1' );
+const precio = document.querySelector('#precioGuardar');
+const number = /^\D*$/;
+const text = /^[^a-zA-Z]*$/;
+const signo = /[|°"#$%&/()=?¿]/
+isValidado=true
+
+return{
+    NombreDiseno:nombre,
+    Nombre:nombreDiseno,
+    Precio:precio,
+    Numero:number,
+    Texto:text,
+    Signos:signo,
+    Validar: isValidado
+    
+}
+
+}
+
+function Disenos() {
+    const Datos= variable();
+
+    if (Datos.NombreDiseno.value==""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo diseño es obligatorio'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Numero.test(Datos.NombreDiseno.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo diseño no puede contener numeros'
+        })
+        Datos.Validar=false
+
+    }else if (Datos.Signos.test(Datos.NombreDiseno.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo diseño no puede contener signos'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.NombreDiseno.value.trimStart()){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo diseño no puede ser espacios'
+        })
+        Datos.Validar=false
+    }
+    
+    if (isValidado) {
+        //* Serrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(
+            document.querySelector('#myModal1')
+        );
+        modalBootstrap.hide();
+
         formulario.reset();
+
+         Swal.fire('Diseño agregado correctamente','','success');
+    }
+}
+
+
+function Modificacion(){
+
+    const Datos= variable();
+
+    if (Datos.Precio.value==""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo precio es obligatorio'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Texto.test(Datos.Precio.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo precio no puede contener letras'
+        })
+        Datos.Validar=false
+
+    }else if (Datos.Signos.test(Datos.Precio.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo precio no puede contener signos'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Precio.value.trimStart()){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo precio no puede ser espacios'
+        })
+        Datos.Validar=false
+    }
+    
+    if (Datos.Validar) {
+        //* Serrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(document.querySelector('#myModalPrecio'));
+        modalBootstrap.hide();
+        formulario.reset();
+         Swal.fire('Precio modificado correctamente','','success');
     }
 
-    function crearClientes(e) {
-        e.preventDefault();
+}
 
-        /// Validar el formulario
-        validarCliente();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Editar(){
+    const Datos= variable();
+
+    if (Datos.Nombre.value==""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo diseño es obligatorio'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Numero.test(Datos.Nombre.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo diseño no puede contener numeros'
+        })
+        Datos.Validar=false
+
+    }else if (Datos.Signos.test(Datos.Nombre.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo diseño no puede contener signos'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Nombre.value.trimStart()){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El campo diseño no puede ser espacios'
+        })
+        Datos.Validar=false
     }
-
-    function validarCliente() {
-        //* Campos a validar
-
-        const nombre = document.querySelector(
-            '#formularioAgregarDiseño input[name="nombreGuardar"]'
+    
+    if (Datos.Validar) {
+        //* Serrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(
+            document.querySelector('#modalDiseño')
         );
+        modalBootstrap.hide();
 
-        const imagen = document.querySelector(
-            '#formularioAgregarDiseño input[name="imagenGuardar"]'
-        );
+        formulario.reset();
 
-        //- Expresiones Regulares
-        const number = /^\D*$/;
-        const text = /^[^a-zA-Z]*$/;
-        const email_val =
-            /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
-        //* Contenedores del formularios
-        const divNombre = document.querySelector(
-            '#formularioAgregarDiseño div[name="divNombre"]'
-        );
-
-        const divImagen = document.querySelector(
-            '#formularioAgregarDiseño div[name="divImagen"]'
-        );
-
-
-        /// Lógica de validación
-
-        let isValidado = true;
-
-        //* Validaciones para el Nombre
-        if (nombre.value == '') {
-            imprimirAlerta('Este campo es obligatorio', divNombre, 'Nombre');
-            isValidado = false;
-        } else if (!number.test(nombre.value)) {
-            imprimirAlerta('Este Campo no puede contener números', divNombre,
-                'Nombre');
-            isValidado = false;
-        }
-
-        //* Validaciones para la cantidad
-        if (cantidad.value == '') {
-            imprimirAlerta(
-                'Este campo es obligatorio',
-                divCantidad,
-                'Cantidad'
-            );
-            isValidado = false;
-        } else if (!text.test(cantidad.value)) {
-            imprimirAlerta(
-                'Este campo no puede contener letras',
-                divCantidad,
-                'Cantidad'
-            );
-            isValidado = false;
-        }
-
-
-
-        if (isValidado) {
-            //* Serrando el modal
-            const modalBootstrap = bootstrap.Modal.getInstance(
-                document.querySelector('#myModal')
-            );
-            modalBootstrap.hide();
-
-            formulario.reset();
-
-            mostrarToast('Diseño agregado correctamente');
-        }
+         Swal.fire('Diseño agregado correctamente','','success');
     }
-
-    function imprimirAlerta(mensaje, lugar, clase) {
-        /// Verificar que no exista la alerta
-        const alert = document.querySelector(`.alerta${clase}`);
-
-        if (!alert) {
-            //? Crear alerta
-            const divMensaje = document.createElement('div');
-
-            divMensaje.classList.add(
-                // 'px-2',
-                'py-1',
-                'rounded',
-                'max-w-lg',
-                'mx-auto',
-                'mt-2',
-                'text-center',
-                'border',
-                `alerta${clase}`
-            );
-
-            divMensaje.classList.add(
-                'bg-red-100',
-                'border-red-400',
-                'text-red-700'
-            );
-
-            divMensaje.textContent = mensaje;
-
-            lugar.parentNode.insertBefore(divMensaje, lugar.nextSibling);
-
-            setTimeout(() => {
-                divMensaje.remove();
-            }, 4500);
-        }
-    }
-
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-agregar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
-    }
+}
 })();
