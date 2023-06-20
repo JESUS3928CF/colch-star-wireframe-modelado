@@ -38,8 +38,8 @@
                             <h5 class="modal-title" id="exampleModalLabel">
                                 Agregar prenda
                             </h5>
-                            <button type="button" id="xAgregar" name="xAgregar" class="btn-close"
-                                data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" id="xAgregar" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="formulario">
 
@@ -219,11 +219,11 @@
 
 
                                 <div class="modal-footer">
-                                    <button type="button" id="guardarCancelado" name="guardarCancelado"
-                                        class="btn btn-danger" data-bs-dismiss="modal">
+                                    <button type="button" id="guardarCancelado" name="guardarCancelado" class="btn btn-danger"
+                                        data-bs-dismiss="modal">
                                         Cancelar
                                     </button>
-                                    <input type="submit" class="btn btn-success" value="Guardar" />
+                                    <input type="submit" id="buttonSubmit" class="btn btn-success" value="Guardar" />
                                 </div>
                                 </form>
                             </div>
@@ -315,43 +315,43 @@
             <div class="modal-content" style="width: 800px;">
                 <div class="modal-header modal-head-editar" style="width: 800px;">
                     <h5 class="modal-title">Editar datos de la prenda</h5>
-                    <button type="button" class="btn-close" id="xEditar" data-bs-dismiss="modal"
+                    <button type="button" class="btn-close" id="xAgregar" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="formulario">
                     <div class="modal-body">
 
                         <!-- formulario para editar los datos de la tabla prenda -->
-                        <form action="" name="formularioEditarPrendas">
+                        <form action="" id="formularioEditarPrendas">
                             <div class="mb-3" name="divProducto">
                                 <label for="nombreEditar" class="col-form-label">Producto:</label>
-                                <input type="text" class="form-control" name="productoEditar" id="productoEditar"
+                                <input type="text" class="form-control"  id="productoEditar"
                                     placeholder="Ingresar producto">
                             </div>
                             <div class="mb-3" name="divCantidad">
                                 <label for="apellidoEditar" class="col-form-label">Cantidad:</label>
-                                <input type="number" class="form-control" name="cantidadEditar" id="cantidadEditar"
+                                <input type="text" class="form-control"  id="cantidadEditar"
                                     placeholder="Ingresar cantidad">
                             </div>
                             <div class="mb-3" name="divPrecio">
                                 <label for="precioEditar" class="col-form-label">Precio:</label>
-                                <input type="number" class="form-control" name="precioEditar" id="precioEditar"
+                                <input type="text" class="form-control" id="precioEditar"
                                     placeholder="Ingresar el Precio">
                             </div>
                             <div class="mb-3" name="divTalla">
                                 <label for="tallaEditar" class="col-form-label">Talla:</label>
-                                <input type="text" class="form-control" name="tallaEditar" id="tallaEditar"
+                                <input type="text" class="form-control" id="tallaEditar"
                                     placeholder="Ingresar la talla ">
                             </div>
                             <div class="mb-3" name="divTela">
                                 <label for="telaEditar" class="col-form-label">Tela:</label>
-                                <input type="text" class="form-control" name="telaEditar" id="telaEditar"
+                                <input type="text" class="form-control"  id="telaEditar"
                                     placeholder="Ingresar la tela">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" name="editarCancelado"
+                                <button type="button" class="btn btn-danger" id="guardarCancelado"
                                     data-bs-dismiss="modal">Cancelar</button>
-                                <input type="submit" class="btn btn-success" value="Guardar">
+                                <input type="submit" class="btn btn-success" id="Editar" value="Guardar">
                             </div>
                         </form>
                     </div>
@@ -543,8 +543,9 @@
         </div>
     </div>
     <script src="../../js/funcionalidadesProducto/cambiarEstado.js"></script>
-    <script src="../../js/funcionalidadesPrendas/validarPrendas.js"></script>
-    <script src="../../js/funcionalidadesPrendas/validarPrendasEditar.js"></script>
+    <script src="/js/funcionalidadesPrendas/validarPrendas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>
