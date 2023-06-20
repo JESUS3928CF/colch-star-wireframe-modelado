@@ -1,169 +1,365 @@
 (() => {
-    const formulario = document.querySelector('#formularioAgregarPrenda');
 
+    const formulario= document.querySelector('#formularioAgregarPrenda');
+    const formularioEditar=document.querySelector('#formularioEditarPrendas');
+
+    const submitEditar=document.querySelector('#Editar')
     const submit = document.querySelector('#buttonSubmit');
-
     const cancelar = document.querySelector('#guardarCancelado');
-    const atras = document.querySelector('#guardarPrenda');
+    const atras = document.querySelector('#xAgregar');
 
-    window.addEventListener('load', () => {
-        submit.addEventListener('click', crearPrenda);
-        cancelar.addEventListener('click', recetearFormulario);
-        atras.addEventListener('click', recetearFormulario);
-    });
+window.addEventListener('load',()=>{
+    if(submit){submit.addEventListener('click', crearPrenda)}
 
-    function recetearFormulario(e) {
-        e.preventDefault();
+    if(submitEditar){
+        submitEditar.addEventListener('click',editarPrenda)
+
+    }
+    cancelar.addEventListener('click', recetearFormulario);
+    atras.addEventListener('click', recetearFormulario);
+
+
+});
+
+function crearPrenda(e){
+    e.preventDefault();
+    ValidarPrenda();
+};
+
+function editarPrenda(e){
+    e.preventDefault();
+    Editar();
+}
+
+
+function recetearFormulario(e) {
+    e.preventDefault();
+    formulario.reset();
+    formularioEditar.reset();
+}
+
+
+//funcion donde contine las variables
+function variable(){
+    const prenda = document.querySelector('#prendaGuardar');
+    const proveedores = document.querySelector('#proveedorGuardar');
+    const cantidad = document.querySelector('#cantidadGuardar');
+    const cantidadE = document.querySelector('#cantidadEditar');
+    const producto= document.querySelector('#productoEditar')
+    const precio = document.querySelector('#precioEditar')
+    const talla = document.querySelector('#tallaEditar')
+    const tela =document.querySelector('#telaEditar')
+    isvalidar = true;
+    const number = /^\D*$/;
+    const text = /^[^a-zA-Z]*$/;
+    const signo = /[|°!"#$%&/()=?¿"]/
+
+    //Retorna las variables que se van a implementar
+    return{
+        prendas:prenda,
+        proveedor:proveedores,
+        cantidaprenda: cantidad,
+        cantidadEditar:cantidadE,
+        Validar:isvalidar,
+        Numero: number,
+        Texto: text,
+        Signos: signo,
+        Productos: producto,
+        Precio:precio,
+        Talla:talla,
+        Tela:tela
+
+    }
+}
+
+//Funcion donde valida los campos input
+function ValidarPrenda (){
+
+    //Variable que trae las variables que se van a implentar de la funcion
+    const Datos = variable()
+
+    //Validar los campos del formulario
+    if(Datos.prendas.value=="" && Datos.proveedor.value=="" && Datos.cantidaprenda.value=="" ){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Todos los campos son obligatorios'
+        })
+        Datos.Validar=false
+
+    }else if(Datos.prendas.value==""){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo prenda es obligatorio'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Numero.test(Datos.prendas.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo prenda no puede contener numeros'
+        })
+        Datos.Validar=false
+    }else if(Datos.Signos.test(Datos.prendas.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo prenda no puede contener signos'
+        })
+        Datos.Validar=false
+    }else if (!Datos.prendas.value.trimStart()){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo prenda no puede ser espacio'
+        })
+        Datos.Validar=false
+
+    }else if(Datos.proveedor.value==""){
+
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo proveedor es obligatorio'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Numero.test(Datos.proveedor.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo proveedor no puede contener numeros'
+        })
+        Datos.Validar=false
+    }else if(Datos.Signos.test(Datos.proveedor.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo proveedor no puede contener signos'
+        })
+        Datos.Validar=false
+    }else if (!Datos.proveedor.value.trimStart()){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo proveedor no puede ser espacio'
+        })
+        Datos.Validar=false
+
+    } else if(Datos.cantidaprenda.value==""){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo cantidad es obligatorio'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Texto.test(Datos.cantidaprenda.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo cantidad no puede contener letras'
+        })
+        Datos.Validar=false
+    }else if(Datos.Signos.test(Datos.cantidaprenda.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo cantidad no puede contener signos'
+        })
+        Datos.Validar=false
+    }else if (!Datos.cantidaprenda.value.trimStart()){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo cantidad no puede ser espacio'
+        })
+        Datos.Validar=false
+
+    }
+
+    if (Datos.Validar){
+        //* Cerrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(document.querySelector('#prenda'));
+        modalBootstrap.hide();
         formulario.reset();
+        Swal.fire('Prenda agregada correctamente','','success')
     }
-
-    function crearPrenda(e) {
-        e.preventDefault();
-
-        /// Validar el formulario
-        validarPrenda();
-    }
-
-    function validarPrenda() {
-        //* Campos a validar
-
-        const prenda = document.querySelector(
-            '#formularioAgregarPrenda input[name="prendaGuardar"]'
-        );
-
-        const cantidad = document.querySelector(
-            '#formularioAgregarPrenda input[name="cantidadGuardar"]'
-        );
-
-        const proveedor = document.querySelector(
-            '#formularioAgregarPrenda input[name="proveedorGuardar"]'
-        );
+}
 
 
-        //- Expresiones Regulares
-        const number = /^\D*$/;
-        const text = /^[^a-zA-Z]*$/;
-        const email_val =
-            /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        //* Contenedores del formularios
-        const divPrenda = document.querySelector(
-            '#formularioAgregarPrenda div[name="divPrenda"]'
-        );
+function Editar(){
+const Datos=variable();
 
-        const divProveedor = document.querySelector(
-            '#formularioAgregarPrenda div[name="divProveedor"]'
-        );
+if(Datos.Productos.value=="" && Datos.cantidaprenda.value=="" && Datos.Precio.value=="" && Datos.Talla.value=="" && Datos.Tela.value==""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Todos los campos son obligatorios'
+        })
+        Datos.Validar=false
+    }else if(Datos.Productos .value==""){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo Productos es obligatorio'
+        })
+        Datos.Validar=false
+    
+    }else if (!Datos.Numero.test(Datos.Productos .value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo Productos no puede contener numeros'
+        })
+        Datos.Validar=false
+    }else if(Datos.Signos.test(Datos.Productos .value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo Productos no puede contener signos'
+        })
+        Datos.Validar=false
+    }else if (!Datos.Productos .value.trimStart()){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo Productos no puede ser espacio'
+        })
+        Datos.Validar=false
+    } else if(Datos.cantidadEditar.value==""){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo cantidad es obligatorio'
+        })
+        Datos.Validar=false
 
-        const divCantidad = document.querySelector(
-            '#formularioAgregarPrenda div[name="divCantidad"]'
-        );
+    }else if (!Datos.Texto.test(Datos.cantidadEditar.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo cantidad no puede contener letras'
+        })
+        Datos.Validar=false
+    }else if(Datos.Signos.test(Datos.cantidadEditar.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo cantidad no puede contener signos'
+        })
+        Datos.Validar=false
+    }else if (!Datos.cantidadEditar.value.trimStart()){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo cantidad no puede ser espacio'
+        })
+        Datos.Validar=false
+
+    } else if(Datos.Precio.value==""){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo precio es obligatorio'
+        })
+        Datos.Validar=false
+
+    }else if (!Datos.Texto.test(Datos.Precio.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo precio no puede contener letras'
+        })
+        Datos.Validar=false
+    }else if(Datos.Signos.test(Datos.Precio.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo precio no puede contener signos'
+        })
+        Datos.Validar=false
+    }else if (!Datos.Precio.value.trimStart()){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'El campo precio no puede ser espacio'
+        })
+        Datos.Validar=false
+
+}else if(Datos.Talla.value==""){
+    Swal.fire({
+        icon:'error',
+        title: 'Error',
+        text: 'El campo Talla es obligatorio'
+    })
+    Datos.Validar=false
+
+}else if (!Datos.Numero.test(Datos.Talla.value)){
+    Swal.fire({
+        icon:'error',
+        title: 'Error',
+        text: 'El campo Talla no puede contener numeros'
+    })
+    Datos.Validar=false
+}else if(Datos.Signos.test(Datos.Talla.value)){
+    Swal.fire({
+        icon:'error',
+        title: 'Error',
+        text: 'El campo Talla no puede contener signos'
+    })
+    Datos.Validar=false
+}else if (!Datos.Talla.value.trimStart()){
+    Swal.fire({
+        icon:'error',
+        title: 'Error',
+        text: 'El campo Talla no puede ser espacio'
+    })
+    Datos.Validar=false
+}else if(Datos.Tela.value==""){
+    Swal.fire({
+        icon:'error',
+        title: 'Error',
+        text: 'El campo Tela es obligatorio'
+    })
+    Datos.Validar=false
+
+}else if (!Datos.Numero.test(Datos.Tela.value)){
+    Swal.fire({
+        icon:'error',
+        title: 'Error',
+        text: 'El campo Tela no puede contener numeros'
+    })
+    Datos.Validar=false
+}else if(Datos.Signos.test(Datos.Tela.value)){
+    Swal.fire({
+        icon:'error',
+        title: 'Error',
+        text: 'El campo Tela no puede contener signos'
+    })
+    Datos.Validar=false
+}else if (!Datos.Tela.value.trimStart()){
+    Swal.fire({
+        icon:'error',
+        title: 'Error',
+        text: 'El campo Tela no puede ser espacio'
+    })
+    Datos.Validar=false
+}
+
+if (Datos.Validar){
+    //* Cerrando el modal
+    const modalBootstrap = bootstrap.Modal.getInstance(document.querySelector('#modalEditar'));
+    modalBootstrap.hide();
+    formulario.reset();
+    Swal.fire('Prenda editada correctamente','','success')
+}
 
 
-        /// Lógica de validación
+}
 
-        let isValidado = true;
-
-        //* Validaciones para la prenda
-        if (prenda.value == '') {
-            imprimirAlerta('Este campo es obligatorio', divPrenda, 'Prenda');
-            isValidado = false;
-        } else if (!number.test(prenda.value)) {
-            imprimirAlerta('Este Campo no puede contener números', divPrenda,
-                'Prenda');
-            isValidado = false;
-        }
-
-        //* Validaciones para la proveedor
-        if (proveedor.value == '') {
-            imprimirAlerta(
-                'Este campo es obligatorio',
-                divProveedor,
-                'Proveedor'
-            );
-            isValidado = false;
-        } else if (!number.test(proveedor.value)) {
-            imprimirAlerta(
-                'Este campo no puede contener letras',
-                divProveedor,
-                'Proveedor'
-            );
-            isValidado = false;
-        }
-        //* Validaciones para la cantidad
-        if (cantidad.value == '') {
-            imprimirAlerta(
-                'Este campo es obligatorio',
-                divCantidad,
-                'Cantidad'
-            );
-            isValidado = false;
-        } else if (!text.test(cantidad.value)) {
-            imprimirAlerta(
-                'Este campo no puede contener letras',
-                divCantidad,
-                'Cantidad'
-            );
-            isValidado = false;
-        }
-
-
-        if (isValidado) {
-            //* Serrando el modal
-            const modalBootstrap = bootstrap.Modal.getInstance(
-                document.querySelector('#prenda')
-            );
-            modalBootstrap.hide();
-            formulario.reset();
-
-            mostrarToast('Prenda agregada correctamente');
-        }
-    }
-
-    function imprimirAlerta(mensaje, lugar, clase) {
-        /// Verificar que no exista la alerta
-        const alert = document.querySelector(`.alerta${clase}`);
-
-        if (!alert) {
-            //? Crear alerta
-            const divMensaje = document.createElement('div');
-
-            divMensaje.classList.add(
-                // 'px-2',
-                'py-1',
-                'rounded',
-                'max-w-lg',
-                'mx-auto',
-                'mt-2',
-                'text-center',
-                'border',
-                `alerta${clase}`
-            );
-
-            divMensaje.classList.add(
-                'bg-red-100',
-                'border-red-400',
-                'text-red-700'
-            );
-
-            divMensaje.textContent = mensaje;
-
-            lugar.parentNode.insertBefore(divMensaje, lugar.nextSibling);
-
-            setTimeout(() => {
-                divMensaje.remove();
-            }, 4500);
-        }
-    }
-
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-agregar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
-    }
 })();
 
