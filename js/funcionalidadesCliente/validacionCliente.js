@@ -1,5 +1,3 @@
-
-
 (() => {
     const formulario = document.querySelector('#formularioAgregarCliente');
 
