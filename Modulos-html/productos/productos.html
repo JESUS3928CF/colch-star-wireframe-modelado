@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/inicio/inicio_style.css" />
+    <link rel="stylesheet" href="/css/cssgeneral.css">
+
+    <!--/ Lines agregados reciente mente  -->
+    <link rel="stylesheet" href="../../css/tailwind.min.css">
+</head>
+
+<body class="fondo">
+    <header class="contenedor">
+        <h1 class="titulo">Productos</h1>
+        <!-- SidebarSearch Form -->
+
+        <!-- botón agregar -->
+        <div class="container-fluid seccion2">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">Agregar
+                producto</button>
+
+            <!-- modal de agregar producto -->
+
+            <div class="modal" id="myModal">
+                <div class="modal-dialog modal-dialog-centered" style="width: 800px ; margin-left: 100px;">
+                    <div class="modal-content" style="width: 800px ;">
+                        <div class="modal-header modal-head-agregar" style="width: 800px">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Agregar producto
+                            </h5>
+                            <button type="button" id="xAgregar" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="formulario">
+
+                            <div class="modal-body">
+                                <!-- formulario para agregar un producto  -->
+                                <form action="" id="formularioAgregarProducto">
+
+                                    <div class="mb-3" name="divProducto">
+                                        <label for="productoGuardar" class="col-form-label">Producto:</label>
+                                        <input type="text" class="form-control" id="productoGuardarr"
+                                            name="productoGuardar" placeholder="Ingresar producto" required />
+                                    </div>
+
+                                    <div class="mb-3" name="divCantidad">
+                                        <label for="cantidadGuardar" class="col-form-label">Cantidad:</label>
+                                        <input type="text" class="form-control" name="cantidadGuardar"
+                                            id="cantidadGuardar" placeholder="Ingresar cantidad" />
+                                    </div>
+
+                                    <div class="mb-3" name="divPrecio">
+                                        <label for="precioGuardar" class="col-form-label">Precio</label>
+                                        <input type="text" class="form-control" name="precioGuardar"
+                                            id="precioGuardar" placeholder="Ingresar precio" />
+                                    </div>
+
+                                    <div class="mb-3" name="divTalla">
+                                        <label for="tallaGuardar" class="col-form-label">Talla:</label>
+                                        <input type="text" class="form-control" id="tallaGuardar" name="tallaGuardar"
+                                            placeholder="Ingresar Talla" required />
+                                    </div>
+
+                                    <div class="mb-3" name="divTela">
+                                        <label for="telaGuardar" class="col-form-label">Tela:</label>
+                                        <input type="text" class="form-control" id="telaGuardar" name="telaGuardar"
+                                            placeholder="Ingresar Tela" required />
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" id="guardarCancelado" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <input type="submit" class="btn btn-success" value="Guardar" />
+                                    </div>
+
+                                </form>
+                            </div>
+
+
+                            <div class="modal-body ">
+                                <form action="">
+                                    <div class="form-label" style="text-align: center;">
+                                        <p class="detalleCompra">Agregar datos de los productos </p>
+                                    </div>
+                                    <div class="subFormulario">
+
+                                        <div class="mb-3">
+                                            <label for="nombreCompraAgregar" class="col-form-label">Imagen:</label>
+                                            <input type="file" class="form-control" id="nombreCompraAgregar"
+                                                placeholder="Ingresar nombre">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="bottonAgregarProducto">
+                                        <div> <button type="button" class="btn btn-info">Agregar nueva imagen</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="subFormulario">
+
+                                        <div class="mb-3">
+                                            <br>
+                                            <label for="">Seleccionar Colores: </label>
+                                            <br>
+
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="negroAgregar">
+                                                <label class="form-check-label" for="NegroAgregar">Negro</label>
+                                            </div>
+
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="rojoAgregar"
+                                                    checked>
+                                                <label class="form-check-label" for="rojoAgregar">Rojo</label>
+                                            </div>
+
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="azulAgregar"
+                                                    checked>
+                                                <label class="form-check-label" for="azulAgregar">Azul</label>
+                                            </div>
+
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="verdeAgregar"
+                                                    checked>
+                                                <label class="form-check-label" for="verdeAgregar">verde</label>
+                                            </div>
+
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="grisAgregar"
+                                                    checked>
+                                                <label class="form-check-label" for="grisAgregar">gris</label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+
+            <!-- boton de buscar -->
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+
+            <!-- botón para mostrar la lista de prendad  -->
+
+            <a href="./prendas.html"><button type="button" class="btn btn-secondary" id="ee">Lista de
+                    Prendas</button></a>
+
+
+            <!-- botón para mostrar la lista de diseños  -->
+            <a href="./listaDiseños.html"><button type="button" class="btn btn-secondary">Lista de diseños</button></a>
+
+
+
+
+
+        </div>
+
+        <!-- tabla para listar  productos -->
+    </header>
+    <div class="tabla">
+        <table class="table caption-top ">
+            <caption>Lista de productos</caption>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Ver Detalle</th>
+                    <th scope="col">Inhabilitar</th>
+                    <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">001</th>
+                    <td>Camisas</td>
+                    <td>2</td>
+                    <td>25000</td>
+                    <td><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#modalDetalles">Ver</button></td>
+                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" /></td>
+                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#modalEditar">Editar</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">002</th>
+                    <td>Buzos</td>
+                    <td>10</td>
+                    <td>20000</td>
+                    <td><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#modalDetalles">Ver</button></td>
+                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" /></td>
+                    <td><button type="button" class="btn btn-info" data-bs-target="#modalEditar">Editar</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">003</th>
+                    <td>Sudaderas</td>
+                    <td>7</td>
+                    <td>35000</td>
+                    <td><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#modalDetalles">Ver</button></td>
+                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" /></td>
+                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#modalEditar">Editar</button></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- modal de editar productos -->
+
+    <div class="modal" id="modalEditar">
+        <div class="modal-dialog modal-dialog-centered" style="width: 800px ; margin-left: 100px;">
+            <div class="modal-content" style="width: 800px;">
+                <div class="modal-header modal-head-editar" style="width: 800px;">
+                    <h5 class="modal-title">Editar datos del producto</h5>
+                    <button type="button" id="Editar" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="formulario">
+                    <div class="modal-body">
+
+                        <!-- formulario para editar los datos de la tabla producto -->
+                        <form action="" id="formularioEditarProducto">
+                            <div class="mb-3" name="divProducto">
+                                <label for="nombreEditar" class="col-form-label">Producto:</label>
+                                <input type="text" name="productoEditar" class="form-control" id="productoEditar"
+                                    placeholder="Ingresar producto">
+                            </div>
+
+                            <div class="mb-3" name="divCantidad">
+                                <label for="apellidoEditar" class="col-form-label">Cantidad:</label>
+                                <input type="text" name="cantidadEditar" class="form-control" id="cantidadEditar"
+                                    placeholder="Ingresar cantidad">
+                            </div>
+
+                            <div class="mb-3" name="divPrecio">
+                                <label for="precioEditar" class="col-form-label">Precio:</label>
+                                <input type="text" name="precioEditar" class="form-control" id="precioEditar"
+                                    placeholder="Ingresar el Precio">
+                            </div>
+
+                            <div class="mb-3" name="divTalla">
+                                <label for="tallaEditar" class="col-form-label">Talla:</label>
+                                <input type="text" name="tallaEditar" class="form-control" id="tallaEditar"
+                                    placeholder="Ingresar la talla ">
+                            </div>
+
+                            <div class="mb-3" name="divTela">
+                                <label for="telaEditar" class="col-form-label">Tela:</label>
+                                <input type="text" name="telaEditar" class="form-control" id="telaEditar"
+                                    placeholder="Ingresar la tela">
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" id="editarCancelado" class="btn btn-danger"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <input type="submit" class="btn btn-success" value="Guardar">
+                            </div>
+
+                        </form>
+                    </div>
+
+                   
+
+
+
+                    <div class="modal-body ">
+                        <form action="">
+                            <div class="form-label" style="text-align: center;">
+                                <p class="detalleCompra">Agregar datos de los productos </p>
+                            </div>
+                            <div class="subFormulario">
+
+                                <div class="mb-3">
+                                    <label for="nombreCompraAgregar" class="col-form-label">Imagen:</label>
+                                    <input type="file" class="form-control" id="nombreCompraEditar"
+                                        placeholder="Ingresar nombre">
+                                </div>
+
+                            </div>
+
+                            <div class="bottonAgregarProducto">
+                                <div> <button type="button" class="btn btn-info">Agregar nueva imagen</button> </div>
+                            </div>
+
+                            <div class="subFormulario">
+
+                                <div class="mb-3">
+                                    <br>
+                                    <label for="">Seleccionar Color: </label>
+                                    <br>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="negroEditar">
+                                        <label class="form-check-label" for="NegroAgregar">Negro</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="rojoEditar" checked>
+                                        <label class="form-check-label" for="rojoAgregar">Rojo</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="azulEditar" checked>
+                                        <label class="form-check-label" for="azulAgregar">Azul</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="verdeEditar" checked>
+                                        <label class="form-check-label" for="verdeAgregar">verde</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="grisEditar" checked>
+                                        <label class="form-check-label" for="grisAgregar">gris</label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ver detalle de productos -->
+
+    <div class="modal" id="modalDetalles">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header modal-head-editar">
+                    <h5 class="modal-title">Información del producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="formulario">
+                    <div class="modal-body">
+
+                        <div class="container">
+                            <div class="col">
+                                <div class="row">
+                                    <p> Precio de Compra </p>
+                                </div>
+                                <div class="row">
+                                    <ul>
+                                        <li>Tela:<ul>
+                                                <li>Tela fria </li>
+                                            </ul>
+                                        </li>
+                                        <li>Talla:<ul>
+                                                <li>S</li>
+
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <div class="col">
+                                <div class="row ">
+                                    <p>Imagen:</p>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <img src="/imagenes/1153861.png" width="200px" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col">
+                                <ul>
+                                    <li>Color:<ul>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div> Negro: <div
+                                                                style="border: 1px solid black; width: 50px; height: 50px; background-color: rgb(0, 0, 0);">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/funcionalidadesProducto/cambiarEstado.js"></script>
+    <script src="../../js/funcionalidadesProducto/validarProducto.js"></script>
+    <script src="../../js/funcionalidadesProducto/validarProductoEditar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
