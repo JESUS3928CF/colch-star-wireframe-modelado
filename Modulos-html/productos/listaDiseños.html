@@ -44,7 +44,7 @@
                             <form action="" id="formularioAgregarDiseño">
                                 <div class="mb-3" name="divNombre">
                                     <label for="nombreGuardar" class="col-form-label">Nombre:</label>
-                                    <input type="text" class="form-control" name="nombreGuardar" id="nombreGuardarr"
+                                    <input type="text" class="form-control"  id="NombreDiseno"
                                         placeholder="ingresar nombre" required>
                                 </div>
                                 <div class="mb-3" name="divImagen">
@@ -56,7 +56,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" id="guardarCancelado"
                                         data-bs-dismiss="modal">Cancelar</button>
-                                    <input type="submit" class="btn btn-success" value="Guardar">
+                                    <input type="submit" id="disenosA"class="btn btn-success" value="Guardar">
                                 </div>
                             </form>
                         </div>
@@ -64,17 +64,7 @@
                 </div>
             </div>
 
-            <!--/ Mensaje de agregar Producto correctamente   -->
-            <div class="toast-container position-fixed top-0 end-0 p-3">
-                <div id="toastAgregar" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success text-white">
-                        <strong class="me-auto text-white">Colch Star</strong>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
-                    <div id="toast-body-agregar" class="toast-body"></div>
-                </div>
-            </div>
+         
 
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
@@ -101,7 +91,7 @@
                         <div class="modal-body">
 
                             <!-- formulario para agregar un cliente -->
-                            <form action="">
+                            <form action="" id="formularioModificar">
                                 <select class="form-select" aria-label="Default select example">
                                     <option value="1">Pequeño (0-10cm)</option>
                                     <option value="2">Mediano (11-25cm)</option>
@@ -109,13 +99,13 @@
                                 </select>
                                 <div class="mb-3">
                                     <label for="precioGuardar" class="col-form-label">Precio:</label>
-                                    <input type="number" class="form-control" id="precioGuardar"
+                                    <input type="text" class="form-control" id="precioGuardar"
                                         placeholder="ingresar precio por tamaño" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger"
                                         data-bs-dismiss="modal">Cancelar</button>
-                                    <input type="submit" class="btn btn-success" value="Guardar">
+                                    <input type="submit" id="ModificarDiseno" class="btn btn-success" value="Guardar">
                                 </div>
                             </form>
                         </div>
@@ -188,16 +178,16 @@
             <div class="modal-content">
                 <div class="modal-header modal-head-editar">
                     <h5 class="modal-title" id="PublicarDiseño">Editar el diseño</h5>
-                    <button type="button" class="btn-close" id="xEditar" data-bs-dismiss="modal"
+                    <button type="button" class="btn-close" id="xAgregar" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
                     <!-- formulario para editar un cliente -->
-                    <form action="" id="formularioEditarDiseño">
+                    <form action="" id="formularioEditarDiseno">
                         <div class="mb-3" name="divNombre">
                             <label for="nombreDiseñoGuardar" class="col-form-label">Nombre:</label>
-                            <input type="text" class="form-control" name="nombreEditar" id="nombreDiseñoGuardar"
+                            <input type="text" class="form-control" id="nombreEditar"
                                 placeholder="Ingresar nombre">
                         </div>
                         <div class="mb-3" name="divImagen">
@@ -208,7 +198,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" id="editarCancelado"
                                 data-bs-dismiss="modal">Cancelar</button>
-                            <input type="submit" class="btn btn-success" value="Guardar">
+                            <input type="submit" id="EditarDiseno" class="btn btn-success" value="Guardar">
                         </div>
                     </form>
                 </div>
@@ -268,6 +258,8 @@
     <script src="../../js/funcionalidadesDiseño/validarDiseño.js"></script>
     <script src="../../js/funcionalidadesDiseño/validarDiseñoEditar.js"></script>
     <script src="../../js/funcionalidadesProducto/cambiarEstado.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>
