@@ -127,7 +127,6 @@ body{
     font-weight: 600px;
     pointer-events: none;
     transition: .5s ease;
-
 }
 .input-box .icon{
     position: absolute;
