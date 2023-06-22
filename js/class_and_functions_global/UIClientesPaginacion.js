@@ -76,10 +76,11 @@ export async function imprimirPaginador() {
     }
 }
 
+//! No utilizar 
 export function buscarRegistros(paginaActual) {
 
     /// Url de usuarios con parámetros
-    const url = `http://localhost:3000/api/v1/usuarios?limit=${registrosPorPagina}&offset=${
+    const url = `http://localhost:3000/api/cliente?limit=${registrosPorPagina}&offset=${
         (paginaActual - 1) * registrosPorPagina
     }`;
 
