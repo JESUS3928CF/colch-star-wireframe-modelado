@@ -1,4 +1,4 @@
-import {listarProveedor} from '../funcionalidadesProveedor/UIProveedor.js';
+import {listarProveedor} from './UIProveedor.js';
 
 
 (() => {
