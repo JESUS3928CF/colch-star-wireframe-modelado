@@ -1,4 +1,8 @@
-(() => {
+import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
+ const peticionesBackend = new PeticionesBackend(
+     'http://localhost:3000/api/usuario'
+ );
+ import { listarClientes } from './UIClientes.js';
     const formulario = document.querySelector('#formularioagregarusuario');
 
 
@@ -251,21 +255,19 @@
 
         
         if (isValidado) {
-            //* Serrando el modal
-            const modalBootstrap = bootstrap.Modal.getInstance(
-                document.querySelector('#myModal')
-            );
-            modalBootstrap.hide();
-            formulario.reset();
-            
-            mostrarToast(  Swal.fire(
-                'Usuario agregado correctamente',
-                '',
-                'success'
-              ));
+            ///! Insertar usuario
+    
+            const nuevoUsuario = {
+                nombre: nombre.value,
+                apellido: apellido.value,
+                telefono: telefono.value,
+                email: email.value,
+                contrasena: contraseña.value,
+                fk_rol: seleccionarRol.value
+            };
+            registrarUsuario(nuevoUsuario);
         }
-    }
-
+    
     
 
     function mostrarToast(mensaje) {
@@ -287,6 +289,4 @@
 //          })
 //     isValidado = false;    
 
-
-
-})();
+}
