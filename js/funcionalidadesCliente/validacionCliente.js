@@ -2,7 +2,6 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
  const peticionesBackend = new PeticionesBackend(
      'http://localhost:3000/api/clientes'
  );
-
  import { listarClientes } from './UIClientes.js';
 
     const formulario = document.querySelector('#formularioAgregarCliente');
@@ -257,7 +256,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 Swal.fire('Cliente agregado correctamente', '', 'success')
             );
 
-            
+            listarClientes();
         }else{
             mostrarToast(
                 Swal.fire('El cliente no fue agregado, aparecer hubo un error', '', 'error')

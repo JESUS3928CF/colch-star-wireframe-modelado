@@ -2,6 +2,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
 const peticionesBackend = new PeticionesBackend(
     'http://localhost:3000/api/clientes'
 );
+import { listarClientes } from './UIClientes.js';
 
 const formulario = document.querySelector('#formularioEditarCliente');
 
@@ -283,9 +284,14 @@ async function guardarCambiosClientes() {
 
     console.log(resultado);
     if (resultado === 'Actualización exitosa') {
+        listarClientes();
         mostrarToast(Swal.fire('Cliente editado correctamente', '', 'success'));
+
+        
     }else{
+
         mostrarToast(
+            
             Swal.fire(
                 'El cliente no fue editado, aparecer hubo un error',
                 '',
@@ -293,6 +299,7 @@ async function guardarCambiosClientes() {
             )
         );
     }
+
 
     
 }
@@ -341,4 +348,6 @@ function mostrarToast(mensaje) {
     toastBody.textContent = mensaje;
     /// Mostrando el mensaje
     toast.show();
+
+    
 }
