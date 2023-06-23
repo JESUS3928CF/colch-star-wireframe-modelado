@@ -2,34 +2,32 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
 const peticionesBackend = new PeticionesBackend(
     'http://localhost:3000/api/proveedor'
 );
-import { listarClientes } from './UIClientes.js';
+import { listarProveedor } from './UIProveedor.js';
 
 const formulario = document.querySelector('#formularioEditarProveedor');
 
 let id = '';
 
 const nombre = document.querySelector(
-    '##formularioEditarProveedor input[name="nombreEditar"]'
+    '#formularioEditarProveedor input[name="nombreEditar"]'
 );
 
-const apellido = document.querySelector(
-    '##formularioEditarProveedor input[name="apellidoEditar"]'
-);
 
 const telefono = document.querySelector(
-    '##formularioEditarProveedor input[name="telefonoEditar"]'
+    '#formularioEditarProveedor input[name="telefonoEditar"]'
 );
 
-const email = document.querySelector(
-    '##formularioEditarProveedor input[name="emailEditar"]'
-);
 
 const direccion = document.querySelector(
-    '##formularioEditarProveedor input[name="direccionEditar"]'
+    '#formularioEditarProveedor input[name="direccionEditar"]'
+);
+
+const contacto = document.querySelector(
+    '#formularioEditarProveedor input[name="contactoEditar"]'
 );
 
 const submit = document.querySelector(
-    '##formularioEditarProveedor input[type="submit"]'
+    '#formularioEditarProveedor input[type="submit"]'
 );
 
 const cancelar = document.querySelector('#editarCancelado');
@@ -44,13 +42,12 @@ window.addEventListener('load', () => {
 
 export function llenarFormulario(registro) {
     nombre.value = registro.nombre;
-    apellido.value = registro.apellido;
     telefono.value = registro.telefono;
-    email.value = registro.email;
     direccion.value = registro.direccion;
-    console.log(registro.id_cliente);
+    direccion.value = registro.contacto;
+    console.log(registro.id_proveedor);
 
-    id = registro.id_cliente;
+    id = registro.id_proveedor;
 }
 
 function recetearFormulario(e) {
@@ -77,23 +74,21 @@ function validarCliente() {
 
     //* Contenedores del formularios
     const divNombre = document.querySelector(
-        '##formularioEditarProveedor div[name="divNombre"]'
+        '#formularioEditarProveedor div[name="divNombre"]'
     );
 
-    const divApellido = document.querySelector(
-        '##formularioEditarProveedor div[name="divApellido"]'
-    );
 
     const divTelefono = document.querySelector(
-        '##formularioEditarProveedor div[name="divTelefono"]'
+        '#formularioEditarProveedor div[name="divTelefono"]'
     );
 
-    const divEmail = document.querySelector(
-        '##formularioEditarProveedor div[name="divEmail"]'
-    );
 
     const divDireccion = document.querySelector(
-        '##formularioEditarProveedor div[name="divDireccion"]'
+        '#formularioEditarProveedor div[name="divDireccion"]'
+    );
+
+    const divContacto = document.querySelector(
+        '#formularioEditarProveedor div[name="divContacto"]'
     );
 
     /// Lógica de validación
@@ -104,10 +99,10 @@ function validarCliente() {
 
     if (
         nombre.value == '' &&
-        apellido.value == '' &&
         telefono.value == '' &&
-        email.value == '' &&
-        direccion.value == ''
+        direccion.value == '' &&
+        contacto.value == ''
+
     ) {
         Swal.fire({
             icon: 'error',
@@ -147,39 +142,10 @@ function validarCliente() {
         });
         isValidado = false;
 
-        //Validaciones para el apellido
-    } else if (apellido.value == '') {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El apellido es obligatorios',
-        });
 
-        isValidado = false;
-    } else if (!number.test(apellido.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El apellido no puede tener numeros',
-        });
-        isValidado = false;
-    } else if (!apellido.value.trimStart()) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El apellido no puede ser un espacio',
-        });
-        isValidado = false;
-    } else if (signo.test(apellido.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El apellido no puede tener signos',
-        });
-        isValidado = false;
-
-        //* Validaciones para teléfono
-    } else if (telefono.value == '') {
+    }
+    //* Validaciones para teléfono
+    else if (telefono.value == '') {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -209,31 +175,10 @@ function validarCliente() {
         });
         isValidado = false;
 
-        //* Validaciones para el gmail
-    } else if (email.value == '') {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El email es obligatorios',
-        });
-        isValidado = false;
-    } else if (!email_val.test(email.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Formato no valido',
-        });
 
-        isValidado = false;
-    } else if (!email.value.trimStart()) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El email no puede ser un espacio',
-        });
-        isValidado = false;
-        //* Validaciones para dirección
-    } else if (direccion.value == '') {
+    }
+    //* Validaciones para dirección
+    else if (direccion.value == '') {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -248,106 +193,138 @@ function validarCliente() {
         });
         isValidado = false;
     }
+    //* Validaciones para el contacto
+    else if (contacto.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto es obligatorios',
+        });
 
-    if (isValidado) {
-        //* Serrando el modal
-        const modalBootstrap = bootstrap.Modal.getInstance(
-            document.querySelector('#modalEditar')
-        );
-        modalBootstrap.hide();
-
-        guardarCambiosProveedor();
-
-        formulario.reset();
-    }
-}
-
-async function guardarCambiosProveedor() {
-    const clienteEditado = {
-        nombre: nombre.value,
-        apellido: apellido.value,
-        telefono: telefono.value,
-        email: email.value,
-        direccion: direccion.value,
-    };
-
-    // console.log(id);
-    // console.log(clienteEditado);
-
-
-
-    const resultado = await peticionesBackend.actualizarRegistro(
-        clienteEditado,
-        id
-    );
+        isValidado = false;
+    } else if (!number.test(contacto.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto no puede tener numeros',
+        });
+        isValidado = false;
+    } else if (!contacto.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto no puede ser un espacio',
+        });
+        isValidado = false;
+    } else if (signo.test(contacto.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto no puede tener signos',
+        });
+        isValidado = false;
 
 
-    console.log(resultado);
-    if (resultado === 'Actualización exitosa') {
-        listarClientes();
-        mostrarToast(Swal.fire('proveedor editado correctamente', '', 'success'));
 
-        
-    }else{
+        if (isValidado) {
+            //* Serrando el modal
+            const modalBootstrap = bootstrap.Modal.getInstance(
+                document.querySelector('#modalEditar')
+            );
+            modalBootstrap.hide();
 
-        mostrarToast(
-            
-            Swal.fire(
-                'El proveedor no fue editado, aparecer hubo un error',
-                '',
-                'error'
-            )
-        );
+            guardarCambiosProveedor();
+
+            formulario.reset();
+        }
     }
 
+    async function guardarCambiosProveedor() {
+        const proveedorEditado = {
+            nombre: nombre.value,
+            telefono: telefono.value,
+            direccion: direccion.value,
+            contacto: contacto.value,
+        };
 
-    
-}
+        // console.log(id);
+        // console.log(clienteEditado);
 
-function imprimirAlerta(mensaje, lugar, clase) {
-    /// Verificar que no exista la alerta
-    const alert = document.querySelector(`.alerta${clase}`);
 
-    if (!alert) {
-        //? Crear alerta
-        const divMensaje = document.createElement('div');
 
-        divMensaje.classList.add(
-            // 'px-2',
-            'py-1',
-            'rounded',
-            'max-w-lg',
-            'mx-auto',
-            'mt-2',
-            'text-center',
-            'border',
-            `alerta${clase}`
+        const resultado = await peticionesBackend.actualizarRegistro(
+            proveedorEditado,
+            id
         );
 
-        divMensaje.classList.add(
-            'bg-red-100',
-            'border-red-400',
-            'text-red-700'
-        );
 
-        divMensaje.textContent = mensaje;
+        console.log(resultado);
+        if (resultado === 'Actualización exitosa') {
+            listarClientes();
+            mostrarToast(Swal.fire('proveedor editado correctamente', '', 'success'));
 
-        lugar.parentNode.insertBefore(divMensaje, lugar.nextSibling);
 
-        setTimeout(() => {
-            divMensaje.remove();
-        }, 4500);
+        } else {
+
+            mostrarToast(
+
+                Swal.fire(
+                    'El proveedor no fue editado, aparecer hubo un error',
+                    '',
+                    'error'
+                )
+            );
+        }
+
+
+
     }
-}
 
-function mostrarToast(mensaje) {
-    const toastDiv = document.querySelector('#toastEditar'); //* Seleccionamos el toast que esta en nuestro HTML
-    const toastBody = document.querySelector('#toast-body-editar'); //* Y también el body para agregar contenido a nuestro toast
-    /// Creamos la instancia
-    const toast = new bootstrap.Toast(toastDiv);
-    toastBody.textContent = mensaje;
-    /// Mostrando el mensaje
-    toast.show();
+    function imprimirAlerta(mensaje, lugar, clase) {
+        /// Verificar que no exista la alerta
+        const alert = document.querySelector(`.alerta${clase}`);
 
-    
+        if (!alert) {
+            //? Crear alerta
+            const divMensaje = document.createElement('div');
+
+            divMensaje.classList.add(
+                // 'px-2',
+                'py-1',
+                'rounded',
+                'max-w-lg',
+                'mx-auto',
+                'mt-2',
+                'text-center',
+                'border',
+                `alerta${clase}`
+            );
+
+            divMensaje.classList.add(
+                'bg-red-100',
+                'border-red-400',
+                'text-red-700'
+            );
+
+            divMensaje.textContent = mensaje;
+
+            lugar.parentNode.insertBefore(divMensaje, lugar.nextSibling);
+
+            setTimeout(() => {
+                divMensaje.remove();
+            }, 4500);
+        }
+    }
+
+    function mostrarToast(mensaje) {
+        const toastDiv = document.querySelector('#toastEditar'); //* Seleccionamos el toast que esta en nuestro HTML
+        const toastBody = document.querySelector('#toast-body-editar'); //* Y también el body para agregar contenido a nuestro toast
+        /// Creamos la instancia
+        const toast = new bootstrap.Toast(toastDiv);
+        toastBody.textContent = mensaje;
+        /// Mostrando el mensaje
+        toast.show();
+
+
+    }
 }
