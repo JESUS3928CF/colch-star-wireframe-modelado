@@ -34,6 +34,17 @@
             '#formularioagregarrol input[name="nombreGuardar"]'
         );
 
+        const elemento1 = document.forms['formularioagregarrol']['check'].checked
+        const elemento2 =document.forms['formularioagregarrol']['checkDos'].checked
+        const elemento3 = document.forms['formularioagregarrol']['checkTres'].checked
+        const elemento4 = document.forms['formularioagregarrol']['checkCuatro'].checked
+        const select = document.forms['formularioagregarrol']['seleccion'].checked
+        const select1 = document.forms['formularioagregarrol']['seleccionDos'].checked
+        const select2 = document.forms['formularioagregarrol']['seleccionTres'].checked
+        const select3 = document.forms['formularioagregarrol']['seleccionCuatro'].checked
+        const select4 = document.forms['formularioagregarrol']['seleccionCinco'].checked
+
+
         //- Expresiones Regulares
         const number = /^\D*$/;
         var signo = /[|°!"#$%&/()=?¿]/;
@@ -42,7 +53,15 @@
         let isValidado = true;
 
         //* Validaciones para el nombre
-        if (nombre.value == '') {
+        if (select==false && select1==false && select2==false && select3==false && select4==false && elemento1==false && elemento2==false && elemento3==false && elemento4== false && nombre.value==''){
+            Swal.fire({
+                icon:'error',
+                title: 'Error',
+                text: 'Todos los campos son obligatorios'
+            })
+            isValidado=false
+        }
+       else if (nombre.value == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -71,6 +90,20 @@
                 text: 'No se puede poner signos en el nombre',
                  })
             isValidado = false;
+        }else if (elemento1==false && elemento2==false && elemento3==false && elemento4== false){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Seleccione por lo menos un permisos'
+            })
+            isValidado=false
+        }else if(select==false && select1==false && select2==false && select3==false && select4==false){
+            Swal.fire({
+                icon:'error',
+                title: 'Error',
+                text: 'Seleccione por lo menos un  modulos'
+            })
+            isValidado=false
         }
 
         if (isValidado) {
@@ -82,22 +115,13 @@
 
             formulario.reset();
 
-            mostrarToast( Swal.fire(
+            Swal.fire(
                 'Rol agregado  correctamente',
                 '',
                 'success'
-              ))
+              )
+
         }
     }
 
-
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-agregar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
-    }
 })();

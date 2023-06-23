@@ -1,12 +1,14 @@
-import PeticionesBackend from '../class_and_functions_global/PeticionesBackend';
-import { cambiarEstadoDB } from './cambiarEstado.js';
+import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
+import { llenarFormulario } from '../funcionalidadesProveedor/validacionProveedorEditar.js';
+// import { cambiarEstadoDB } from './cambiarEstado.js';
+// import { llenarFormulario } from './validacionProveedorEditar.js';
 const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/proveedor');
 
 
 
 export async function listarProveedor(){
     const proveedor = await peticionesBackend.findAll();
-    console.log(proveedor);
+    // console.log(proveedor);
     mostrarRegistros(proveedor);
 }
 
@@ -76,7 +78,9 @@ function mostrarRegistros(resultado) {
                 /src="\/imagenes\/iconos\/light_switch off\.svg"/i.test(dato)
             ) {
                 const imagenEstado = celda.querySelector('.estado');
-                imagenEstado.addEventListener('click', cambiarEstadoDB);
+                imagenEstado.addEventListener('click', (e) => {
+                    llenarFormulario(e,registro)
+                });
             }
             fila.appendChild(celda);
         });

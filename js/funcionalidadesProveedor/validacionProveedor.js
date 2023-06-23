@@ -1,189 +1,205 @@
-(() => {
-    const formulario = document.querySelector('#formularioAgregarProveedor');
+import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
+const peticionesBackend = new PeticionesBackend(
+    'http://localhost:3000/api/proveedor'
+);
+import { listarProveedor } from './UIProveedor.js';
 
-    const submit = document.querySelector(
-        '#formularioAgregarProveedor input[type="submit"]'
+const formulario = document.querySelector('#formularioAgregarProveedor');
+
+const submit = document.querySelector(
+    '#formularioAgregarProveedor input[type="submit"]'
+);
+
+const cancelar = document.querySelector('#guardarCancelado');
+const atras = document.querySelector('#xAgregar');
+
+window.addEventListener('load', () => {
+    submit.addEventListener('click', crearProveedor);
+    cancelar.addEventListener('click', recetearFormulario);
+    atras.addEventListener('click', recetearFormulario);
+});
+
+function recetearFormulario(e) {
+    e.preventDefault();
+    formulario.reset();
+}
+
+function crearProveedor(e) {
+    e.preventDefault();
+
+    /// Validar el formulario
+    validarProveedor();
+}
+
+function validarProveedor() {
+    //* Campos a validar
+
+    const nombre = document.querySelector(
+        '#formularioAgregarProveedor input[name="nombreGuardar"]'
     );
 
-    const cancelar = document.querySelector('#guardarCancelado');
-    const atras = document.querySelector('#xAgregar');
 
-    window.addEventListener('load', () => {
-        submit.addEventListener('click', crearProveedor);
-        cancelar.addEventListener('click', recetearFormulario);
-        atras.addEventListener('click', recetearFormulario);
-    });
-
-    function recetearFormulario(e){
-        e.preventDefault();
-        formulario.reset();
-    }
-
-    function crearProveedor(e) {
-        e.preventDefault();
-
-        /// Validar el formulario
-        validarProveedor();
-    }
-
-    function validarProveedor() {
-        //* Campos a validar
-
-        const nombre = document.querySelector(
-            '#formularioAgregarProveedor input[name="nombreGuardar"]'
-        );
-
-        const telefono = document.querySelector(
-            '#formularioAgregarProveedor input[name="telefonoGuardar"]'
-        );
+    const telefono = document.querySelector(
+        '#formularioAgregarProveedor input[name="telefonoGuardar"]'
+    );
 
 
-        const contacto = document.querySelector(
-            '#formularioAgregarProveedor input[name="contactoGuardar"]'
-        );
+    const direccion = document.querySelector(
+        '#formularioAgregarProveedor input[name="direccionGuardar"]'
+    );
 
-        const direccion = document.querySelector(
-            '#formularioAgregarProveedor input[name="direccionGuardar"]'
-        )
+    const contacto = document.querySelector(
+        '#formularioAgregarProveedor input[name="contactoGuardar"]'
+    );
 
-        //- Expresiones Regulares
-        const number = /^\D*$/;
-        const tel = /^[^a-zA-Z]*$/;
-        var signo = /[|°!"#$%&/()=?¿]/;
-        
+    //- Expresiones Regulares
+    const number = /^\D*$/;
+    const text = /^[^a-zA-Z]*$/;
+    const email_val =
+        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    const signo = /[|°!"#$%&/()=?¿]/;
 
-        /// Lógica de validación
+    /// Lógica de validación
 
-        let isValidado = true;
+    let isValidado = true;
 
-        if(nombre.value=='' && telefono.value=='' && contacto.value=='' && direccion.value==''){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Los campos son obligatorios', })
-         isValidado = false;
+    if (
+        nombre.value == '' &&
+        telefono.value == '' &&
+        direccion.value == '' &&
+        contacto.value == '' 
 
-            //* Validaciones para el nombre
-        }else if (nombre.value == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El nombre es obligatorio',
-                 })
-            isValidado = false;
-        }else if (!number.test(nombre.value)){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El nombre no puede contener números',
-                 })
-            isValidado = false;  
+        ) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Todos los campos son obligatorios',
+        });
+        isValidado = false;
 
-        } else if (!nombre.value.trimStart()){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El nombre no puede ser un espacio',
-                 })
-            isValidado = false;            
+        //* Validaciones para el nombre
+    } else if (nombre.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre es obligatorios',
+        });
+
+        isValidado = false;
+    } else if (!number.test(nombre.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre no puede tener numeros',
+        });
+        isValidado = false;
+    } else if (!nombre.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre no puede ser un espacio',
+        });
+        isValidado = false;
+    } else if (signo.test(nombre.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre no puede tener signos',
+        });
+        isValidado = false;
+
         //* Validaciones para teléfono
-        } else if (signo.test(nombre.value)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se puede poner signos en el nombre',
-                 })
-            isValidado = false;
+    } else if (telefono.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El teléfono es obligatorios',
+        });
 
-        }else if (telefono.value==""){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'El teléfono es obigatorio',
-                     })
-                isValidado = false;
+        isValidado = false;
+    } else if (!text.test(telefono.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El Teléfono no puede tener letras',
+        });
+        isValidado = false;
+    } else if (!telefono.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El Teléfono no puede ser un espacio',
+        });
+        isValidado = false;
+    } else if (signo.test(telefono.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El Telefono no puede tener signos',
+        });
+        isValidado = false;
 
-        } else if (!tel.test(telefono.value)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El teléfono no puede contener letras',
-                 })
-            isValidado = false;
 
-        }else if (!telefono.value.trimStart()){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'El telefono no puede ser un espacio',
-                     })
-                isValidado = false;
-            } else if (signo.test(telefono.value)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'No se puede poner signos en el telefono',
-                     })
-                isValidado = false;    
+        //* Validaciones para dirección
+    } else if (direccion.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La dirección es obligatoria',
+        });
+        isValidado = false;
+    } else if (!direccion.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La direccion no puede ser un espacio',
+        });
+        isValidado = false;
+    }
+    //* Validaciones para el contacto
+    else if (contacto.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto es obligatorios',
+        });
 
-        //* Validaciones para la direccion
-        }else if (direccion.value==""){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'La direccion es un campo obligatorio',
-            })
-            isValidado = false; 
-
-        } else if (!direccion.value.trimStart()){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'La Direccion no puede ser un espacio',
-                 })
-            isValidado = false;
-
-        }else if (contacto.value == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El contacto es obligatorio',
-                 })
-                   isValidado = false 
-        } else if (!number.test(contacto.value)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El contacto no puede contener números',
-                 })
-            isValidado = false;
-
-        }else if (!contacto.value.trimStart()){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'El contacto no puede ser un espacio',
-                     })
-                isValidado = false;
-        }        
+        isValidado = false;
+    } else if (!number.test(contacto.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto no puede tener numeros',
+        });
+        isValidado = false;
+    } else if (!contacto.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto no puede ser un espacio',
+        });
+        isValidado = false;
+    } else if (signo.test(contacto.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto no puede tener signos',
+        });
+        isValidado = false;
 
         if (isValidado) {
-            //* Serrando el modal
-            const modalBootstrap = bootstrap.Modal.getInstance(
-                document.querySelector('#myModal')
-            );
-            modalBootstrap.hide();
+            ///! Insertar cliente
 
-            formulario.reset();
-
-            mostrarToast( Swal.fire(
-                'Proveedor agregado correctamente',
-                '',
-                'success'
-            ));
+            const nuevoProveedor = {
+                nombre: nombre.value,
+                telefono: telefono.value,
+                direccion: direccion.value,
+                contacto: contacto.value,
+            };
+            // console.log(nuevoProveedor);
+             registrarProveedor(nuevoProveedor)
         }
     }
-
 
     function mostrarToast(mensaje) {
         const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
@@ -194,4 +210,32 @@
         /// Mostrando el mensaje
         toast.show();
     }
-})();
+
+
+    async function registrarProveedor(nuevoProveedor) {
+        // console.log(nuevoCliente);
+        const resultado = await peticionesBackend.registrarDato(nuevoProveedor);
+
+        // console.log(resultado);
+        //* Serrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(
+            document.querySelector('#myModal')
+        );
+        modalBootstrap.hide();
+
+        formulario.reset();
+        if (resultado === 'proveedor agregado exitosamente') {
+            listarClientes();
+            mostrarToast(
+                Swal.fire('proveedor agregado correctamente', '', 'success')
+            );
+
+            listarClientes();
+        } else {
+            mostrarToast(
+                Swal.fire('El proveedor no fue agregado, aparecer hubo un error', '', 'error')
+            );
+        }
+    };
+}
+

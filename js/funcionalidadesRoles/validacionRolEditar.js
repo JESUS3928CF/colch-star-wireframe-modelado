@@ -30,9 +30,17 @@
     function validarRol() {
         //* Campos a validar
 
-        const nombre = document.querySelector(
-            '#formularioeditarrol input[name="nombreGuardar"]'
-        );
+        const nombre = document.querySelector('#formularioeditarrol input[name="nombreGuardar"]');
+        const elemento1 = document.forms['formularioeditarrol']['checkEditar'].checked
+        const elemento2 =document.forms['formularioeditarrol']['checkEditarDos'].checked
+        const elemento3 = document.forms['formularioeditarrol']['checkEditarTres'].checked
+        const elemento4 = document.forms['formularioeditarrol']['checkEditarCuatro'].checked
+        const select = document.forms['formularioeditarrol']['seleccionEditar'].checked
+        const select1 = document.forms['formularioeditarrol']['seleccionEditarDos'].checked
+        const select2 = document.forms['formularioeditarrol']['seleccionEditarTres'].checked
+        const select3 = document.forms['formularioeditarrol']['seleccionEditarCuatro'].checked
+        const select4 = document.forms['formularioeditarrol']['seleccionEditarCinco'].checked
+
 
         //- Expresiones Regulares
         const number = /^\D*$/;
@@ -42,7 +50,16 @@
 
         /// Lógica de validación
         //* Validaciones para el nombre
-        if (nombre.value == '') {
+        if(elemento1==false &&elemento2 ==false && elemento3==false && elemento4 ==false && select ==false && select1 ==false && select2 ==false && select3 ==false  && select4 ==false && nombre.value==""){
+            Swal.fire({
+                icon:'error',
+                title: 'Error',
+                text: 'Todos los campos son obligatorios'
+            })
+            isValidado=false
+        }
+        else if (nombre.value == '') {
+
 
             Swal.fire({
                 icon: 'error',
@@ -72,7 +89,23 @@
                 text: 'No se puede poner signos en el nombre',
                  })
             isValidado = false;
+        }else if(elemento1==false &&elemento2 ==false && elemento3==false && elemento4 ==false){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Seleccione por lo menos un permisos'
+            })
+            isValidado=false
+        }else if(select ==false && select1 ==false && select2 ==false && select3 ==false  && select4 ==false){
+            Swal.fire({
+                icon:'error',
+                title: 'Error',
+                text: 'Seleccione por lo menos un  modulos'
+            })
+            isValidado=false
         }
+
+
                 
         if (isValidado) {
             //* Serrando el modal
@@ -83,22 +116,13 @@
 
             formulario.reset();
 
-            mostrarToast(
-                Swal.fire(
+            Swal.fire(
                     'Rol editado correctamente',
                     '',
                     'success'
-            ));
+            );
         }
     }
 
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastEditar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-editar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
-    }
+   
 })();
