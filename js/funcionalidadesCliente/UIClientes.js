@@ -82,7 +82,10 @@ function mostrarRegistros(resultado) {
                     ))
             ) {
                 const imagenEstado = celda.querySelector('.estado');
-                imagenEstado.addEventListener('click', cambiarEstadoDB);
+                imagenEstado.addEventListener('click', (e)=>{
+
+                    cambiarEstadoDB(e,registro);
+                } );
             } 
             else if (dato && /<button[^>]*>Editar<\/button>/i.test(dato)) {
                 const botonEditar = celda.querySelector('button');

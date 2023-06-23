@@ -72,4 +72,27 @@ export default class PeticionesBackend {
             console.log(error);
         }
     }
+
+
+    //! cambiar estado
+
+    async cambiarEstado(reguistro,id){
+        try {
+            // console.log(this.url);
+            // console.log(reguistro.estado);
+            const respuesta = await fetch(`http://localhost:3000/api/clientes/estado/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reguistro),
+            });
+
+            const resultado = await respuesta.json();
+
+            return resultado.message
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
