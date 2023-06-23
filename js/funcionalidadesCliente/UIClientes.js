@@ -1,25 +1,23 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
-import { llenarFormulario } from '../funcionalidadesCliente/validacionClienteEditar.js';
 import { cambiarEstadoDB } from './cambiarEstado.js';
-// import { llenarFormulario } from './validacionProveedorEditar.js';
-const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/proveedor');
+import { llenarFormulario } from './validacionClienteEditar.js';
+const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/clientes');
 
 
 
-export async function listarProveedor(){
-    const proveedor = await peticionesBackend.findAll();
-    console.log(proveedor);
-    mostrarRegistros(proveedor);
+export async function listarClientes(){
+    const clientes = await peticionesBackend.findAll();
+    // console.log(clientes);
+    mostrarRegistros(clientes);
 }
 
 
-
-// se crea la tabla con sus registros
+//!  Aca se crea la tabla con sus registros
 function mostrarRegistros(resultado) {
-    const tablaProveedorD = document.querySelector('#tablaProveedor');
+    const tablaClientesDiv = document.querySelector('#tablaClientes');
 
     // Limpiar el contenido anterior
-    tablaProveedorD.innerHTML = '';
+    tablaClientesDiv.innerHTML = '';
 
     // Crear la tabla
     const tabla = document.createElement('table');
@@ -33,9 +31,10 @@ function mostrarRegistros(resultado) {
     const encabezadosColumnas = [
         'ID',
         'Nombre',
+        'Apellido',
         'Teléfono',
+        'Email',
         'Dirección',
-        'Contacto',
         'Estado',
         'Editar',
     ];
@@ -57,31 +56,44 @@ function mostrarRegistros(resultado) {
 
         // Añadir las celdas con los datos de cada registro
         const datosRegistro = [
-            registro.id_proveedor,
+            registro.id_cliente,
             registro.nombre,
+            registro.apellido,
             registro.telefono,
+            registro.email,
             registro.direccion,
-            registro.contacto,
             registro.estado
                 ? '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" />'
                 : '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" />',
-            '<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalEditar">Editar</button>',
+            '<button type="button" class="btn btn-info button-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">Editar</button>',
         ];
 
         datosRegistro.forEach((dato) => {
             const celda = document.createElement('td');
             celda.innerHTML = dato;
             if (
-                dato &&
-                /src="\/imagenes\/iconos\/light_switch on\.svg"/i.test(dato) ||
-                dato &&
-                /src="\/imagenes\/iconos\/light_switch off\.svg"/i.test(dato)
+                (dato &&
+                    /src="\/imagenes\/iconos\/light_switch on\.svg"/i.test(
+                        dato
+                    )) ||
+                (dato &&
+                    /src="\/imagenes\/iconos\/light_switch off\.svg"/i.test(
+                        dato
+                    ))
             ) {
                 const imagenEstado = celda.querySelector('.estado');
-                imagenEstado.addEventListener('click', (e) => {
-                    llenarFormulario(e,registro)
+                imagenEstado.addEventListener('click', (e)=>{
+
+                    cambiarEstadoDB(e,registro);
+                } );
+            } 
+            else if (dato && /<button[^>]*>Editar<\/button>/i.test(dato)) {
+                const botonEditar = celda.querySelector('button');
+                botonEditar.addEventListener('click',() => {
+                    llenarFormulario(registro)
                 });
             }
+
             fila.appendChild(celda);
         });
 
@@ -89,5 +101,7 @@ function mostrarRegistros(resultado) {
     });
 
     tabla.appendChild(tbody);
-    tablaProveedorD.appendChild(tabla);
+    tablaClientesDiv.appendChild(tabla);
 }
+
+

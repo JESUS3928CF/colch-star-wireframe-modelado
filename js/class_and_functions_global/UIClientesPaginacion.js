@@ -1,3 +1,6 @@
+//* No utilizar esta función esto es cuando se maneja paginación desde backend 
+
+
 import PeticionesBackend from './PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend();
 const paginacionDiv = document.querySelector('#paginacion');
