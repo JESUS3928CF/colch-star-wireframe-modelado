@@ -80,15 +80,7 @@ export function cambiarEstadoDB(e, registro) {
 
 async function cambiarEstadoBackend(registro,elemento){
 
-    if (elemento.src.includes('on.svg')) {
-        console.log(registro);
-        
-        elemento.src = '/imagenes/iconos/light_switch off.svg';
-
-    } else {
-
-        elemento.src = '/imagenes/iconos/light_switch on.svg';
-    }
+    
 
     try {
         const resultado = await peticionesBackend.cambiarEstado(registro, registro.id_cliente);
@@ -101,6 +93,16 @@ async function cambiarEstadoBackend(registro,elemento){
                 '',
                 'success'
               )
+
+              if (elemento.src.includes('on.svg')) {
+                // console.log(registro);
+                
+                elemento.src = '/imagenes/iconos/light_switch off.svg';
+        
+            } else {
+        
+                elemento.src = '/imagenes/iconos/light_switch on.svg';
+            }
         }else{
             Swal.fire(
                 'Ha ocurrido un problema',
