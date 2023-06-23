@@ -40,9 +40,11 @@
 function variables(){
     const nombreP = document.querySelector('#nombreGuardar');
     const nombreA = document.querySelector('#nombreCompraAgregar');
+    const fecha = document.querySelector('#fechaGuardar')
+    fecha.value
     const precio = document.querySelector('#precioCompraAgregar');
     const cantidad =document.querySelector('#cantidaCompraAgregar');
-
+     
     //- Expresiones Regulares
     const number = /^\D*$/;
     const text = /^[^a-zA-Z]*$/;
@@ -58,18 +60,16 @@ function variables(){
         Numeros: number,
         Texto:text,
         Signos:signo,
-        Validar:isValidado
+        Validar:isValidado,
+        Fecha:fecha
     }
 } 
-
-
-
 
     function Compra() {
 
         const compras=variables()
 
-        if(compras.nombreProducto.value=="" && compras.nombreProveedor.value=="" && compras.precio.value=="" && compras.cantidad.value==""){
+        if(compras.nombreProducto.value=="" && compras.nombreProveedor.value=="" && compras.precio.value=="" && compras.cantidad.value=="" && compras.Fecha.value===""){
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -212,6 +212,13 @@ function variables(){
             compras.Validar=false
 
 
+        } else if(compras.Fecha.value===""){
+            Swal.fire({
+                icon:'error',
+                title: 'Error',
+                text: 'La fecha es obligatoria'
+            })
+            compras.Validar=false
         }
 
         if (compras.Validar) {
@@ -229,10 +236,9 @@ function variables(){
                 'success'
             )
         }
+
     }
 
-
- 
 
 
     function Producto(){
