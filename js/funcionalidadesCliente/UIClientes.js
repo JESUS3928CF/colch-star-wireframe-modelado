@@ -1,5 +1,6 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 import { cambiarEstadoDB } from './cambiarEstado.js';
+import { llenarFormulario } from './validacionClienteEditar.js';
 const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/clientes');
 
 
@@ -64,21 +65,32 @@ function mostrarRegistros(resultado) {
             registro.estado
                 ? '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" />'
                 : '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" />',
-            '<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalEditar">Editar</button>',
+            '<button type="button" class="btn btn-info button-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">Editar</button>',
         ];
 
         datosRegistro.forEach((dato) => {
             const celda = document.createElement('td');
             celda.innerHTML = dato;
             if (
-                dato &&
-                /src="\/imagenes\/iconos\/light_switch on\.svg"/i.test(dato) ||
-                dato &&
-                /src="\/imagenes\/iconos\/light_switch off\.svg"/i.test(dato)
+                (dato &&
+                    /src="\/imagenes\/iconos\/light_switch on\.svg"/i.test(
+                        dato
+                    )) ||
+                (dato &&
+                    /src="\/imagenes\/iconos\/light_switch off\.svg"/i.test(
+                        dato
+                    ))
             ) {
                 const imagenEstado = celda.querySelector('.estado');
                 imagenEstado.addEventListener('click', cambiarEstadoDB);
+            } 
+            else if (dato && /<button[^>]*>Editar<\/button>/i.test(dato)) {
+                const botonEditar = celda.querySelector('button');
+                botonEditar.addEventListener('click',() => {
+                    llenarFormulario(registro)
+                });
             }
+
             fila.appendChild(celda);
         });
 

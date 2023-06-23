@@ -32,7 +32,7 @@ export default class PeticionesBackend {
         }
     }
 
-    //! crear una función especifica para cada tabla
+    //! agregar un registro
      async registrarDato(registro) {
 
         try {
@@ -47,6 +47,27 @@ export default class PeticionesBackend {
             const resultado = await respuesta.json();
 
             return resultado.message;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    //! editar un registro 
+
+    async actualizarRegistro(registro,id){
+        try {
+            const respuesta = await fetch(`${this.url}/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(registro),
+            });
+
+            const resultado = await respuesta.json();
+
+            return resultado.message
         } catch (error) {
             console.log(error);
         }
