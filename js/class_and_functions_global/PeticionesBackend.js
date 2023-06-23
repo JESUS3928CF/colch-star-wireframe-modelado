@@ -7,8 +7,8 @@ export default class PeticionesBackend {
             const respuesta = await fetch(this.url);
             const resultado = await respuesta.json();
 
-            console.log(resultado);
-            console.log(resultado.length);
+            return resultado
+            
         } catch (error) {
             console.log(error);
         }

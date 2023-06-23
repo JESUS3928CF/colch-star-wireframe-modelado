@@ -8,7 +8,7 @@
         });
     });
 
-    function cambiarEstado(e) {
+     function cambiarEstado(e) {
 
         const elemento = e.target;
 
@@ -18,4 +18,17 @@
             elemento.src = '/imagenes/iconos/light_switch on.svg';
         }
     }
+
+
 })();
+
+export function cambiarEstadoDB(e) {
+    const elemento = e.target;
+
+    if (elemento.src.includes('on.svg')) {
+        elemento.src = '/imagenes/iconos/light_switch off.svg';
+    } else {
+        elemento.src = '/imagenes/iconos/light_switch on.svg';
+    }
+}
+

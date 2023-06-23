@@ -1,4 +1,4 @@
-import {listarClientes} from '../class_and_functions_global/UIClientes.js';
+import { listarClientes } from "./UIClientes.js";
 
 
 (() => {
