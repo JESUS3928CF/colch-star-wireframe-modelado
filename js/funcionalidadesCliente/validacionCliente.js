@@ -260,7 +260,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
             
         }else{
             mostrarToast(
-                Swal.fire('El cliente no fue agregado, aparecer hubo un error ', '', 'error')
+                Swal.fire('El cliente no fue agregado, aparecer hubo un error', '', 'error')
             );
         }
     };
