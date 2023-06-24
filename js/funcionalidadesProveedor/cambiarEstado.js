@@ -85,7 +85,7 @@ async function cambiarEstadoBackend(registro,elemento){
     try {
         const resultado = await peticionesBackend.cambiarEstado(registro, registro.id_proveedor);
 
-        console.log(resultado)
+        // console.log(resultado)
 
         if(resultado === "Cambio de estado"){
             Swal.fire(

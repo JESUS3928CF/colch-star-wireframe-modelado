@@ -207,12 +207,12 @@ async function registrarProveedor(nuevoProveedor) {
 
     formulario.reset();
     if (resultado === 'proveedor agregado exitosamente') {
-        listarClientes();
+        listarProveedor();
         mostrarToast(
             Swal.fire('proveedor agregado correctamente', '', 'success')
         );
 
-        listarClientes();
+        listarProveedor();
     } else {
         mostrarToast(
             Swal.fire('El proveedor no fue agregado, aparecer hubo un error', '', 'error')
