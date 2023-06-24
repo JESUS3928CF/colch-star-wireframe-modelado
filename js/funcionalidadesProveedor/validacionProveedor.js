@@ -14,7 +14,7 @@ const cancelar = document.querySelector('#guardarCancelado');
 const atras = document.querySelector('#xAgregar');
 
 window.addEventListener('load', () => {
-    submit.addEventListener('click', crearClientes);
+    submit.addEventListener('click', crearProveedor);
     cancelar.addEventListener('click', recetearFormulario);
     atras.addEventListener('click', recetearFormulario);
 });
@@ -24,7 +24,7 @@ function recetearFormulario(e) {
     formulario.reset();
 }
 
-function crearClientes(e) {
+function crearProveedor(e) {
     e.preventDefault();
 
     /// Validar el formulario
