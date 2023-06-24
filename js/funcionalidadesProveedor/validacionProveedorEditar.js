@@ -2,7 +2,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
 const peticionesBackend = new PeticionesBackend(
     'http://localhost:3000/api/proveedor'
 );
-import { listaProveedor } from './UIProveedor.js';
+import { listarProveedor } from './UIProveedor.js';
 
 const formulario = document.querySelector('#formularioEditarProveedor');
 
@@ -13,6 +13,7 @@ const nombre = document.querySelector(
 );
 
 
+
 const telefono = document.querySelector(
     '#formularioEditarProveedor input[name="telefonoEditar"]'
 );
@@ -21,7 +22,6 @@ const telefono = document.querySelector(
 const direccion = document.querySelector(
     '#formularioEditarProveedor input[name="direccionEditar"]'
 );
-
 const contacto = document.querySelector(
     '#formularioEditarProveedor input[name="contactoEditar"]'
 );
@@ -35,7 +35,7 @@ const cancelar = document.querySelector('#editarCancelado');
 const atras = document.querySelector('#xEditar');
 
 window.addEventListener('load', () => {
-    submit.addEventListener('click', editarProveedor);
+    submit.addEventListener('click', editarClientes);
     cancelar.addEventListener('click', recetearFormulario);
     atras.addEventListener('click', recetearFormulario);
 });
@@ -55,7 +55,7 @@ function recetearFormulario(e) {
     formulario.reset();
 }
 
-function editarProveedor(e) {
+function editarClientes(e) {
     e.preventDefault();
 
     /// Validar el formulario
@@ -77,18 +77,15 @@ function validarProveedor() {
         '#formularioEditarProveedor div[name="divNombre"]'
     );
 
+    
 
     const divTelefono = document.querySelector(
         '#formularioEditarProveedor div[name="divTelefono"]'
     );
 
-
+    
     const divDireccion = document.querySelector(
         '#formularioEditarProveedor div[name="divDireccion"]'
-    );
-
-    const divContacto = document.querySelector(
-        '#formularioEditarProveedor div[name="divContacto"]'
     );
 
     /// Lógica de validación
@@ -100,9 +97,8 @@ function validarProveedor() {
     if (
         nombre.value == '' &&
         telefono.value == '' &&
-        direccion.value == '' &&
-        contacto.value == ''
-
+        direccion.value == ''&&
+        contacto.value == '' 
     ) {
         Swal.fire({
             icon: 'error',
@@ -142,10 +138,8 @@ function validarProveedor() {
         });
         isValidado = false;
 
-
-    }
-    //* Validaciones para teléfono
-    else if (telefono.value == '') {
+        //* Validaciones para teléfono
+    } else if (telefono.value == '') {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -175,10 +169,8 @@ function validarProveedor() {
         });
         isValidado = false;
 
-
-    }
-    //* Validaciones para dirección
-    else if (direccion.value == '') {
+        //* Validaciones para dirección
+    } else if (direccion.value == '') {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -193,138 +185,121 @@ function validarProveedor() {
         });
         isValidado = false;
     }
-    //* Validaciones para el contacto
-    else if (contacto.value == '') {
+        //* Validaciones para contacto
+     else if (direccion.value == '') {
         Swal.fire({
             icon: 'error',
             title: 'Error',
             text: 'El contacto es obligatorios',
         });
-
         isValidado = false;
-    } else if (!number.test(contacto.value)) {
+    } else if (!direccion.value.trimStart()) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'El contacto no puede tener numeros',
+            text: 'el contacto no puede ser un espacio',
         });
         isValidado = false;
-    } else if (!contacto.value.trimStart()) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El contacto no puede ser un espacio',
-        });
-        isValidado = false;
-    } else if (signo.test(contacto.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El contacto no puede tener signos',
-        });
-        isValidado = false;
-
-
-
-        if (isValidado) {
-            //* Serrando el modal
-            const modalBootstrap = bootstrap.Modal.getInstance(
-                document.querySelector('#modalEditar')
-            );
-            modalBootstrap.hide();
-
-            guardarCambiosProveedor();
-
-            formulario.reset();
-        }
     }
 
-    async function guardarCambiosProveedor() {
-        const proveedorEditado = {
-            nombre: nombre.value,
-            telefono: telefono.value,
-            direccion: direccion.value,
-            contacto: contacto.value,
-        };
+    if (isValidado) {
+        //* Serrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(
+            document.querySelector('#modalEditar')
+        );
+        modalBootstrap.hide();
 
-        // console.log(id);
-        // console.log(clienteEditado);
+        guardarCambiosProveedor();
+
+        formulario.reset();
+    }
+}
+
+async function guardarCambiosProveedor() {
+    const proveedorEditado = {
+        nombre: nombre.value,
+        telefono: telefono.value,
+        direccion: direccion.value,
+        contacto: contacto.value,
+    };
+
+    // console.log(id);
+    // console.log(clienteEditado);
 
 
 
-        const resultado = await peticionesBackend.actualizarRegistro(
-            proveedorEditado,
-            id
+    const resultado = await peticionesBackend.actualizarRegistro(
+        proveedorEditado,
+        id
+    );
+
+
+    console.log(resultado);
+    if (resultado === 'Actualización exitosa') {
+        listarProveedor();
+        mostrarToast(Swal.fire('proveedor editado correctamente', '', 'success'));
+
+
+    } else {
+
+        mostrarToast(
+
+            Swal.fire(
+                'El proveedor no fue editado, aparecer hubo un error',
+                '',
+                'error'
+            )
+        );
+    }
+
+
+
+}
+
+function imprimirAlerta(mensaje, lugar, clase) {
+    /// Verificar que no exista la alerta
+    const alert = document.querySelector(`.alerta${clase}`);
+
+    if (!alert) {
+        //? Crear alerta
+        const divMensaje = document.createElement('div');
+
+        divMensaje.classList.add(
+            // 'px-2',
+            'py-1',
+            'rounded',
+            'max-w-lg',
+            'mx-auto',
+            'mt-2',
+            'text-center',
+            'border',
+            `alerta${clase}`
         );
 
+        divMensaje.classList.add(
+            'bg-red-100',
+            'border-red-400',
+            'text-red-700'
+        );
 
-        console.log(resultado);
-        if (resultado === 'Actualización exitosa') {
-            listaProveedor();
-            mostrarToast(Swal.fire('proveedor editado correctamente', '', 'success'));
+        divMensaje.textContent = mensaje;
 
+        lugar.parentNode.insertBefore(divMensaje, lugar.nextSibling);
 
-        } else {
-
-            mostrarToast(
-
-                Swal.fire(
-                    'El proveedor no fue editado, aparecer hubo un error',
-                    '',
-                    'error'
-                )
-            );
-        }
-
-
-
+        setTimeout(() => {
+            divMensaje.remove();
+        }, 4500);
     }
+}
 
-    function imprimirAlerta(mensaje, lugar, clase) {
-        /// Verificar que no exista la alerta
-        const alert = document.querySelector(`.alerta${clase}`);
+function mostrarToast(mensaje) {
+    const toastDiv = document.querySelector('#toastEditar'); //* Seleccionamos el toast que esta en nuestro HTML
+    const toastBody = document.querySelector('#toast-body-editar'); //* Y también el body para agregar contenido a nuestro toast
+    /// Creamos la instancia
+    const toast = new bootstrap.Toast(toastDiv);
+    toastBody.textContent = mensaje;
+    /// Mostrando el mensaje
+    toast.show();
 
-        if (!alert) {
-            //? Crear alerta
-            const divMensaje = document.createElement('div');
-
-            divMensaje.classList.add(
-                // 'px-2',
-                'py-1',
-                'rounded',
-                'max-w-lg',
-                'mx-auto',
-                'mt-2',
-                'text-center',
-                'border',
-                `alerta${clase}`
-            );
-
-            divMensaje.classList.add(
-                'bg-red-100',
-                'border-red-400',
-                'text-red-700'
-            );
-
-            divMensaje.textContent = mensaje;
-
-            lugar.parentNode.insertBefore(divMensaje, lugar.nextSibling);
-
-            setTimeout(() => {
-                divMensaje.remove();
-            }, 4500);
-        }
-    }
-
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastEditar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-editar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
-
-
-    }
+    
 }

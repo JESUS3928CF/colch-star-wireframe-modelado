@@ -19,7 +19,7 @@ const peticionesBackend = new PeticionesBackend(
 
         Swal.fire({
             title: 'Estas seguro?',
-            text: "Desear cambiar el estado de este proveedor!",
+            text: "Desear cambiar el estado de este Proveedor!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
