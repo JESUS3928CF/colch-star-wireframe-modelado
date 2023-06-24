@@ -74,9 +74,9 @@ export function cambiarEstadoDB(e, registro) {
         console.log(error);
     }
     
-
     
 }
+
 
 async function cambiarEstadoBackend(registro,elemento){
 

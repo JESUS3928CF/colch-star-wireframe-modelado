@@ -1,6 +1,6 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/proveedor/estado/'
+    'http://localhost:3000/api/proveedores/estado/'
 );
 
 (()=>{
@@ -85,7 +85,7 @@ async function cambiarEstadoBackend(registro,elemento){
     try {
         const resultado = await peticionesBackend.cambiarEstado(registro, registro.id_proveedor);
 
-        console.log(resultado)
+        // console.log(resultado)
 
         if(resultado === "Cambio de estado"){
             Swal.fire(

@@ -1,6 +1,6 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/proveedor'
+    'http://localhost:3000/api/proveedores'
 );
 import { listarProveedor } from './UIProveedor.js';
 
@@ -207,15 +207,15 @@ async function registrarProveedor(nuevoProveedor) {
 
     formulario.reset();
     if (resultado === 'proveedor agregado exitosamente') {
-        listarClientes();
+        listarProveedor();
         mostrarToast(
             Swal.fire('proveedor agregado correctamente', '', 'success')
         );
 
-        listarClientes();
+        listarProveedor();
     } else {
         mostrarToast(
-            Swal.fire('El proveedor no fue agregado, aparecer hubo un error', '', 'error')
+            Swal.fire('El proveedor no fue agregado, al parecer hubo un error', '', 'error')
         );
     }
 };
