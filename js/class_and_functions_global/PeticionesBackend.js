@@ -80,7 +80,7 @@ export default class PeticionesBackend {
         try {
             // console.log(this.url);
             // console.log(reguistro.estado);
-            const respuesta = await fetch(`http://localhost:3000/api/clientes/estado/${id}`, {
+            const respuesta = await fetch(`${this.url}/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
