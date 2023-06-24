@@ -7,7 +7,6 @@ const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/prove
 
 export async function listarProveedor(){
     const proveedor = await peticionesBackend.findAll();
-    // console.log(clientes);
     mostrarRegistros(proveedor);
 }
 

@@ -237,15 +237,15 @@ async function guardarCambiosProveedor() {
     console.log(resultado);
     if (resultado === 'Actualización exitosa') {
         listarProveedor();
-        mostrarToast(Swal.fire('proveedor editado correctamente', '', 'success'));
+        mostrarToast(Swal.fire('Cliente editado correctamente', '', 'success'));
 
-
-    } else {
+        
+    }else{
 
         mostrarToast(
-
+            
             Swal.fire(
-                'El proveedor no fue editado, aparecer hubo un error',
+                'El cliente no fue editado, aparecer hubo un error',
                 '',
                 'error'
             )
