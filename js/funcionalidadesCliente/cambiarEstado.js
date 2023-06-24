@@ -1,6 +1,6 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/clientes/' 
+    'http://localhost:3000/api/clientes' 
 );
 
 (()=>{
