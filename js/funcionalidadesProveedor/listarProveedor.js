@@ -1,9 +1,9 @@
-import {listarProveedor} from './UIProveedor.js';
+import {listaProveedor} from './UIProveedor.js';
 
 
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
-        listarProveedor();
+        listaProveedor();
         // imprimirPaginador();
         // buscarRegistros(1); 
         // peticionesBackend.findAll();

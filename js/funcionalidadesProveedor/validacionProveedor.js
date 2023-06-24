@@ -2,7 +2,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
 const peticionesBackend = new PeticionesBackend(
     'http://localhost:3000/api/proveedor'
 );
-import { listarProveedor } from './UIProveedor.js';
+import { listaProveedor } from './UIProveedor.js'
 
 const formulario = document.querySelector('#formularioAgregarProveedor');
 

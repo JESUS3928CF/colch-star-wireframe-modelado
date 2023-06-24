@@ -2,7 +2,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
 const peticionesBackend = new PeticionesBackend(
     'http://localhost:3000/api/proveedor'
 );
-import { listarProveedor } from './UIProveedor.js';
+import { listaProveedor } from './UIProveedor.js';
 
 const formulario = document.querySelector('#formularioEditarProveedor');
 
@@ -35,7 +35,7 @@ const cancelar = document.querySelector('#editarCancelado');
 const atras = document.querySelector('#xEditar');
 
 window.addEventListener('load', () => {
-    submit.addEventListener('click', editarClientes);
+    submit.addEventListener('click', editarProveedor);
     cancelar.addEventListener('click', recetearFormulario);
     atras.addEventListener('click', recetearFormulario);
 });
@@ -44,7 +44,7 @@ export function llenarFormulario(registro) {
     nombre.value = registro.nombre;
     telefono.value = registro.telefono;
     direccion.value = registro.direccion;
-    direccion.value = registro.contacto;
+    contacto.value = registro.contacto;
     console.log(registro.id_proveedor);
 
     id = registro.id_proveedor;
@@ -55,14 +55,14 @@ function recetearFormulario(e) {
     formulario.reset();
 }
 
-function editarClientes(e) {
+function editarProveedor(e) {
     e.preventDefault();
 
     /// Validar el formulario
-    validarCliente();
+    validarProveedor();
 }
 
-function validarCliente() {
+function validarProveedor() {
     //* Campos a validar
 
     //- Expresiones Regulares
@@ -260,7 +260,7 @@ function validarCliente() {
 
         console.log(resultado);
         if (resultado === 'Actualización exitosa') {
-            listarClientes();
+            listaProveedor();
             mostrarToast(Swal.fire('proveedor editado correctamente', '', 'success'));
 
 

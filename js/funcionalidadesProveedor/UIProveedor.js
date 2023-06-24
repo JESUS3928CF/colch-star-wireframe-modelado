@@ -1,12 +1,11 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
-import { llenarFormulario } from '../funcionalidadesProveedor/validacionProveedorEditar.js';
-// import { cambiarEstadoDB } from './cambiarEstado.js';
-// import { llenarFormulario } from './validacionProveedorEditar.js';
+import { cambiarEstadoDB } from './cambiarEstado.js';
+import { llenarFormulario } from './validacionProveedorEditar.js';
 const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/proveedor');
 
 
 
-export async function listarProveedor(){
+export async function listaProveedor(){
     const proveedor = await peticionesBackend.findAll();
     // console.log(proveedor);
     mostrarRegistros(proveedor);
