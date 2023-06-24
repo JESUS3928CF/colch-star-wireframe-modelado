@@ -215,7 +215,7 @@ async function registrarProveedor(nuevoProveedor) {
         listarProveedor();
     } else {
         mostrarToast(
-            Swal.fire('El proveedor no fue agregado, aparecer hubo un error', '', 'error')
+            Swal.fire('El proveedor no fue agregado, al parecer hubo un error', '', 'error')
         );
     }
 };

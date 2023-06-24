@@ -12,12 +12,9 @@ const nombre = document.querySelector(
     '#formularioEditarProveedor input[name="nombreEditar"]'
 );
 
-
-
 const telefono = document.querySelector(
     '#formularioEditarProveedor input[name="telefonoEditar"]'
 );
-
 
 const direccion = document.querySelector(
     '#formularioEditarProveedor input[name="direccionEditar"]'
@@ -77,15 +74,15 @@ function validarProveedor() {
         '#formularioEditarProveedor div[name="divNombre"]'
     );
 
-    
-
     const divTelefono = document.querySelector(
         '#formularioEditarProveedor div[name="divTelefono"]'
     );
 
-    
     const divDireccion = document.querySelector(
         '#formularioEditarProveedor div[name="divDireccion"]'
+    );
+    const divcontacto = document.querySelector(
+        '#formularioEditarProveedor div[name="divContacto"]'
     );
 
     /// Lógica de validación
@@ -97,8 +94,8 @@ function validarProveedor() {
     if (
         nombre.value == '' &&
         telefono.value == '' &&
-        direccion.value == ''&&
-        contacto.value == '' 
+        direccion.value == '' &&
+        contacto.value == ''
     ) {
         Swal.fire({
             icon: 'error',
@@ -123,6 +120,7 @@ function validarProveedor() {
             text: 'El nombre no puede tener numeros',
         });
         isValidado = false;
+
     } else if (!nombre.value.trimStart()) {
         Swal.fire({
             icon: 'error',
@@ -130,6 +128,7 @@ function validarProveedor() {
             text: 'El nombre no puede ser un espacio',
         });
         isValidado = false;
+
     } else if (signo.test(nombre.value)) {
         Swal.fire({
             icon: 'error',
@@ -147,6 +146,7 @@ function validarProveedor() {
         });
 
         isValidado = false;
+
     } else if (!text.test(telefono.value)) {
         Swal.fire({
             icon: 'error',
@@ -154,6 +154,7 @@ function validarProveedor() {
             text: 'El Telefono no puede tener letras',
         });
         isValidado = false;
+
     } else if (!telefono.value.trimStart()) {
         Swal.fire({
             icon: 'error',
@@ -161,6 +162,7 @@ function validarProveedor() {
             text: 'El Telefono no puede ser un espacio',
         });
         isValidado = false;
+
     } else if (signo.test(telefono.value)) {
         Swal.fire({
             icon: 'error',
@@ -177,6 +179,7 @@ function validarProveedor() {
             text: 'La direccion es obligatorios',
         });
         isValidado = false;
+
     } else if (!direccion.value.trimStart()) {
         Swal.fire({
             icon: 'error',
@@ -185,14 +188,15 @@ function validarProveedor() {
         });
         isValidado = false;
     }
-        //* Validaciones para contacto
-     else if (direccion.value == '') {
+    //* Validaciones para contacto
+    else if (direccion.value == '') {
         Swal.fire({
             icon: 'error',
             title: 'Error',
             text: 'El contacto es obligatorios',
         });
         isValidado = false;
+
     } else if (!direccion.value.trimStart()) {
         Swal.fire({
             icon: 'error',
@@ -237,13 +241,13 @@ async function guardarCambiosProveedor() {
     console.log(resultado);
     if (resultado === 'Actualización exitosa') {
         listarProveedor();
-        mostrarToast(Swal.fire('Cliente editado correctamente', '', 'success'));
+        mostrarToast(Swal.fire('proveedor editado correctamente', '', 'success'));
 
-        
-    }else{
+
+    } else {
 
         mostrarToast(
-            
+
             Swal.fire(
                 'El cliente no fue editado, aparecer hubo un error',
                 '',
@@ -301,5 +305,6 @@ function mostrarToast(mensaje) {
     /// Mostrando el mensaje
     toast.show();
 
-    
+
 }
+
