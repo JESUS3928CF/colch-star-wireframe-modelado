@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-          
+
             <!-- boton de buscar -->
 
             <form class="d-flex">
@@ -187,20 +187,14 @@
 
                         <div class="mb-3" name="divContacto">
                             <label for="contactoEditar" class="col-form-label">Contacto:</label>
-                            <input type="text" class="form-control" id="contactoEditar" name="productoEditar"
+                            <input type="text" class="form-control" id="contactoEditar" name="contactoEditar"
                                 placeholder="Ingresar contacto">
                         </div>
-
-                        <!-- <label for="exampleDataList" class="form-label">Seleccionar estado:</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="1">Habilitar</option>
-                            <option value="2">Inhabilitar</option>
-                        </select> -->
 
                         <div class="modal-footer">
                             <button type="button" id="editarCancelado" class="btn btn-danger"
                                 data-bs-dismiss="modal">Cancelar</button>
-                            <input type="submit" class="btn btn-success" value="Guardar">
+                            <input type="submit" id="GuardarEditarProveedor" class="btn btn-success" value="Guardar">
                         </div>
                     </form>
                 </div>
@@ -214,8 +208,8 @@
     <script type="module" src="../../js/funcionalidadesProveedor/listarProveedor.js"></script>
 
     <script type="module" src="../../js/funcionalidadesProveedor/validacionProveedor.js"></script>
-    <!-- <script type="module" src="../../js/funcionalidadesProveedor/validacionProveedorEditar.js"></script> -->
-    <!-- <script type="module" src="/js/funcionalidadesProveedor/cambiarEstado.js"></script> -->
+    <script type="module" src="../../js/funcionalidadesProveedor/validacionProveedorEditar.js"></script> 
+    <!-- <script type="module" src="/js/funcionalidadesProveedor/cambiarEstado.js"></script>  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 

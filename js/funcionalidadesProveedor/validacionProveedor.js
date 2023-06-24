@@ -38,16 +38,13 @@ function validarProveedor() {
         '#formularioAgregarProveedor input[name="nombreGuardar"]'
     );
 
-
     const telefono = document.querySelector(
         '#formularioAgregarProveedor input[name="telefonoGuardar"]'
     );
 
-
     const direccion = document.querySelector(
         '#formularioAgregarProveedor input[name="direccionGuardar"]'
     );
-
     const contacto = document.querySelector(
         '#formularioAgregarProveedor input[name="contactoGuardar"]'
     );
@@ -67,9 +64,8 @@ function validarProveedor() {
         nombre.value == '' &&
         telefono.value == '' &&
         direccion.value == '' &&
-        contacto.value == '' 
-
-        ) {
+        contacto.value == ''
+    ) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -156,86 +152,71 @@ function validarProveedor() {
         });
         isValidado = false;
     }
-    //* Validaciones para el contacto
+    //* Validaciones para contacto
     else if (contacto.value == '') {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'El contacto es obligatorios',
-        });
-
-        isValidado = false;
-    } else if (!number.test(contacto.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El contacto no puede tener numeros',
+            text: 'el contacto es obligatoria',
         });
         isValidado = false;
     } else if (!contacto.value.trimStart()) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'El contacto no puede ser un espacio',
+            text: 'el contacto no puede ser un espacio',
         });
         isValidado = false;
-    } else if (signo.test(contacto.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El contacto no puede tener signos',
-        });
-        isValidado = false;
-
-        if (isValidado) {
-            ///! Insertar cliente
-
-            const nuevoProveedor = {
-                nombre: nombre.value,
-                telefono: telefono.value,
-                direccion: direccion.value,
-                contacto: contacto.value,
-            };
-            // console.log(nuevoProveedor);
-             registrarProveedor(nuevoProveedor)
-        }
     }
 
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-agregar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
+    if (isValidado) {
+        ///! Insertar cliente
+
+        const nuevoProveedor = {
+            nombre: nombre.value,
+            telefono: telefono.value,
+            direccion: direccion.value,
+            contacto: telefono.value,
+        };
+
+        registrarProveedor(nuevoProveedor);
     }
-
-
-    async function registrarProveedor(nuevoProveedor) {
-        // console.log(nuevoCliente);
-        const resultado = await peticionesBackend.registrarDato(nuevoProveedor);
-
-        // console.log(resultado);
-        //* Serrando el modal
-        const modalBootstrap = bootstrap.Modal.getInstance(
-            document.querySelector('#myModal')
-        );
-        modalBootstrap.hide();
-
-        formulario.reset();
-        if (resultado === 'proveedor agregado exitosamente') {
-            listarClientes();
-            mostrarToast(
-                Swal.fire('proveedor agregado correctamente', '', 'success')
-            );
-
-            listarClientes();
-        } else {
-            mostrarToast(
-                Swal.fire('El proveedor no fue agregado, aparecer hubo un error', '', 'error')
-            );
-        }
-    };
 }
+
+function mostrarToast(mensaje) {
+    const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
+    const toastBody = document.querySelector('#toast-body-agregar'); //* Y también el body para agregar contenido a nuestro toast
+    /// Creamos la instancia
+    const toast = new bootstrap.Toast(toastDiv);
+    toastBody.textContent = mensaje;
+    /// Mostrando el mensaje
+    toast.show();
+}
+
+
+async function registrarProveedor(nuevoProveedor) {
+    // console.log(nuevoCliente);
+    const resultado = await peticionesBackend.registrarDato(nuevoProveedor);
+
+    // console.log(resultado);
+    //* Serrando el modal
+    const modalBootstrap = bootstrap.Modal.getInstance(
+        document.querySelector('#myModal')
+    );
+    modalBootstrap.hide();
+
+    formulario.reset();
+    if (resultado === 'proveedor agregado exitosamente') {
+        listarClientes();
+        mostrarToast(
+            Swal.fire('proveedor agregado correctamente', '', 'success')
+        );
+
+        listarClientes();
+    } else {
+        mostrarToast(
+            Swal.fire('El proveedor no fue agregado, aparecer hubo un error', '', 'error')
+        );
+    }
+};
 
