@@ -1,4 +1,9 @@
-(() => {
+import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
+const peticionesBackend = new PeticionesBackend(
+    'http://localhost:3000/api/usuario'
+);
+import { listarUsuarios } from './UIUsuarios.js';
+
     const formulario = document.querySelector('#formularioEditarUsuario');
 
 
@@ -245,24 +250,89 @@
             );
             modalBootstrap.hide();
 
-            formulario.reset();
+            guardarCambiosUsuarios();
 
-            mostrarToast(  Swal.fire(
-                'Usuario editado correctamente',
-                '',
-                'success'
-              ));
+            formulario.reset();
         }
     }
 
-    
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastEditar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-editar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
+    async function guardarCambiosUsuarios() {
+        const usuarioEditado = {
+            nombre: nombre.value,
+            apellido: apellido.value,
+            telefono: telefono.value,
+            email: email.value,
+            contrasena: contraseña.value,
+            fk_rol: seleccionarRol.value,
+        };
+
+        const resultado = await peticionesBackend.actualizarRegistro(
+            usuarioEditado,
+            id
+        );
+
+        console.log(resultado);
+        if (resultado === 'Actualización exitosa') {
+            listarUsuarios();
+            mostrarToast(Swal.fire('Usuario editado correctamente', '', 'success'));
+
+        }else{
+
+            mostrarToast(
+                
+                Swal.fire(
+                    'El usuario no fue editado, al parecer hubo un error',
+                    '',
+                    'error'
+                )
+            );
+        }
+}
+
+function imprimirAlerta(mensaje, lugar, clase) {
+    /// Verificar que no exista la alerta
+    const alert = document.querySelector(`.alerta${clase}`);
+
+    if (!alert) {
+        //? Crear alerta
+        const divMensaje = document.createElement('div');
+
+        divMensaje.classList.add(
+            // 'px-2',
+            'py-1',
+            'rounded',
+            'max-w-lg',
+            'mx-auto',
+            'mt-2',
+            'text-center',
+            'border',
+            `alerta${clase}`
+        );
+
+        divMensaje.classList.add(
+            'bg-red-100',
+            'border-red-400',
+            'text-red-700'
+        );
+
+        divMensaje.textContent = mensaje;
+
+        lugar.parentNode.insertBefore(divMensaje, lugar.nextSibling);
+
+        setTimeout(() => {
+            divMensaje.remove();
+        }, 4500);
     }
-})();
+}
+
+function mostrarToast(mensaje) {
+    const toastDiv = document.querySelector('#toastEditar'); //* Seleccionamos el toast que esta en nuestro HTML
+    const toastBody = document.querySelector('#toast-body-editar'); //* Y también el body para agregar contenido a nuestro toast
+    /// Creamos la instancia
+    const toast = new bootstrap.Toast(toastDiv);
+    toastBody.textContent = mensaje;
+    /// Mostrando el mensaje
+    toast.show();
+
+    
+}

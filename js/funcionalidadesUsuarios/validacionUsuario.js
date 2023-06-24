@@ -2,7 +2,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
  const peticionesBackend = new PeticionesBackend(
      'http://localhost:3000/api/usuario'
  );
- import { listarClientes } from './UIClientes.js';
+ import { listarUsuarios } from './UIUsuarios.js';
     const formulario = document.querySelector('#formularioagregarusuario');
 
 
@@ -14,8 +14,6 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
     const atras = document.querySelector('#xAgregar');
 
     window.addEventListener('load', () => {
-
-
         submit.addEventListener('click', crearUsuarios);
         cancelar.addEventListener('click', recetearFormulario);
         atras.addEventListener('click', recetearFormulario);
@@ -38,17 +36,10 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
     function validarUsuario() {
         //* Campos a validar
 
-        console.log('Que es');
-
-
         const nombre = document.querySelector(
             '#formularioagregarusuario input[name="nombreGuardar"]'
         );
-
-        console.log(nombre.value);
-
-
-
+        
         const apellido = document.querySelector(
             '#formularioagregarusuario input[name="apellidoGuardar"]'
         );
@@ -263,7 +254,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 telefono: telefono.value,
                 email: email.value,
                 contrasena: contraseña.value,
-                fk_rol: seleccionarRol.value
+                fk_rol: seleccionarRol.value,
             };
             registrarUsuario(nuevoUsuario);
         }
@@ -280,13 +271,40 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
         toast.show();
     }
 
-    
+    async function registrarUsuario(nuevoUsuario){
+        // console.log(nuevoCliente);
+        const resultado = await peticionesBackend.registrarDato(nuevoUsuario);
+
+        // console.log(resultado);
+        //* Serrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(
+            document.querySelector('#myModal')
+        );
+        modalBootstrap.hide();
+
+        formulario.reset();
+        if (resultado === 'Usuario agregado exitosamente') {
+            listarUsuarios();
+            mostrarToast(
+                Swal.fire('Usuario agregado correctamente', '', 'success')
+            );
+
+            listarUsuarios();
+        }else{
+            mostrarToast(
+                Swal.fire('El usuario no fue agregado, aparecer hubo un error', '', 'error')
+            );
+        }
+
+}
+
+}
+
+
 // }else if (!nombre.value.trimStart()){
 //     Swal.fire({
 //         icon: 'error',
 //         title: 'Error',
 //         text: 'El nombre no puede ser un espacio',
 //          })
-//     isValidado = false;    
-
-}
+//     isValidado = false;
