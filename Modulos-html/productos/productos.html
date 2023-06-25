@@ -83,7 +83,7 @@
                                     <div class="modal-footer">
                                         <button type="button" id="guardarCancelado" class="btn btn-danger"
                                             data-bs-dismiss="modal">Cancelar</button>
-                                        <input type="submit" class="btn btn-success" value="Guardar" />
+                                        <input type="submit" class="btn btn-success" value="Guardar" id="guardar" />
                                     </div>
 
                                 </form>
@@ -91,7 +91,7 @@
 
 
                             <div class="modal-body ">
-                                <form action="">
+                                <form action="" id="Colores" name="Colores">
                                     <div class="form-label" style="text-align: center;">
                                         <p class="detalleCompra">Agregar datos de los productos </p>
                                     </div>
@@ -99,7 +99,7 @@
 
                                         <div class="mb-3">
                                             <label for="nombreCompraAgregar" class="col-form-label">Imagen:</label>
-                                            <input type="file" class="form-control" id="nombreCompraAgregar"
+                                            <input type="file" class="form-control" id="imagen"
                                                 placeholder="Ingresar nombre">
                                         </div>
 
@@ -118,33 +118,35 @@
                                             <br>
 
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="negroAgregar">
+                                                <input class="form-check-input" type="checkbox" name="negroAgregar">
                                                 <label class="form-check-label" for="NegroAgregar">Negro</label>
                                             </div>
 
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="rojoAgregar"
+                                                <input class="form-check-input" type="checkbox" name="rojoAgregar"
                                                     checked>
                                                 <label class="form-check-label" for="rojoAgregar">Rojo</label>
                                             </div>
 
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="azulAgregar"
+                                                <input class="form-check-input" type="checkbox" name="azulAgregar"
                                                     checked>
                                                 <label class="form-check-label" for="azulAgregar">Azul</label>
                                             </div>
 
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="verdeAgregar"
+                                                <input class="form-check-input" type="checkbox" name="verdeAgregar"
                                                     checked>
                                                 <label class="form-check-label" for="verdeAgregar">verde</label>
                                             </div>
 
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="grisAgregar"
+                                                <input class="form-check-input" type="checkbox" name="grisAgregar"
                                                     checked>
                                                 <label class="form-check-label" for="grisAgregar">gris</label>
                                             </div>
+                                            <br>
+                                           
 
 
                                         </div>
@@ -294,7 +296,7 @@
 
 
                     <div class="modal-body ">
-                        <form action="">
+                        <form action="" id="ColoresEditar">
                             <div class="form-label" style="text-align: center;">
                                 <p class="detalleCompra">Agregar datos de los productos </p>
                             </div>
