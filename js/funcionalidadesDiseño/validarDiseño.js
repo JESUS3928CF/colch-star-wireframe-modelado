@@ -54,6 +54,8 @@ const nombreDiseno=document.querySelector('#nombreEditar');
 const imagen = document.querySelector('#formFile1' );
 const precio = document.querySelector('#precioGuardar');
 const select = document.querySelector('#select')
+const selectedOption = select.options[select.selectedIndex].value;
+
 const number = /^\D*$/;
 const text = /^[^a-zA-Z]*$/;
 const signo = /[|°"#$%&/()=?¿]/
@@ -67,7 +69,7 @@ return{
     Texto:text,
     Signos:signo,
     Validar: isValidado,
-    opcion: select
+    opcion: selectedOption
     
 }
 
