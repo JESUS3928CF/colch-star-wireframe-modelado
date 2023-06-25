@@ -1,22 +1,24 @@
 (() => {
     const formulario = document.querySelector('#formularioAgregarProducto');
-
-    const submit = document.querySelector(
-        '#formularioAgregarProducto input[type="submit"]'
-    );
-
+    const subFormulario = document.querySelector('#Colores')
+    const submit = document.querySelector('#formularioAgregarProducto input[type="submit"]');
     const cancelar = document.querySelector('#guardarCancelado');
     const atras = document.querySelector('#xAgregar');
 
+
     window.addEventListener('load', () => {
-        submit.addEventListener('click', crearClientes);
-        cancelar.addEventListener('click', recetearFormulario);
-        atras.addEventListener('click', recetearFormulario);
+            submit.addEventListener('click', crearClientes);
+            cancelar.addEventListener('click', recetearFormulario);
+            atras.addEventListener('click', recetearFormulario);
+
+       
     });
+
 
     function recetearFormulario(e) {
         e.preventDefault();
         formulario.reset();
+        subFormulario.reset();
     }
 
     function crearClientes(e) {
@@ -26,7 +28,32 @@
         validarCliente();
     }
 
+
+    function variablesColor(){
+
+        const negro = document.forms['Colores']['negroAgregar'].checked
+        const rojo = document.forms['Colores']['rojoAgregar'].checked
+        const azul = document.forms['Colores']['azulAgregar'].checked
+        const verde = document.forms['Colores']['verdeAgregar'].checked
+        const gris = document.forms['Colores']['grisAgregar'].checked
+        
+            
+        
+
+        return{
+            Negro: negro,
+            Rojo: rojo,
+            Azul: azul,
+            Verde: verde,
+            Gris:gris,
+        }
+    }
+    
+
     function validarCliente() {
+
+        const Color= variablesColor()
+        
         //* Campos a validar
 
         const producto = document.querySelector(
@@ -59,7 +86,7 @@
         let isValidado = true;
 
         //* Validaciones para todos los campos
-        if (producto.value == '' && cantidad.value == "" && precio.value == "" && talla.value == "" && tela.value == "") {
+        if (producto.value == '' && cantidad.value == "" && precio.value == "" && talla.value == "" && tela.value == "" && Color.Negro==false && Color.Rojo==false && Color.Azul==false && Color.Verde==false && Color.Gris==false ) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -234,12 +261,16 @@
                 text: 'No se puede poner signos en la tela',
             })
             isValidado = false
+        } else if(Color.Negro==false && Color.Rojo==false && Color.Azul==false && Color.Verde==false && Color.Gris==false ){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Seleccione al menos un color'
+            })
+            isValidado=false
         }
 
-
-
-
-
+        
         if (isValidado) {
             //* Serrando el modal
             const modalBootstrap = bootstrap.Modal.getInstance(
@@ -251,24 +282,15 @@
 
 
 
-            mostrarToast(Swal.fire(
+            Swal.fire(
                 'Producto agregado correctamente',
                 '',
                 'success'
-            ));
+            );
         }
-    }
-
-
-
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-agregar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
+        return{
+            Validar: isValidado
+        }
     }
 })();
 
