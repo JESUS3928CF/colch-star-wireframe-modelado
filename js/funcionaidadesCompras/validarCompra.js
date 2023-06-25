@@ -41,7 +41,6 @@ function variables(){
     const nombreP = document.querySelector('#nombreGuardar');
     const nombreA = document.querySelector('#nombreCompraAgregar');
     const fecha = document.querySelector('#fechaGuardar')
-    fecha.value
     const precio = document.querySelector('#precioCompraAgregar');
     const cantidad =document.querySelector('#cantidaCompraAgregar');
      

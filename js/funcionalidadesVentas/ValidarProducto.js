@@ -35,33 +35,27 @@
     function validarProducto() {
         //* Campos a validar
 
-        const producto = document.querySelector(
-            '#formularioParaAgregarProducto select[name="producto"]'
-        );
+        const producto = document.querySelector('#producto');
+        const selectedOption = producto.options[producto.selectedIndex].value;
 
-        const Cantidad = document.querySelector(
-            '#formularioParaAgregarProducto input[name="cantidad"]'
-        );
 
-        const precio=document.querySelector(
-            '#formularioParaAgregarProducto input[name="precio"]'
-        );
+        const Cantidad = document.querySelector('#cantidad');
 
-        const cliente = document.querySelector(
-            '#formularioParaAgregarProducto select[name="cliente"]'
-        );
+        const precio=document.querySelector('#precio');
 
-        const fecha =document.querySelector(
-            '#formularioParaAgregarProducto input[name="Fecha"]'
-        );
+        const cliente = document.querySelector('#cliente');
+        const clientes = cliente.options[cliente.selectedIndex].value;
 
-        const descripcion = document.querySelector(
-            '#formularioParaAgregarProducto textarea[name="descripcion"]'
-        );
+
+        const fecha =document.querySelector('#Fecha');
+
+        const descripcion = document.querySelector('#descripcion');
 
         //- Expresiones Regulares
         const number = /^\D*$/;
         const text = /^[^a-zA-Z]*$/;
+        const signo= /[|°!"#$%&/()=?¿]/;
+
          
         /// Lógica de validación
 
@@ -71,32 +65,120 @@
        
 
         //* Validaciones para teléfono
-        if (Cantidad.value == '') {
-            imprimirAlerta('La cantidad  es obligatoria',Cantidad);
-            isValidado = false;
-        } else if (!text.test(Cantidad.value)) {
-            imprimirAlerta('La cantidad no puede contener letras',Cantidad,'Telefono');
-            isValidado = false;
-        }
+     if(selectedOption===""){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'Seleccione un producto'
+        })
+        isValidado=false
+     }else if (Cantidad.value==""){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'La cantidad es obligatoria'
+        })
+        isValidado=false
+     }else if (!text.test(Cantidad.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'La cantidad no puede tener letras'
+        })
+        isValidado=false
 
-        if (precio.value == '') {
-            imprimirAlerta('El precio es obligatoria',precio);
-            isValidado = false;
-        } else if (!text.test(precio.value)) {
-            imprimirAlerta('El precio no puede contener letras',precio,'Telefono');
-            isValidado = false;
-        }
+     }else if (signo.test(Cantidad.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La cantidad no puede tener signos'
+        })
+        isValidado=false
 
-       
-        
-        if (descripcion.value == '') {
-            imprimirAlerta('la descripcion es obligatorio', descripcion);
-            isValidado = false;
-        }else if (!number.test(descripcion.value)) {
-            imprimirAlerta('la descripcion no puede contener números', descripcion),
-                'Nombre';
-            isValidado = false;
-        }
+     }else if(!Cantidad.value.trimStart()){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La cantidad no puede ser un espacio'
+        })
+        isValidado=false
+
+     }else if (precio.value==""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El precio es obligatorio'
+        })
+        isValidado=false
+     }else if(!text.test(precio.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El precio no puede tener letra'
+        })
+        isValidado=false
+
+     }else if (signo.test(precio.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El precio no puede tener signos'
+        })
+        isValidado=false
+     }else if (!precio.value.trimStart()){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El precio no puede ser un espacio'
+
+        })
+        isValidado=false
+     }else if (clientes==""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El Cliente es obligatorio'
+
+        })
+        isValidado=false
+     }else if (fecha.value==""){
+        Swal.fire({
+            icon:'error',
+            title:'Error',
+            text: 'La fecha es obligatoria'
+        })
+        isValidado=false
+
+     }else if(descripcion.value==""){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'La descripcion es obligatoria'
+        })
+        isValidado=false
+     }else if (!number.test(descripcion.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'La descripcion no puede tener numeros'
+        })
+        isValidado=false
+     }else if (!descripcion.value.trimStart()){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'La descripcion no puede ser un espacio'
+        })
+        isValidado=false
+     }else if (signo.test(descripcion.value)){
+        Swal.fire({
+            icon:'error',
+            title: 'Error',
+            text: 'La descripcion no puede tener signos'
+        })
+        isValidado=false
+     }
+
 
 
 
@@ -108,55 +190,14 @@
             modalBootstrap.hide();
 
             formulario.reset();
+            Swal.fire(
+                'Producto agregada correctamente',
+                '',
+                'success'
+            )
+            
 
-            mostrarToast('Venta agregada correctamente');
         }
     }
 
-    function imprimirAlerta(mensaje, lugar, clase) {
-        /// Verificar que no exista la alerta
-        const alert = document.querySelector(`.alerta${clase}`);
-
-        if (!alert) {
-            //? Crear alerta
-            const divMensaje = document.createElement('div');
-
-            divMensaje.classList.add(
-                // 'px-2',
-                'py-1',
-                'rounded',
-                'max-w-lg',
-                'mx-auto',
-                'mt-2',
-                'text-center',
-                'border',
-                `alerta${clase}`
-                
-            );
-
-            divMensaje.classList.add(
-                'bg-red-100',
-                'border-red-400',
-                'text-red-700'
-            );
-
-            divMensaje.textContent = mensaje;
-
-            lugar.parentNode.insertBefore(divMensaje, lugar.nextSibling);
-
-            setTimeout(() => {
-                divMensaje.remove();
-            }, 4500);
-        }
-    }
-
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-agregar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
-    }
 })();
