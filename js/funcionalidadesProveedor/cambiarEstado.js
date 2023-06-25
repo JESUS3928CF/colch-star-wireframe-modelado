@@ -19,7 +19,7 @@ const peticionesBackend = new PeticionesBackend(
 
         Swal.fire({
             title: 'Estas seguro?',
-            text: "Desear cambiar el estado de este Proveedor!",
+            text: "Desear cambiar el estado de este proveedor!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -74,9 +74,9 @@ export function cambiarEstadoDB(e, registro) {
         console.log(error);
     }
     
-
     
 }
+
 
 async function cambiarEstadoBackend(registro,elemento){
 
@@ -85,7 +85,7 @@ async function cambiarEstadoBackend(registro,elemento){
     try {
         const resultado = await peticionesBackend.cambiarEstado(registro, registro.id_proveedor);
 
-        // console.log(resultado)
+        console.log(resultado)
 
         if(resultado === "Cambio de estado"){
             Swal.fire(
