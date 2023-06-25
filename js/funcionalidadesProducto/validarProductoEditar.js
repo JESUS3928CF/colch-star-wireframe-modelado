@@ -1,5 +1,7 @@
 (() => {
     const formulario = document.querySelector('#formularioEditarProducto');
+    const subFormulario = document.querySelector('#ColoresEditar')
+
 
     const submit = document.querySelector(
         '#formularioEditarProducto input[type="submit"]'
@@ -27,7 +29,27 @@
         validarCliente();
     }
 
+    function variablesColor(){
+        const negro = document.forms['ColoresEditar']['negroEditar'].checked
+        const rojo = document.forms['ColoresEditar']['rojoEditar'].checked
+        const azul = document.forms['ColoresEditar']['azulEditar'].checked
+        const verde = document.forms['ColoresEditar']['verdeEditar'].checked
+        const gris = document.forms['ColoresEditar']['grisEditar'].checked
+
+        return{
+            Negro: negro,
+            Rojo: rojo,
+            Azul: azul,
+            Verde: verde,
+            Gris:gris
+        }
+
+    }
+
+
     function validarCliente() {
+
+        const color = variablesColor()
         //* Campos a validar
 
         const producto = document.querySelector(
@@ -61,7 +83,7 @@
         let isValidado = true;
 
         //* Validaciones para todos los campos
-        if (producto.value == '' && cantidad.value == "" && precio.value == "" && talla.value == "" && tela.value == "") {
+        if (producto.value == '' && cantidad.value == "" && precio.value == "" && talla.value == "" && tela.value == "" && color.Azul==false && color.Gris==false && color.Negro==false && color.Rojo==false && color.Verde==false) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -236,6 +258,14 @@
                 text: 'No se puede poner signos en la tela',
             })
             isValidado = false
+        }else if(color.Azul==false && color.Gris==false && color.Negro==false && color.Rojo==false && color.Verde==false){
+            Swal.fire({
+                icon:'error',
+                title: 'Error',
+                text: 'Seleccione al menos un color'
+            })
+            isValidado=false
+
         }
 
 
@@ -248,23 +278,15 @@
 
             formulario.reset();
 
-            mostrarToast(Swal.fire(
+            Swal.fire(
                 'Producto editado correctamente',
                 '',
                 'success'
-            ));
+            );
         }
     }
 
 
 
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastEditar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-editar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
-    }
+  
 })();

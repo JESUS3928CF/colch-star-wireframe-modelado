@@ -176,7 +176,7 @@ function validarProveedor() {
             nombre: nombre.value,
             telefono: telefono.value,
             direccion: direccion.value,
-            contacto: telefono.value,
+            contacto: contacto.value,
         };
 
         registrarProveedor(nuevoProveedor);
