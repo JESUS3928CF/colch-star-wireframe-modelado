@@ -32,7 +32,7 @@ const cancelar = document.querySelector('#editarCancelado');
 const atras = document.querySelector('#xEditar');
 
 window.addEventListener('load', () => {
-    submit.addEventListener('click', editarClientes);
+    submit.addEventListener('click', editarProveedor);
     cancelar.addEventListener('click', recetearFormulario);
     atras.addEventListener('click', recetearFormulario);
 });
@@ -52,7 +52,7 @@ function recetearFormulario(e) {
     formulario.reset();
 }
 
-function editarClientes(e) {
+function editarProveedor(e) {
     e.preventDefault();
 
     /// Validar el formulario
