@@ -1,6 +1,6 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/clientes/estado/'
+    'http://localhost:3000/api/clientes/'
 );
 
 (()=>{
@@ -74,9 +74,9 @@ export function cambiarEstadoDB(e, registro) {
         console.log(error);
     }
     
-
     
 }
+
 
 async function cambiarEstadoBackend(registro,elemento){
 

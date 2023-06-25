@@ -1,35 +1,30 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/proveedor'
+    'http://localhost:3000/api/proveedores'
 );
-import { listarClientes } from './UIClientes.js';
+import { listarProveedor } from './UIProveedor.js';
 
 const formulario = document.querySelector('#formularioEditarProveedor');
 
 let id = '';
 
 const nombre = document.querySelector(
-    '##formularioEditarProveedor input[name="nombreEditar"]'
-);
-
-const apellido = document.querySelector(
-    '##formularioEditarProveedor input[name="apellidoEditar"]'
+    '#formularioEditarProveedor input[name="nombreEditar"]'
 );
 
 const telefono = document.querySelector(
-    '##formularioEditarProveedor input[name="telefonoEditar"]'
-);
-
-const email = document.querySelector(
-    '##formularioEditarProveedor input[name="emailEditar"]'
+    '#formularioEditarProveedor input[name="telefonoEditar"]'
 );
 
 const direccion = document.querySelector(
-    '##formularioEditarProveedor input[name="direccionEditar"]'
+    '#formularioEditarProveedor input[name="direccionEditar"]'
+);
+const contacto = document.querySelector(
+    '#formularioEditarProveedor input[name="contactoEditar"]'
 );
 
 const submit = document.querySelector(
-    '##formularioEditarProveedor input[type="submit"]'
+    '#formularioEditarProveedor input[type="submit"]'
 );
 
 const cancelar = document.querySelector('#editarCancelado');
@@ -44,13 +39,12 @@ window.addEventListener('load', () => {
 
 export function llenarFormulario(registro) {
     nombre.value = registro.nombre;
-    apellido.value = registro.apellido;
     telefono.value = registro.telefono;
-    email.value = registro.email;
     direccion.value = registro.direccion;
-    console.log(registro.id_cliente);
+    contacto.value = registro.contacto;
+    console.log(registro.id_proveedor);
 
-    id = registro.id_cliente;
+    id = registro.id_proveedor;
 }
 
 function recetearFormulario(e) {
@@ -62,10 +56,10 @@ function editarClientes(e) {
     e.preventDefault();
 
     /// Validar el formulario
-    validarCliente();
+    validarProveedor();
 }
 
-function validarCliente() {
+function validarProveedor() {
     //* Campos a validar
 
     //- Expresiones Regulares
@@ -77,23 +71,18 @@ function validarCliente() {
 
     //* Contenedores del formularios
     const divNombre = document.querySelector(
-        '##formularioEditarProveedor div[name="divNombre"]'
-    );
-
-    const divApellido = document.querySelector(
-        '##formularioEditarProveedor div[name="divApellido"]'
+        '#formularioEditarProveedor div[name="divNombre"]'
     );
 
     const divTelefono = document.querySelector(
-        '##formularioEditarProveedor div[name="divTelefono"]'
-    );
-
-    const divEmail = document.querySelector(
-        '##formularioEditarProveedor div[name="divEmail"]'
+        '#formularioEditarProveedor div[name="divTelefono"]'
     );
 
     const divDireccion = document.querySelector(
-        '##formularioEditarProveedor div[name="divDireccion"]'
+        '#formularioEditarProveedor div[name="divDireccion"]'
+    );
+    const divcontacto = document.querySelector(
+        '#formularioEditarProveedor div[name="divContacto"]'
     );
 
     /// Lógica de validación
@@ -104,10 +93,9 @@ function validarCliente() {
 
     if (
         nombre.value == '' &&
-        apellido.value == '' &&
         telefono.value == '' &&
-        email.value == '' &&
-        direccion.value == ''
+        direccion.value == '' &&
+        contacto.value == ''
     ) {
         Swal.fire({
             icon: 'error',
@@ -132,6 +120,7 @@ function validarCliente() {
             text: 'El nombre no puede tener numeros',
         });
         isValidado = false;
+
     } else if (!nombre.value.trimStart()) {
         Swal.fire({
             icon: 'error',
@@ -139,42 +128,12 @@ function validarCliente() {
             text: 'El nombre no puede ser un espacio',
         });
         isValidado = false;
+
     } else if (signo.test(nombre.value)) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede tener signos',
-        });
-        isValidado = false;
-
-        //Validaciones para el apellido
-    } else if (apellido.value == '') {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El apellido es obligatorios',
-        });
-
-        isValidado = false;
-    } else if (!number.test(apellido.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El apellido no puede tener numeros',
-        });
-        isValidado = false;
-    } else if (!apellido.value.trimStart()) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El apellido no puede ser un espacio',
-        });
-        isValidado = false;
-    } else if (signo.test(apellido.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El apellido no puede tener signos',
         });
         isValidado = false;
 
@@ -187,6 +146,7 @@ function validarCliente() {
         });
 
         isValidado = false;
+
     } else if (!text.test(telefono.value)) {
         Swal.fire({
             icon: 'error',
@@ -194,6 +154,7 @@ function validarCliente() {
             text: 'El Telefono no puede tener letras',
         });
         isValidado = false;
+
     } else if (!telefono.value.trimStart()) {
         Swal.fire({
             icon: 'error',
@@ -201,6 +162,7 @@ function validarCliente() {
             text: 'El Telefono no puede ser un espacio',
         });
         isValidado = false;
+
     } else if (signo.test(telefono.value)) {
         Swal.fire({
             icon: 'error',
@@ -209,29 +171,6 @@ function validarCliente() {
         });
         isValidado = false;
 
-        //* Validaciones para el gmail
-    } else if (email.value == '') {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El email es obligatorios',
-        });
-        isValidado = false;
-    } else if (!email_val.test(email.value)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Formato no valido',
-        });
-
-        isValidado = false;
-    } else if (!email.value.trimStart()) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'El email no puede ser un espacio',
-        });
-        isValidado = false;
         //* Validaciones para dirección
     } else if (direccion.value == '') {
         Swal.fire({
@@ -240,11 +179,29 @@ function validarCliente() {
             text: 'La direccion es obligatorios',
         });
         isValidado = false;
+
     } else if (!direccion.value.trimStart()) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
             text: 'La direccion no puede ser un espacio',
+        });
+        isValidado = false;
+    }
+    //* Validaciones para contacto
+    else if (direccion.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El contacto es obligatorios',
+        });
+        isValidado = false;
+
+    } else if (!direccion.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el contacto no puede ser un espacio',
         });
         isValidado = false;
     }
@@ -263,12 +220,11 @@ function validarCliente() {
 }
 
 async function guardarCambiosProveedor() {
-    const clienteEditado = {
+    const proveedorEditado = {
         nombre: nombre.value,
-        apellido: apellido.value,
         telefono: telefono.value,
-        email: email.value,
         direccion: direccion.value,
+        contacto: contacto.value,
     };
 
     // console.log(id);
@@ -277,23 +233,23 @@ async function guardarCambiosProveedor() {
 
 
     const resultado = await peticionesBackend.actualizarRegistro(
-        clienteEditado,
+        proveedorEditado,
         id
     );
 
 
     console.log(resultado);
     if (resultado === 'Actualización exitosa') {
-        listarClientes();
+        listarProveedor();
         mostrarToast(Swal.fire('proveedor editado correctamente', '', 'success'));
 
-        
-    }else{
+
+    } else {
 
         mostrarToast(
-            
+
             Swal.fire(
-                'El proveedor no fue editado, aparecer hubo un error',
+                'El cliente no fue editado, aparecer hubo un error',
                 '',
                 'error'
             )
@@ -301,7 +257,7 @@ async function guardarCambiosProveedor() {
     }
 
 
-    
+
 }
 
 function imprimirAlerta(mensaje, lugar, clase) {
@@ -349,5 +305,6 @@ function mostrarToast(mensaje) {
     /// Mostrando el mensaje
     toast.show();
 
-    
+
 }
+

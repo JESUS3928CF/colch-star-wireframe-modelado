@@ -1,6 +1,6 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/proveedor/estado/'
+    'http://localhost:3000/api/proveedores/'
 );
 
 (()=>{
@@ -19,7 +19,7 @@ const peticionesBackend = new PeticionesBackend(
 
         Swal.fire({
             title: 'Estas seguro?',
-            text: "Desear cambiar el estado de este cliente!",
+            text: "Desear cambiar el estado de este Proveedor!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -54,7 +54,7 @@ export function cambiarEstadoDB(e, registro) {
 
     Swal.fire({
         title: 'Estas seguro?',
-        text: "Desear cambiar el estado de este cliente!",
+        text: "Desear cambiar el estado de este proveedor!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -85,7 +85,7 @@ async function cambiarEstadoBackend(registro,elemento){
     try {
         const resultado = await peticionesBackend.cambiarEstado(registro, registro.id_proveedor);
 
-        console.log(resultado)
+        // console.log(resultado)
 
         if(resultado === "Cambio de estado"){
             Swal.fire(
