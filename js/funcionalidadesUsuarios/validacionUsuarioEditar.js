@@ -5,310 +5,384 @@ const peticionesBackend = new PeticionesBackend(
 import { listarUsuarios } from './UIUsuarios.js';
 
 let id = '';
-
-    const formulario = document.querySelector('#formularioEditarUsuario');
-
-
-    //* Campos a validar
-
-        const nombre = document.querySelector(
-            '#formularioEditarUsuario input[name="nombreEditar"]'
-        );
-
-        const apellido = document.querySelector(
-            '#formularioEditarUsuario input[name="apellidoEditar"]'
-        );
-
-        const telefono = document.querySelector(
-            '#formularioEditarUsuario input[name="telefonoEditar"]'
-        );
-
-        const email = document.querySelector(
-            '#formularioEditarUsuario input[name="emailEditar"]'
-        );
-
-        const contraseña = document.querySelector(
-            '#formularioEditarUsuario input[name="contraseñaEditar"]'
-        );
-
-        const confirmarContraseña = document.querySelector(
-            '#formularioEditarUsuario input[name="contraseñaconfirmarEditar"]'
-        );
-
-        const seleccionarRol = document.querySelector(
-            '#formularioEditarUsuario select[name="selectRolEditar"]'
-        );
+let fk = "";
 
 
-    const submit = document.querySelector(
-        '#formularioEditarUsuario input[type="submit"]'
-    );
+const formulario = document.querySelector('#formularioEditarUsuario');
 
-    const cancelar = document.querySelector('#editarCancelado');
-    const atras = document.querySelector('#xEditar');
+//* Campos a validar
 
-    window.addEventListener('load', () => {
-        submit.addEventListener('click', editarUsuarios);
-        cancelar.addEventListener('click', recetearFormulario);
-        atras.addEventListener('click', recetearFormulario);
-    });
+const nombre = document.querySelector(
+    '#formularioEditarUsuario input[name="nombreEditar"]'
+);
 
-    export function llenarFormulario(registro) {
-        console.log(registro);
-        nombre.value = registro.nombre;
-        apellido.value = registro.apellido;
-        telefono.value = registro.telefono;
-        email.value = registro.email;
-        contraseña.value = registro.contrasena;
-        confirmarContraseña.value = registro.contrasena;
-        seleccionarRol.value = registro.fk_rol
-        console.log(registro.id_usuario);
+const apellido = document.querySelector(
+    '#formularioEditarUsuario input[name="apellidoEditar"]'
+);
 
-        console.log(seleccionarRol.value);
+const telefono = document.querySelector(
+    '#formularioEditarUsuario input[name="telefonoEditar"]'
+);
 
-        id = registro.id_usuario;
+const email = document.querySelector(
+    '#formularioEditarUsuario input[name="emailEditar"]'
+);
 
+const contraseña = document.querySelector(
+    '#formularioEditarUsuario input[name="contraseñaEditar"]'
+);
+
+const confirmarContraseña = document.querySelector(
+    '#formularioEditarUsuario input[name="contraseñaconfirmarEditar"]'
+);
+
+const seleccionarRol = document.querySelector(
+    '#formularioEditarUsuario select[name="selectRolEditar"]'
+);
+
+// const divSeleccionarRol = document.querySelector('#divselectRol');
+
+
+
+// console.log(divSeleccionarRol);
+
+const submit = document.querySelector(
+    '#formularioEditarUsuario input[type="submit"]'
+);
+
+const cancelar = document.querySelector('#editarCancelado');
+const atras = document.querySelector('#xEditar');
+
+window.addEventListener('load', () => {
+    submit.addEventListener('click', editarUsuarios);
+    cancelar.addEventListener('click', recetearFormulario);
+    atras.addEventListener('click', recetearFormulario);
+});
+
+//  function validarAdmin(rol) {
+//      console.log('Desde validar admin ' + rol );
+
+//      if ( rol == 1) {
+//          console.log(divSeleccionarRol);
+//          console.log("Admin");
+//          //* Eliminar el div de seleccionar rol
+//         //  seleccionarRolDiv.remove();
+//      } else {
+//          console.log('NO Admin');
+
+//          //* Restaurar el div de seleccionar rol si no es igual a 1
+//         //  formulario.appendChild(seleccionarRolDiv);
+//      }
+//  }
+
+export function llenarFormulario(registro) {
+    const divSeleccionarRol = document.querySelector('#divselectRol');
+
+    if ((divSeleccionarRol.style.display = 'none')) {
+        divSeleccionarRol.style.display = 'block';
     }
 
-    function recetearFormulario(e){
-        e.preventDefault();
-        formulario.reset();
+    //* Restaurar el div de seleccionar rol si no es igual a 1
+    //  formulario.appendChild(divSeleccionarRol);
+
+    console.log('NO Soy admin');
+    // const buttonsEditar = document.querySelectorAll('.button-editar');
+
+    nombre.value = registro.nombre;
+    apellido.value = registro.apellido;
+    telefono.value = registro.telefono;
+    email.value = registro.email;
+    contraseña.value = registro.contrasena;
+    confirmarContraseña.value = registro.contrasena;
+    seleccionarRol.value = registro.fk_rol;
+    // console.log(registro.id_usuario);
+
+    // console.log(seleccionarRol.value);
+
+    id = registro.id_usuario;
+    fk = registro.fk_rol
+}
+
+export function llenarFormularioAdmin(registro) {
+
+    const divSeleccionarRol = document.querySelector('#divselectRol');
+
+    // console.log("Soy admin");
+    
+
+   
+         console.log(divSeleccionarRol);
+         //* Eliminar el div de seleccionar rol
+        //  divSeleccionarRol.remove();
+        divSeleccionarRol.style.display = 'none';
+     
+
+         
+     
+
+    nombre.value = registro.nombre;
+    apellido.value = registro.apellido;
+    telefono.value = registro.telefono;
+    email.value = registro.email;
+    contraseña.value = registro.contrasena;
+    confirmarContraseña.value = registro.contrasena;
+    seleccionarRol.value = registro.fk_rol;
+    // console.log(registro.id_usuario);
+
+    // console.log(seleccionarRol.value);
+
+    id = registro.id_usuario;
+}
+
+
+function recetearFormulario(e) {
+    e.preventDefault();
+    formulario.reset();
+}
+
+function editarUsuarios(e) {
+    e.preventDefault();
+
+    /// Validar el formulario
+    validarUsuario();
+}
+
+function validarUsuario() {
+
+    let selectedOption;
+
+    try {
+
+       selectedOption =
+            seleccionarRol.options[seleccionarRol.selectedIndex].value;
+
+        console.log("NO error");
+
+    } catch (error) {
+        console.log('SI error');
+        selectedOption = 1;
     }
+    
+    console.log(selectedOption, " Este seleccione");
 
-    function editarUsuarios(e) {
-        e.preventDefault();
+    //- Expresiones Regulares
+    const number = /^\D*$/;
+    const tel = /^\d+$/;
+    var signo = /[|°!"#$%&/()=?¿]/;
+    const email_val =
+        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        /// Validar el formulario
-        validarUsuario();
-    }
+    /// Lógica de validación
 
-    function validarUsuario() {
-        
-        const selectedOption = seleccionarRol.options[seleccionarRol.selectedIndex].value;
-        console.log(selectedOption)
+    let isValidado = true;
 
-        //- Expresiones Regulares
-        const number = /^\D*$/;
-        const tel = /^\d+$/
-        var signo = /[|°!"#$%&/()=?¿]/;
-        const email_val =
-            /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    //* Validaciones para el nombre
 
-       
-        
-        /// Lógica de validación
-
-        let isValidado = true;
-
-        //* Validaciones para el nombre
-
-        //* Validaciones para todos los campos
-        if(nombre.value=='' && apellido.value=="" && telefono.value=="" && email.value=="" && contraseña.value=="" && confirmarContraseña.value=="" && selectedOption===""){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Todos los campos son obligatorios',
-                 })
-                   isValidado = false 
+    //* Validaciones para todos los campos
+    if (
+        nombre.value == '' &&
+        apellido.value == '' &&
+        telefono.value == '' &&
+        email.value == '' &&
+        contraseña.value == '' &&
+        confirmarContraseña.value == '' &&
+        selectedOption === ''
+    ) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Todos los campos son obligatorios',
+        });
+        isValidado = false;
 
         //* Validaciones para el  campo nombre
-        }else if (nombre.value == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El nombre es obligatorio',
-                 })
-                   isValidado = false        
-        } else if (!number.test(nombre.value)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El nombre no puede contener números',
-                 })
-            isValidado = false;
+    } else if (nombre.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre es obligatorio',
+        });
+        isValidado = false;
+    } else if (!number.test(nombre.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre no puede contener números',
+        });
+        isValidado = false;
+    } else if (!nombre.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre no puede ser un espacio',
+        });
+        isValidado = false;
+    } else if (signo.test(nombre.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se puede poner signos en el nombre',
+        });
+        isValidado = false;
 
-        }else if (!nombre.value.trimStart()){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'El nombre no puede ser un espacio',
-                     })
-                isValidado = false;
-
-        }else if (signo.test(nombre.value)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se puede poner signos en el nombre',
-                 })
-            isValidado = false;        
-       
         //* Validaciones para el apellido
-        }else if (apellido.value == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El apellido es obligatorio',
-                 })
-            isValidado = false;
-        }else if (!number.test(apellido.value)){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El apellido no puede contener números',
-                 })
-            isValidado = false;     
-        }else if (!apellido.value.trimStart()){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'El nombre no puede ser un espacio',
-                     })
-                isValidado = false;  
+    } else if (apellido.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El apellido es obligatorio',
+        });
+        isValidado = false;
+    } else if (!number.test(apellido.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El apellido no puede contener números',
+        });
+        isValidado = false;
+    } else if (!apellido.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre no puede ser un espacio',
+        });
+        isValidado = false;
+    } else if (signo.test(apellido.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se puede poner signos en el apellido',
+        });
+        isValidado = false;
 
-        }else if (signo.test(apellido.value)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se puede poner signos en el apellido',
-                 })
-            isValidado = false; 
-            
         //* Validaciones para teléfono
-        }else if (telefono.value == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El teléfono es obligatorio',
-                 })
-            isValidado = false;
-
-        } else if (!tel.test(telefono.value)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El teléfono no puede contener letras',
-                 })
-            isValidado = false;
-
-        }else if (!telefono.value.trimStart()){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'El nombre no puede ser un espacio',
-                     })
-                isValidado = false;
-        }else if (signo.test(telefono.value)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se puede poner signos en el telefono',
-                 })
-            isValidado = false;
+    } else if (telefono.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El teléfono es obligatorio',
+        });
+        isValidado = false;
+    } else if (!tel.test(telefono.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El teléfono no puede contener letras',
+        });
+        isValidado = false;
+    } else if (!telefono.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre no puede ser un espacio',
+        });
+        isValidado = false;
+    } else if (signo.test(telefono.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se puede poner signos en el telefono',
+        });
+        isValidado = false;
         //* Validaciones para el email
-        } else if (email.value == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El email es obligatorio',
-                 })
-            isValidado = false;
-        }else if (!email_val.test(email.value) && email.value != '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'El formato de gmail es incorrecto',
-                 })
-            isValidado = false;
-        }else if (!email.value.trimStart()){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'El nombre no puede ser un espacio',
-                     })
-                isValidado = false;        
+    } else if (email.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El email es obligatorio',
+        });
+        isValidado = false;
+    } else if (!email_val.test(email.value) && email.value != '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El formato de gmail es incorrecto',
+        });
+        isValidado = false;
+    } else if (!email.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El nombre no puede ser un espacio',
+        });
+        isValidado = false;
 
-          //* Validaciones para la contraseña
-        }else if (contraseña.value == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'La contraseña es obligatoria',
-                 })
-            isValidado = false;
+        //* Validaciones para la contraseña
+    } else if (contraseña.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La contraseña es obligatoria',
+        });
+        isValidado = false;
 
         //* Validaciones para la confirmacion de contraseña
-        } else  if (confirmarContraseña.value == '') {
-             Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Confirma la contraseña',
-              })
-            isValidado = false;
+    } else if (confirmarContraseña.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Confirma la contraseña',
+        });
+        isValidado = false;
+    } else if (contraseña.value != confirmarContraseña.value) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Las contraseñas no coinciden',
+        });
+        isValidado = false;
 
-        } else if(contraseña.value!=confirmarContraseña.value){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Las contraseñas no coinciden',
-              })
-            isValidado = false; 
-
-            //*Validacion de rol
-        }else  if (selectedOption === '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Seleccione un rol',
-              })
-            isValidado = false; 
-        }
-      
-
-        if (isValidado) {
-            //* Serrando el modal
-            const modalBootstrap = bootstrap.Modal.getInstance(
-                document.querySelector('#modalEditar')
-            );
-            modalBootstrap.hide();
-
-            guardarCambiosUsuarios();
-
-            formulario.reset();
-        }
+        //*Validacion de rol
+    } else if (selectedOption === '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Seleccione un rol',
+        });
+        isValidado = false;
     }
 
-    async function guardarCambiosUsuarios() {
-        const usuarioEditado = {
-            nombre: nombre.value,
-            apellido: apellido.value,
-            telefono: telefono.value,
-            email: email.value,
-            contrasena: contraseña.value,
-            fk_rol: seleccionarRol.value,
-        };
-
-        const resultado = await peticionesBackend.actualizarRegistro(
-            usuarioEditado,
-            id
+    if (isValidado) {
+        //* Serrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(
+            document.querySelector('#modalEditar')
         );
+        modalBootstrap.hide();
 
-        console.log(resultado);
-        if (resultado === 'Actualización exitosa') {
-            listarUsuarios();
-            mostrarToast(Swal.fire('Usuario editado correctamente', '', 'success'));
+        guardarCambiosUsuarios();
 
-        }else{
+        formulario.reset();
+    }
+}
 
-            mostrarToast(
-                
-                Swal.fire(
-                    'El usuario no fue editado, al parecer hubo un error',
-                    '',
-                    'error'
-                )
-            );
-        }
+async function guardarCambiosUsuarios() {
+    const usuarioEditado = {
+        nombre: nombre.value,
+        apellido: apellido.value,
+        telefono: telefono.value,
+        email: email.value,
+        contrasena: contraseña.value,
+        fk_rol: seleccionarRol.value || 1,
+    };
+
+    const resultado = await peticionesBackend.actualizarRegistro(
+        usuarioEditado,
+        id
+    );
+
+    console.log(resultado);
+    if (resultado === 'Actualización exitosa') {
+        listarUsuarios();
+        mostrarToast(Swal.fire('Usuario editado correctamente', '', 'success'));
+    } else {
+        mostrarToast(
+            Swal.fire(
+                'El usuario no fue editado, al parecer hubo un error',
+                '',
+                'error'
+            )
+        );
+    }
 }
 
 function imprimirAlerta(mensaje, lugar, clase) {
@@ -355,6 +429,4 @@ function mostrarToast(mensaje) {
     toastBody.textContent = mensaje;
     /// Mostrando el mensaje
     toast.show();
-
-    
 }

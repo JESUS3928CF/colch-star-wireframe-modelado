@@ -1,6 +1,9 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 import { cambiarEstadoDB } from './cambiarEstado.js';
-import { llenarFormulario } from './validacionUsuarioEditar.js';
+import {
+    llenarFormulario,
+    llenarFormularioAdmin,
+} from './validacionUsuarioEditar.js';
 const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/usuario');
 
 
@@ -64,9 +67,7 @@ function mostrarRegistros(resultado) {
             registro.telefono,
             registro.email,
             registro.role.nombre,
-            registro.estado
-                ? '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" />'
-                : '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" />',
+            obtenerImagenEstado(registro.estado, registro.fk_rol),
             '<button type="button" class="btn btn-info button-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">Editar</button>',
         ];
 
@@ -83,16 +84,26 @@ function mostrarRegistros(resultado) {
                         dato
                     ))
             ) {
-                const imagenEstado = celda.querySelector('.estado');
-                imagenEstado.addEventListener('click', (e)=>{
-                    console.log(registro);
-                    cambiarEstadoDB(e,registro);
-                } );
+
+                if(registro.fk_rol != 1){
+                    const imagenEstado = celda.querySelector('.estado');
+                    imagenEstado.addEventListener('click', (e) => {
+                        console.log(registro);
+                        cambiarEstadoDB(e, registro);
+                    });
+                }
+                
+                
             } 
             else if (dato && /<button[^>]*>Editar<\/button>/i.test(dato)) {
                 const botonEditar = celda.querySelector('button');
                 botonEditar.addEventListener('click',() => {
-                    llenarFormulario(registro)
+
+                    if(registro.fk_rol == 1){
+                        llenarFormularioAdmin(registro);
+                    }else {
+                        llenarFormulario(registro);
+                    }
                 });
             }
 
@@ -104,4 +115,16 @@ function mostrarRegistros(resultado) {
 
     tabla.appendChild(tbody);
     tablaUsuarioDiv.appendChild(tabla);
+}
+
+function obtenerImagenEstado(estado, fk_rol) {
+    if (estado) {
+        if (fk_rol === 1) {
+            return '<img class="centrarIcono estado" src="/imagenes/iconos/crossing_out.svg" />';
+        } else {
+            return '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" />';
+        }
+    } else {
+        return '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" />';
+    }
 }
