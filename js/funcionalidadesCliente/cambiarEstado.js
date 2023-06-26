@@ -1,4 +1,5 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
+import { listarClientes } from './UIClientes.js';
 const peticionesBackend = new PeticionesBackend(
     'http://localhost:3000/api/clientes' 
 );
@@ -95,12 +96,11 @@ async function cambiarEstadoBackend(registro,elemento){
               )
 
               if (elemento.src.includes('on.svg')) {
+            // if (registro.estado == true) {
                 // console.log(registro);
-                
+
                 elemento.src = '/imagenes/iconos/light_switch off.svg';
-        
             } else {
-        
                 elemento.src = '/imagenes/iconos/light_switch on.svg';
             }
         }else{
@@ -111,10 +111,16 @@ async function cambiarEstadoBackend(registro,elemento){
               )
         }
 
+
+
         
         
     } catch (error) {
         console.log(error);
+    }
+    finally {
+        console.log("termino");
+        listarClientes();
     }
     
 }

@@ -2,6 +2,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
 const peticionesBackend = new PeticionesBackend(
     'http://localhost:3000/api/usuario' 
 );
+import { listarUsuarios } from './UIUsuarios.js';
 
 (()=>{
 
@@ -115,6 +116,9 @@ async function cambiarEstadoBackend(registro,elemento){
         
     } catch (error) {
         console.log(error);
+    }finally{
+        console.log("fin")
+        listarUsuarios();
     }
     
 }
