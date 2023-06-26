@@ -49,11 +49,12 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
         const selectedOption = seleccionarRol.options[seleccionarRol.selectedIndex].value;
         console.log(selectedOption)
 
-        return{
-            contraseñas:contraseña,
-            confirmarContraseñas:confirmarContraseña,
-            selectedOptions:selectedOption
-        }
+        return {
+            contraseñas: contraseña,
+            confirmarContraseñas: confirmarContraseña,
+            selectedOptions: selectedOption,
+            seleccionarRol,
+        };
 
     }
 
@@ -262,15 +263,29 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
         
         if (isValidado) {
             ///! Insertar usuario
+
+            // contraseñas:contraseña,
+            // confirmarContraseñas:confirmarContraseña,
+            // selectedOptions:selectedOption
+
+            const { contraseñas, seleccionarRol } = variablesFormulario2();
+
     
             const nuevoUsuario = {
                 nombre: nombre.value,
                 apellido: apellido.value,
                 telefono: telefono.value,
                 email: email.value,
-                contrasena: contraseña.value,
+                contrasena: contraseñas.value,
                 fk_rol: seleccionarRol.value,
             };
+
+            console.log(nuevoUsuario);
+
+            console.log(contraseñas, "cc");
+            console.log(seleccionarRol.value);
+
+
             registrarUsuario(nuevoUsuario);
         }
     
