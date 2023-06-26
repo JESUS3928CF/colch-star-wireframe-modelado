@@ -206,10 +206,10 @@ async function registrarProveedor(nuevoProveedor) {
     modalBootstrap.hide();
 
     formulario.reset();
-    if (resultado === 'proveedor agregado exitosamente') {
+    if (resultado === 'Proveedor agregado exitosamente') {
         listarProveedor();
         mostrarToast(
-            Swal.fire('proveedor agregado correctamente', '', 'success')
+            Swal.fire('Proveedor agregado correctamente', '', 'success')
         );
 
         listarProveedor();
