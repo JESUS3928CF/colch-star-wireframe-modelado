@@ -1,13 +1,56 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/usuario'
+    'http://localhost:3000/api/usuario' 
 );
 
-export function CambiarEstadoDB(e, registro) {
+(()=>{
+
+    const buttonEstado = document.querySelectorAll(".estado");
+
+    window.addEventListener("load", () => {
+        buttonEstado.forEach((button) => {
+            button.addEventListener('click', cambiarEstado);
+        });
+    });
+
+     function cambiarEstado(e) {
+
+        const elemento = e.target;
+
+        Swal.fire({
+            title: 'Estas seguro?',
+            text: "Desear cambiar el estado de este cliente!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, quiero cambiarlo'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+    
+              if (elemento.src.includes('on.svg')) {
+    
+                elemento.src = '/imagenes/iconos/light_switch off.svg';
+            } else {
+                elemento.src = '/imagenes/iconos/light_switch on.svg';
+            }
+            }
+          })
+    }
+
+
+})();
+
+export function cambiarEstadoDB(e, registro) {
     const elemento = e.target
     try {
 
-        console.log(registro)
+        // console.log(registro)
 
     Swal.fire({
         title: 'Estas seguro?',
@@ -21,7 +64,6 @@ export function CambiarEstadoDB(e, registro) {
         if (result.isConfirmed) {
           
 
-            // console.log(registro);
           cambiarEstadoBackend(registro,elemento);
 
           
@@ -31,7 +73,10 @@ export function CambiarEstadoDB(e, registro) {
     } catch (error) {
         console.log(error);
     }
+    
+    
 }
+
 
 async function cambiarEstadoBackend(registro,elemento){
 
@@ -50,7 +95,7 @@ async function cambiarEstadoBackend(registro,elemento){
               )
 
               if (elemento.src.includes('on.svg')) {
-                console.log(registro);
+                // console.log(registro);
                 
                 elemento.src = '/imagenes/iconos/light_switch off.svg';
         
@@ -72,4 +117,5 @@ async function cambiarEstadoBackend(registro,elemento){
         console.log(error);
     }
     
-} 
+}
+

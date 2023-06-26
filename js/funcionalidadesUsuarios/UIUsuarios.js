@@ -1,5 +1,5 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
-// import { cambiarEstadoDB } from './cambiarEstado.js';
+import { cambiarEstadoDB } from './cambiarEstado.js';
 import { llenarFormulario } from './validacionUsuarioEditar.js';
 const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/usuario');
 
@@ -86,7 +86,7 @@ function mostrarRegistros(resultado) {
                 const imagenEstado = celda.querySelector('.estado');
                 imagenEstado.addEventListener('click', (e)=>{
                     console.log(registro);
-                    // cambiarEstadoDB(e,registro);
+                    cambiarEstadoDB(e,registro);
                 } );
             } 
             else if (dato && /<button[^>]*>Editar<\/button>/i.test(dato)) {
