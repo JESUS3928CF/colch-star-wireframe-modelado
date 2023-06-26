@@ -36,12 +36,13 @@
             <!--! modal de agregar usuario -->
 
             <div class="modal" id="myModal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header modal-head-agregar">
+                <div class="modal-dialog modal-dialog-centered " style= "width: 800px ; margin-left: 100px;">
+                    <div class="modal-content" style= "width: 800px ;">
+                        <div class="modal-header modal-head-agregar" style="width: 800px">
                             <h5 class="modal-title" id="exampleModalLabel">Agregar usuario</h5>
                             <button type="button" id="xAgregar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                    <div class="formulario">
                         <div class="modal-body">
 
                             <!-- formulario para agregar un usuario -->
@@ -49,23 +50,24 @@
                                 <div class="mb-3" name="divNombre">
                                     <label for="nombreGuardar" class="col-form-label">Nombre:</label>
                                     <input type="text" class="form-control" id="nombreGuardarr" name="nombreGuardar"
-                                        placeholder="Ingresar nombre">
+                                        placeholder="Ingresar nombre" style="width:80% ;">
                                 </div>
                                 <div class="mb-3" name="divApellido">
                                     <label for="apellidoGuardar" class="col-form-label">Apellido:</label>
                                     <input type="text" class="form-control" id="apellidoGuardar" name="apellidoGuardar"
-                                        placeholder="Ingresar apellido">
+                                        placeholder="Ingresar apellido" style="width:80% ;">
                                 </div>
                                 <div class="mb-3" name="divTelefono">
                                     <label for="telefonoGuardar" class="col-form-label">Teléfono:</label>
-                                    <input type="text" class="form-control" id="telefonoGuardar" name="telefonoGuardar" placeholder="Ingresar teléfono" >
+                                    <input type="text" class="form-control" id="telefonoGuardar" name="telefonoGuardar" placeholder="Ingresar teléfono" style="width:80% ;">
                                 </div>
                                 <div class="mb-3" name="divEmail">
                                     <label for="emailGuardar" class="col-form-label">Email:</label>
                                     <input type="email" class="form-control" id="emailGuardar" name="emailGuardar"
-                                        placeholder="Ingresar email">
+                                        placeholder="Ingresar email" style="width:80% ;">
                                 </div>
                                 
+<<<<<<< HEAD
                                 
                                 <div class="mb-3" name="divContraseña">
                                     <label for="contraseñaGuardar" class="col-form-label" >Contraseña:</label>
@@ -86,6 +88,8 @@
                                         <option value="4">Comprador</option>
                                       </select>
                                 </div>
+=======
+>>>>>>> b9421ab2fd1c9f491fb683bbf49695a8b8898475
 
                                 <div class="modal-footer">
                                     <button type="button" id="guardarCancelado" class="btn btn-danger"
@@ -93,9 +97,47 @@
                                     <input type="submit" class="btn btn-success" value="Guardar">
                                 </div>
                             </form>
+
                         </div>
+                        <form action="" id="AgregarUsuario">
+                        <div class="modal-body">
+
+                            <div class="mb-3" name="divContraseña" style="margin-left: -20%;">
+                                <label for="contraseñaGuardar" class="col-form-label" style="margin-top: 20%;">Contraseña:</label>
+                                <input type="password" class="form-control" id="contraseñaGuardar" name="contraseñaGuardar"
+                                    placeholder="Ingresar contraseña" style="width: 80%;">
+                            </div>
+                            <div class="mb-3" name="divConfirmarContraseña" style="margin-left: -20%;">
+                                <label for="contraseñaconfirmarGuardar" class="col-form-label">Confirmar contraseña:</label>
+                                <input type="password" class="form-control" id="contraseñaconfirmarGuardar" name="contraseñaconfirmarGuardar"
+                                    placeholder="Confirmar contraseña:" style="width: 80%;">
+                            </div>
+                            <div class="mb-3" name="divselectRol" style="margin-left: -20%;">
+                                <label for="rolGuardar" class="col-form-label" >Rol:</label>
+                                <select class="form-control" name="selectRol" style="width: 80%;">
+                                    <option value="">Seleccionar rol</option>
+                                    <option value="Empleado">Empleado</option>
+                                    <option value="Vendedor">Vendedor</option>
+                                    <option value="Comprador">Comprador</option>
+                                  </select>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+
+                        
+
+
+
+
+
                     </div>
                 </div>
+            </div>
             </div>
 
             <!--/ Mensaje de agregar usuario correctamente   -->

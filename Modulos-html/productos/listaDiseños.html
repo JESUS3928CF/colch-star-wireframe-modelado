@@ -92,7 +92,8 @@
 
                             <!-- formulario para agregar un cliente -->
                             <form action="" id="formularioModificar">
-                                <select class="form-select" aria-label="Default select example">
+                                <select id="select" class="form-select" aria-label="Default select example">
+                                    <option value="">Seleccione un tamaño</option>
                                     <option value="1">Pequeño (0-10cm)</option>
                                     <option value="2">Mediano (11-25cm)</option>
                                     <option value="3">Grande (26-60cm)</option>
@@ -206,17 +207,7 @@
         </div>
     </div>
 
-    <!--/ Mensaje de Editar cliente correctamente   -->
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="toastEditar" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header bg-info text-white">
-                <strong class="me-auto text-black">Colch Star</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
-            </div>
-            <div id="toast-body-editar" class="toast-body"></div>
-        </div>
-    </div>
+  
 
     <!-- ver detalle de productos -->
 

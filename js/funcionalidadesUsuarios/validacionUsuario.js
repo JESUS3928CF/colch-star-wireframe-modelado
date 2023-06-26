@@ -4,11 +4,11 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
  );
  import { listarUsuarios } from './UIUsuarios.js';
     const formulario = document.querySelector('#formularioagregarusuario');
+    const formulario2=document.querySelector('#AgregarUsuario')
 
 
     const submit = document.querySelector(
-        '#formularioagregarusuario input[type="submit"]'
-    );
+        '#formularioagregarusuario input[type="submit"]');
 
     const cancelar = document.querySelector('#guardarCancelado');
     const atras = document.querySelector('#xAgregar');
@@ -33,8 +33,35 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
         validarUsuario();
     }
 
+    function variablesFormulario2(){
+
+        const contraseña = document.querySelector(
+            '#AgregarUsuario input[name="contraseñaGuardar"]'
+        );
+
+        const confirmarContraseña = document.querySelector(
+            '#AgregarUsuario input[name="contraseñaconfirmarGuardar"]'
+        );
+
+        const seleccionarRol = document.querySelector(
+            '#AgregarUsuario select[name="selectRol"]'
+        );
+        const selectedOption = seleccionarRol.options[seleccionarRol.selectedIndex].value;
+        console.log(selectedOption)
+
+        return{
+            contraseñas:contraseña,
+            confirmarContraseñas:confirmarContraseña,
+            selectedOptions:selectedOption
+        }
+
+    }
+
     function validarUsuario() {
+
+        const variables=variablesFormulario2()
         //* Campos a validar
+
 
         const nombre = document.querySelector(
             '#formularioagregarusuario input[name="nombreGuardar"]'
@@ -52,19 +79,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
             '#formularioagregarusuario input[name="emailGuardar"]'
         );
 
-        const contraseña = document.querySelector(
-            '#formularioagregarusuario input[name="contraseñaGuardar"]'
-        );
-
-        const confirmarContraseña = document.querySelector(
-            '#formularioagregarusuario input[name="contraseñaconfirmarGuardar"]'
-        );
-
-        const seleccionarRol = document.querySelector(
-            '#formularioagregarusuario select[name="selectRol"]'
-        );
-        const selectedOption = seleccionarRol.options[seleccionarRol.selectedIndex].value;
-        console.log(selectedOption)
+       
 
         //- Expresiones Regulares
         const number = /^\D*$/;
@@ -80,7 +95,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
         let isValidado = true;
 
         //* Validaciones para todos los campos
-        if(nombre.value=='' && apellido.value=="" && telefono.value=="" && email.value=="" && contraseña.value=="" && confirmarContraseña.value=="" && selectedOption===""){
+        if(nombre.value=='' && apellido.value=="" && telefono.value=="" && email.value=="" &&variables.contraseñas.value=="" && variables.confirmarContraseñas.value=="" && variables.selectedOptions===""){
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -207,7 +222,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 isValidado = false;        
 
           //* Validaciones para la contraseña
-        }else if (contraseña.value == '') {
+        }else if (variables.contraseñas.value == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -216,7 +231,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
             isValidado = false;
 
         //* Validaciones para la confirmacion de contraseña
-        } else  if (confirmarContraseña.value == '') {
+        } else  if (variables.confirmarContraseñas.value == '') {
              Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -225,7 +240,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
             isValidado = false;
             
 
-        } else if(contraseña.value!=confirmarContraseña.value){
+        } else if(variables.contraseñas.value!=variables.confirmarContraseñas.value){
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -234,7 +249,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
             isValidado = false; 
 
             //*Validacion de rol
-        }else  if (selectedOption === '') {
+        }else  if (variables.selectedOptions === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',

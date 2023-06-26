@@ -47,6 +47,8 @@
             '#formularioParaAgregarVenta input[name="direccionGuardar"]'
         );
 
+        const fecha = document.querySelector('#FechaGuardar')
+
        
 
 
@@ -139,6 +141,13 @@
                 icon: 'error',
                 title: 'Error',
                 text: 'La dirreccion es obligatoria'
+            })
+            isValidado=false
+        }else if(fecha.value==""){
+            Swal.fire({
+                icon:'error',
+                title:'Error',
+                text:' La fecha es obligatoria'
             })
             isValidado=false
         }

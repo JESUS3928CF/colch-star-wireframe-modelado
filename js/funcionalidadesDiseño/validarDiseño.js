@@ -53,6 +53,9 @@ const nombre = document.querySelector('#NombreDiseno');
 const nombreDiseno=document.querySelector('#nombreEditar');
 const imagen = document.querySelector('#formFile1' );
 const precio = document.querySelector('#precioGuardar');
+const select = document.querySelector('#select')
+const selectedOption = select.options[select.selectedIndex].value;
+
 const number = /^\D*$/;
 const text = /^[^a-zA-Z]*$/;
 const signo = /[|°"#$%&/()=?¿]/
@@ -65,7 +68,8 @@ return{
     Numero:number,
     Texto:text,
     Signos:signo,
-    Validar: isValidado
+    Validar: isValidado,
+    opcion: selectedOption
     
 }
 
@@ -124,8 +128,15 @@ function Disenos() {
 function Modificacion(){
 
     const Datos= variable();
-
-    if (Datos.Precio.value==""){
+    if(Datos.opcion===""&& Datos.Precio.value==""){
+        Swal.fire({
+            icon:'error',
+            title: 'error',
+            text: 'Todos loa campos son obligatorios'
+        })
+        Datos.Validar=false
+    }
+    else if (Datos.Precio.value==""){
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -154,6 +165,13 @@ function Modificacion(){
             icon: 'error',
             title: 'Error',
             text: 'El campo precio no puede ser espacios'
+        })
+        Datos.Validar=false
+    }else if(Datos.opcion===""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Seleccione un tamaño'
         })
         Datos.Validar=false
     }
