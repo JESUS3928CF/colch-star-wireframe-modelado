@@ -54,6 +54,8 @@ function mostrarRegistros(resultado) {
     resultado.forEach((registro) => {
         const fila = document.createElement('tr');
 
+
+
         // Añadir las celdas con los datos de cada registro
         const datosRegistro = [
             registro.id_usuario,
@@ -61,7 +63,7 @@ function mostrarRegistros(resultado) {
             registro.apellido,
             registro.telefono,
             registro.email,
-            registro.fk_rol,
+            registro.role.nombre,
             registro.estado
                 ? '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" />'
                 : '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" />',

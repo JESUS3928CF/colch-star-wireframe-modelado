@@ -54,6 +54,7 @@ function mostrarRegistros(resultado) {
     resultado.forEach((registro) => {
         const fila = document.createElement('tr');
 
+
         // Añadir las celdas con los datos de cada registro
         const datosRegistro = [
             registro.id_cliente,
