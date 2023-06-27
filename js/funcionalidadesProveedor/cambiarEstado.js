@@ -1,7 +1,8 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/proveedores/'
+    'http://localhost:3000/api/proveedores/' 
 );
+import { listarProveedor } from './UIProveedor.js';
 
 (()=>{
 
@@ -83,38 +84,35 @@ async function cambiarEstadoBackend(registro,elemento){
     
 
     try {
-        const resultado = await peticionesBackend.cambiarEstado(registro, registro.id_proveedor);
+        const resultado = await peticionesBackend.cambiarEstado(
+            registro,
+            registro.id_proveedor
+        );
 
-        console.log(resultado)
+        console.log(resultado);
 
-        if(resultado === "Cambio de estado"){
-            Swal.fire(
-                'Estado cambiado',
-                '',
-                'success'
-              )
+        if (resultado === 'Cambio de estado') {
+            Swal.fire('Estado cambiado', '', 'success');
 
-              if (elemento.src.includes('on.svg')) {
+            if (elemento.src.includes('on.svg')) {
                 // console.log(registro);
-                
+
                 elemento.src = '/imagenes/iconos/light_switch off.svg';
-        
             } else {
-        
                 elemento.src = '/imagenes/iconos/light_switch on.svg';
             }
-        }else{
+        } else {
             Swal.fire(
                 'Ha ocurrido un problema',
                 'El estado no fue cambiado',
                 'error'
-              )
+            );
         }
-
-        
-        
     } catch (error) {
         console.log(error);
+    } finally {
+        console.log('termino');
+        listarProveedor();
     }
     
 }

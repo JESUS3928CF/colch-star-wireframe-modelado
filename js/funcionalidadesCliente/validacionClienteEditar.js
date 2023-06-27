@@ -43,6 +43,7 @@ window.addEventListener('load', () => {
 });
 
 export function llenarFormulario(registro) {
+    console.log(registro);
     nombre.value = registro.nombre;
     apellido.value = registro.apellido;
     telefono.value = registro.telefono;

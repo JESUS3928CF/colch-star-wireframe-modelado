@@ -76,16 +76,16 @@ export default class PeticionesBackend {
 
     //! cambiar estado
 
-    async cambiarEstado(reguistro,id){
+    async cambiarEstado(registro,id){
         try {
             // console.log(this.url);
-            // console.log(reguistro.estado);
+            console.log(registro.estado);
             const respuesta = await fetch(`${this.url}/estado/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(reguistro),
+                body: JSON.stringify(registro),
             });
 
             const resultado = await respuesta.json();

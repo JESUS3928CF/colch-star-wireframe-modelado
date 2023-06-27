@@ -1,23 +1,26 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 import { cambiarEstadoDB } from './cambiarEstado.js';
-import { llenarFormulario } from './validacionClienteEditar.js';
-const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/clientes');
+import {
+    llenarFormulario,
+    llenarFormularioAdmin,
+} from './validacionUsuarioEditar.js';
+const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/usuario');
 
 
 
-export async function listarClientes(){
-    const clientes = await peticionesBackend.findAll();
-    // console.log(clientes);
-    mostrarRegistros(clientes);
+export async function listarUsuarios(){
+    const usuario = await peticionesBackend.findAll();
+    console.log(usuario);
+    mostrarRegistros(usuario);
 }
 
 
 //!  Aca se crea la tabla con sus registros
 function mostrarRegistros(resultado) {
-    const tablaClientesDiv = document.querySelector('#tablaClientes');
+    const tablaUsuarioDiv = document.querySelector('#tablaUsuario');
 
     // Limpiar el contenido anterior
-    tablaClientesDiv.innerHTML = '';
+    tablaUsuarioDiv.innerHTML = '';
 
     // Crear la tabla
     const tabla = document.createElement('table');
@@ -34,7 +37,7 @@ function mostrarRegistros(resultado) {
         'Apellido',
         'Teléfono',
         'Email',
-        'Dirección',
+        'Rol',
         'Estado',
         'Editar',
     ];
@@ -55,17 +58,16 @@ function mostrarRegistros(resultado) {
         const fila = document.createElement('tr');
 
 
+
         // Añadir las celdas con los datos de cada registro
         const datosRegistro = [
-            registro.id_cliente,
+            registro.id_usuario,
             registro.nombre,
             registro.apellido,
             registro.telefono,
             registro.email,
-            registro.direccion,
-            registro.estado
-                ? '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" />'
-                : '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" />',
+            registro.role.nombre,
+            obtenerImagenEstado(registro.estado, registro.fk_rol),
             '<button type="button" class="btn btn-info button-editar" data-bs-toggle="modal" data-bs-target="#modalEditar">Editar</button>',
         ];
 
@@ -82,16 +84,26 @@ function mostrarRegistros(resultado) {
                         dato
                     ))
             ) {
-                const imagenEstado = celda.querySelector('.estado');
-                imagenEstado.addEventListener('click', (e)=>{
 
-                    cambiarEstadoDB(e,registro);
-                } );
+                if(registro.fk_rol != 1){
+                    const imagenEstado = celda.querySelector('.estado');
+                    imagenEstado.addEventListener('click', (e) => {
+                        console.log(registro);
+                        cambiarEstadoDB(e, registro);
+                    });
+                }
+                
+                
             } 
             else if (dato && /<button[^>]*>Editar<\/button>/i.test(dato)) {
                 const botonEditar = celda.querySelector('button');
                 botonEditar.addEventListener('click',() => {
-                    llenarFormulario(registro)
+
+                    if(registro.fk_rol == 1){
+                        llenarFormularioAdmin(registro);
+                    }else {
+                        llenarFormulario(registro);
+                    }
                 });
             }
 
@@ -102,7 +114,17 @@ function mostrarRegistros(resultado) {
     });
 
     tabla.appendChild(tbody);
-    tablaClientesDiv.appendChild(tabla);
+    tablaUsuarioDiv.appendChild(tabla);
 }
 
-
+function obtenerImagenEstado(estado, fk_rol) {
+    if (estado) {
+        if (fk_rol === 1) {
+            return '<img class="centrarIcono estado" src="/imagenes/iconos/crossing_out.svg" />';
+        } else {
+            return '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" />';
+        }
+    } else {
+        return '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" />';
+    }
+}

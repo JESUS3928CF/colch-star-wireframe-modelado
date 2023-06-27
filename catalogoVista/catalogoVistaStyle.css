@@ -708,3 +708,103 @@ input:-webkit-autofill:active {
     display: flex;
     justify-content: center;
 }
+
+/* Estilos para el footer */
+footer {
+    background-color: #e8e8e8;
+    color: #333;
+    padding: 20px;
+    height: 100px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.footer-logo img {
+    width: 100px;
+}
+
+
+.footer-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer-links ul li a {
+    color: #191818;
+    text-decoration: none;
+}
+
+.footer-social-media ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-social-media ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer-social-media ul li a {
+    color: #191818;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Estilos para los iconos de redes sociales */
+.bx {
+    display: inline-block;
+    font-size: 24px;
+}
+
+.bxl-facebook:hover {
+    color: #3b5998;
+}
+
+.bxl-twitter:hover {
+    color: #1da1f2;
+}
+
+.bxl-instagram:hover {
+    color: #e4405f;
+}
+
+.bxl-youtube:hover {
+    color: #cd201f;
+}
+
+.bxl-whatsapp:hover {
+    color: #0d9a0f;
+}

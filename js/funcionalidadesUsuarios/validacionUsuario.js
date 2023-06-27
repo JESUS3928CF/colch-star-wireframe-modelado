@@ -1,4 +1,8 @@
-(() => {
+import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
+ const peticionesBackend = new PeticionesBackend(
+     'http://localhost:3000/api/usuario'
+ );
+ import { listarUsuarios } from './UIUsuarios.js';
     const formulario = document.querySelector('#formularioagregarusuario');
     const formulario2=document.querySelector('#AgregarUsuario')
 
@@ -10,8 +14,6 @@
     const atras = document.querySelector('#xAgregar');
 
     window.addEventListener('load', () => {
-
-
         submit.addEventListener('click', crearUsuarios);
         cancelar.addEventListener('click', recetearFormulario);
         atras.addEventListener('click', recetearFormulario);
@@ -47,11 +49,12 @@
         const selectedOption = seleccionarRol.options[seleccionarRol.selectedIndex].value;
         console.log(selectedOption)
 
-        return{
-            contraseñas:contraseña,
-            confirmarContraseñas:confirmarContraseña,
-            selectedOptions:selectedOption
-        }
+        return {
+            contraseñas: contraseña,
+            confirmarContraseñas: confirmarContraseña,
+            selectedOptions: selectedOption,
+            seleccionarRol,
+        };
 
     }
 
@@ -64,11 +67,7 @@
         const nombre = document.querySelector(
             '#formularioagregarusuario input[name="nombreGuardar"]'
         );
-
-        console.log(nombre.value);
-
-
-
+        
         const apellido = document.querySelector(
             '#formularioagregarusuario input[name="apellidoGuardar"]'
         );
@@ -263,21 +262,33 @@
 
         
         if (isValidado) {
-            //* Serrando el modal
-            const modalBootstrap = bootstrap.Modal.getInstance(
-                document.querySelector('#myModal')
-            );
-            modalBootstrap.hide();
-            formulario.reset();
-            
-            mostrarToast(  Swal.fire(
-                'Usuario agregado correctamente',
-                '',
-                'success'
-              ));
-        }
-    }
+            ///! Insertar usuario
 
+            // contraseñas:contraseña,
+            // confirmarContraseñas:confirmarContraseña,
+            // selectedOptions:selectedOption
+
+            const { contraseñas, seleccionarRol } = variablesFormulario2();
+
+    
+            const nuevoUsuario = {
+                nombre: nombre.value,
+                apellido: apellido.value,
+                telefono: telefono.value,
+                email: email.value,
+                contrasena: contraseñas.value,
+                fk_rol: seleccionarRol.value,
+            };
+
+            console.log(nuevoUsuario);
+
+            console.log(contraseñas, "cc");
+            console.log(seleccionarRol.value);
+
+
+            registrarUsuario(nuevoUsuario);
+        }
+    
     
 
     function mostrarToast(mensaje) {
@@ -290,15 +301,40 @@
         toast.show();
     }
 
-    
+    async function registrarUsuario(nuevoUsuario){
+        // console.log(nuevoCliente);
+        const resultado = await peticionesBackend.registrarDato(nuevoUsuario);
+
+        // console.log(resultado);
+        //* Serrando el modal
+        const modalBootstrap = bootstrap.Modal.getInstance(
+            document.querySelector('#myModal')
+        );
+        modalBootstrap.hide();
+
+        formulario.reset();
+        if (resultado === 'Usuario agregado exitosamente') {
+            listarUsuarios();
+            mostrarToast(
+                Swal.fire('Usuario agregado correctamente', '', 'success')
+            );
+
+            listarUsuarios();
+        }else{
+            mostrarToast(
+                Swal.fire('El usuario no fue agregado, aparecer hubo un error', '', 'error')
+            );
+        }
+
+}
+
+}
+
+
 // }else if (!nombre.value.trimStart()){
 //     Swal.fire({
 //         icon: 'error',
 //         title: 'Error',
 //         text: 'El nombre no puede ser un espacio',
 //          })
-//     isValidado = false;    
-
-
-
-})();
+//     isValidado = false;

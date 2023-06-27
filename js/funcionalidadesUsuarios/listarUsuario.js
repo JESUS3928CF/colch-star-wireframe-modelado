@@ -1,10 +1,11 @@
-import {imprimirPaginador,buscarRegistros} from '../class_and_functions_global/UI.js';
+import { listarUsuarios } from './UIUsuarios.js';
 
 
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
-        imprimirPaginador();
-        buscarRegistros(1); 
+        listarUsuarios();
+        // imprimirPaginador();
+        // buscarRegistros(1); 
         // peticionesBackend.findAll();
     });
 })();
