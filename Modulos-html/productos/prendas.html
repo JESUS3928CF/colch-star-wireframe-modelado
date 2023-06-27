@@ -47,7 +47,6 @@
 
                                 <!--* formulario para agregar una prenda -->
                                 <form action="" id="formularioAgregarPrenda">
-
                                     <div class="mb-3" name="divPrenda">
                                         <label for="productoGuardar" class="col-form-label">Prenda: </label>
                                         <input type="text" class="form-control" name="prendaGuardar" id="prendaGuardar"
@@ -82,7 +81,8 @@
                                                     </div>
                                                     <div class="row mb-3" name="divCantidad">
                                                         <label for=""> Tela: </label>
-                                                        <select class="form-select" aria-label="Default select example">
+                                                        <select class="form-select" id="SelectT" aria-label="Default select example">
+                                                            <option value="">Seleccione una tela</option>
                                                             <option value="1">Tela Fria</option>
                                                             <option value="2">Algodon licrado</option>
                                                             <option value="3">Piel de durazno</option>
@@ -92,129 +92,145 @@
                                             </div>
                                         </div>
                                     </div>
+                                </form>
+
+                                  
                             </div>
                             <div class="modal-body ">
+                                <form action="" id="Tallaje">
+                                    <div class="subFormulario">
+                                        <div class="mb-3">
+                                            
+                                            <br>
+                                            <label for="">Seleccionar tallas las disponibles: </label>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="TallaOcho">
+                                                    <label class="form-check-label" for="Talla8">8</label>
+                                                </div>
+                                                <div class="col form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="TallaDiesiseis">
+                                                    <label class="form-check-label" for="NegroAgregar">16</label>
+                                                </div>
+                                                <div class="col form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="TallaS"
+                                                        checked>
+                                                    <label class="form-check-label" for="rojoAgregar">S</label>
+                                                </div>
+                                                <div class="col form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="TallaM"
+                                                        checked>
+                                                    <label class="form-check-label" for="azulAgregar">M</label>
+                                                </div>
+                                                <div class="col form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="TallaL"
+                                                        checked>
+                                                    <label class="form-check-label" for="verdeAgregar">L</label>
+                                                </div>
+                                                <div class="col form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="TallaXL"
+                                                        checked>
+                                                    <label class="form-check-label" for="grisAgregar">XL</label>
+                                                </div>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                               
 
                                 <div class="subFormulario">
-                                    <div class="mb-3">
-                                        <br>
-                                        <label for="">Seleccionar tallas las disponibles: </label>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="negroAgregar">
-                                                <label class="form-check-label" for="NegroAgregar">8</label>
-                                            </div>
-                                            <div class="col form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="negroAgregar">
-                                                <label class="form-check-label" for="NegroAgregar">16</label>
-                                            </div>
-                                            <div class="col form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="rojoAgregar"
-                                                    checked>
-                                                <label class="form-check-label" for="rojoAgregar">S</label>
-                                            </div>
-                                            <div class="col form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="azulAgregar"
-                                                    checked>
-                                                <label class="form-check-label" for="azulAgregar">M</label>
-                                            </div>
-                                            <div class="col form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="verdeAgregar"
-                                                    checked>
-                                                <label class="form-check-label" for="verdeAgregar">L</label>
-                                            </div>
-                                            <div class="col form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="grisAgregar"
-                                                    checked>
-                                                <label class="form-check-label" for="grisAgregar">XL</label>
-                                            </div>
 
+
+                                    <div class="mb-3">
+                                        <form action="" id="Colore">
+                                            <label for="">Seleccionar los colores disponibles: </label>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="Negro">
+                                                        <label class="form-check-label" for="NegroAgregar">Negro</label>
+                                                    </div>
+                                                    <div class="row form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="Rojo">
+                                                        <label class="form-check-label" for="NegroAgregar">Rojo</label>
+                                                    </div>
+                                                    <div class="row form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="Azul"
+                                                            checked>
+                                                        <label class="form-check-label" for="rojoAgregar">Azul</label>
+                                                    </div>
+    
+                                                    <div class="row form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="Blanco"
+                                                            checked>
+                                                        <label class="form-check-label" for="verdeAgregar">Blanco</label>
+                                                    </div>
+                                                </div>
+                                                <!--! Segunda columna  -->
+    
+    
+                                                <div class="col">
+                                                    <div class="row form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="Rosado">
+                                                        <label class="form-check-label" for="NegroAgregar">Rosado</label>
+                                                    </div>
+                                                    <div class="row form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="Morado">
+                                                        <label class="form-check-label" for="NegroAgregar">Morado</label>
+                                                    </div>
+                                                    <div class="row form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="AzulClaro"
+                                                            checked>
+                                                        <label class="form-check-label" for="rojoAgregar">Azul claro</label>
+                                                    </div>
+    
+                                                    <div class="row form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="Verde"
+                                                            checked>
+                                                        <label class="form-check-label" for="verdeAgregar">Verde</label>
+                                                            
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                    </div>
+
+                                        </form>
+                                           
+                                        
+                                        
+
                                 </div>
-
-                                <div class="subFormulario">
-
-
-                                    <div class="mb-3">
-                                        <br>
-                                        <label for="">Seleccionar los colores disponibles: </label>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="row form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="negroAgregar">
-                                                    <label class="form-check-label" for="NegroAgregar">Negro</label>
-                                                </div>
-                                                <div class="row form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="negroAgregar">
-                                                    <label class="form-check-label" for="NegroAgregar">Rojo</label>
-                                                </div>
-                                                <div class="row form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="rojoAgregar"
-                                                        checked>
-                                                    <label class="form-check-label" for="rojoAgregar">Azul</label>
-                                                </div>
-
-                                                <div class="row form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="verdeAgregar"
-                                                        checked>
-                                                    <label class="form-check-label" for="verdeAgregar">Blanco</label>
-                                                </div>
-                                            </div>
-                                            <!--! Segunda columna  -->
-
-
-                                            <div class="col">
-                                                <div class="row form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="negroAgregar">
-                                                    <label class="form-check-label" for="NegroAgregar">Rosado</label>
-                                                </div>
-                                                <div class="row form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="negroAgregar">
-                                                    <label class="form-check-label" for="NegroAgregar">Morado</label>
-                                                </div>
-                                                <div class="row form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="rojoAgregar"
-                                                        checked>
-                                                    <label class="form-check-label" for="rojoAgregar">Azul claro</label>
-                                                </div>
-
-                                                <div class="row form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="verdeAgregar"
-                                                        checked>
-                                                    <label class="form-check-label" for="verdeAgregar">Verde
-                                                        viche</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
                                 <div class="subFormulario">
                                     <div class="mb-3">
-                                        <br>
-                                        <label for="">Genero: </label>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col form-check form-switch">
+                                        <form action="" id="Sexo">
+                                            <br>
+                                            <label for="">Genero: </label>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col form-check form-switch">
+    
+                                                    <input type="checkbox" aria-label="Radio button for following text input"
+                                                        id="Masculino">
+                                                    <label class="form-check-label" for="NegroAgregar">M</label>
+                                                    <br>
+                                                    <input type="checkbox" aria-label="Radio button for following text input"
+                                                    id="Femenino">
+                                                    <label class="form-check-label" for="NegroAgregar">F</label>
 
-                                                <input type="radio" aria-label="Radio button for following text input"
-                                                    id="negroAgregar">
-                                                <label class="form-check-label" for="NegroAgregar">M</label>
-                                                <br>
-                                                <input type="radio" aria-label="Radio button for following text input"
-                                                id="negroAgregar">
-                                                <label class="form-check-label" for="NegroAgregar">F</label>
-
+                                                    
+    
+                                                </div>
                                             </div>
-                                        </div>
-
+                                        
+                                        
+                                        </form>
                                     </div>
+                                       
                                 </div>
 
 
@@ -225,7 +241,6 @@
                                     </button>
                                     <input type="submit" id="buttonSubmit" class="btn btn-success" value="Guardar" />
                                 </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -356,7 +371,7 @@
                         </form>
                     </div>
                     <div class="modal-body ">
-                        <form action="">
+                        <form action="" id="Editar">
                             <div class="form-label" style="text-align: center;">
                                 <p class="detalleCompra">Agregar datos de los productos </p>
                             </div>
@@ -398,7 +413,7 @@
                                     </div>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="grisEditar" checked>
-                                        <label class="form-check-label" for="grisAgregar">gris</label>
+                                        <label class="form-check-label" for="grisAgregar">Gris</label>
                                     </div>
 
 
