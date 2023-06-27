@@ -1,9 +1,11 @@
 const formulario = document.querySelector('#login');
+const formularioRecuperar=document.querySelector('#RecupererSumit')
 const loginsec=document.querySelector('.login-section')
 const loginlink=document.querySelector('.login-link')
 const registerlink=document.querySelector('.register-link')
 
 const submit = document.querySelector('#submitIngresar');
+const RecupererSumit= document.querySelector('#RecupererSumit')
 
 registerlink.addEventListener('click',()=>{
     loginsec.classList.add('active')
@@ -13,7 +15,14 @@ loginlink.addEventListener('click',()=>{
 })
 
 window.addEventListener('load', () => {
-    submit.addEventListener("click", ingresar);
+    if(submit){
+        submit.addEventListener("click", ingresar);
+
+    }
+    if(RecupererSumit){
+        RecupererSumit.addEventListener("click", recuperar)
+
+    }
 });
 
 
@@ -26,6 +35,53 @@ function ingresar(e){
 function recetearFormulario(e){
     e.preventDefault();
     formulario.reset();
+
+}
+
+function recuperar(e){
+    e.preventDefault();
+    variableRecuperer()
+
+}
+
+
+function variableRecuperer(){
+    const Recuperer = document.querySelector('#Recuperer')
+   let isValidado=true
+    const email_val =
+        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+
+    if (Recuperer.value == '') {
+
+        Swal.fire({
+            icon:'error',
+            title:'Error',
+            text: 'Ingrese el email'
+        })
+
+        isValidado = false;
+    }else if (!email_val.test(Recuperer.value) && Recuperer.value != '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El formato de gmail es incorrecto',
+             })
+        isValidado = false;
+    }
+
+
+    if (isValidado) {
+
+        formulario.reset();        
+         Swal.fire(
+            'Se envio un correo de recuperar contraseña'
+                 );
+
+    }
+
+
+
 }
 
 
@@ -109,4 +165,4 @@ function validarRol() {
 
     }
 }
-  
+
