@@ -1,40 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,500&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "poppins",sans-serif;
+    font-family: "poppins", sans-serif;
 }
-body{
+
+body {
     height: 100vh;
     width: 100%;
-    background: #000;
-  
+    min-height: 100vh;
+    background-color: #021024;
+
 }
-.background{
-    background: url(atras.jpg) no-repeat;
+
+.background {
+    /* background: url(atras.jpg) no-repeat; */
     background-position: center;
-    background-size:cover ;
+    background-size: cover;
     height: 100vh;
     width: 100%;
     filter: blur(10px);
 }
-.container{
+
+.container {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 75%;
     height: 550px;
     margin-top: 20px;
     background: url(login.jpg) no-repeat;
     background-position: center;
-    background-size:cover ;
+    background-size: cover;
     overflow: hidden;
-    
-    
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-.item{
+
+
+.item {
     position: absolute;
     top: 0;
     left: 0;
@@ -47,16 +54,19 @@ body{
     justify-content: space-between;
     flex-direction: column;
 }
-.item .logo{
+
+.item .logo {
     color: #000000;
     font-size: 30px;
 
 }
-.text-item h2{
+
+.text-item h2 {
     font-size: 40px;
     line-height: 1;
 }
-.container .login-section{
+
+.container .login-section {
     position: absolute;
     top: 0;
     right: 0;
@@ -66,50 +76,54 @@ body{
     backdrop-filter: blur(10px);
 }
 
-.login-section .form-box{
+.login-section .form-box {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    
+
 }
-.login-section .form-box.register{
+
+.login-section .form-box.register {
     transform: translateX(430px);
     transition: transform .6s ease;
     transition-delay: 0s;
 }
-.login-section.active .form-box.register{
+
+.login-section.active .form-box.register {
     transform: translateX(0px);
     transition-delay: .7s;
 }
 
-.login-section .form-box.login{
+.login-section .form-box.login {
     transform: translateX(0px);
     transition: transform .6s ease;
     transition-delay: 0.7s;
 }
-.login-section.active .form-box.login{
+
+.login-section.active .form-box.login {
     transform: translateX(430px);
     transition-delay: 0s;
 }
 
 
 
-.login-section .form-box h2{
+.login-section .form-box h2 {
     text-align: center;
     font-size: 25px;
 }
 
-.form-box .input-box{
+.form-box .input-box {
     width: 340px;
     height: 50px;
     border-bottom: 2px solid#000000;
     margin: 30px 0;
     position: relative;
 }
-.input-box input{
+
+.input-box input {
     width: 100%;
     height: 100%;
     background: transparent;
@@ -118,7 +132,8 @@ body{
     font-size: 16px;
     padding-right: 28px;
 }
-.input-box label{
+
+.input-box label {
     position: absolute;
     top: -10%;
     left: 0;
@@ -128,19 +143,21 @@ body{
     pointer-events: none;
     transition: .5s ease;
 }
-.input-box .icon{
+
+.input-box .icon {
     position: absolute;
     top: 13px;
     right: 0;
     font-size: 19px;
 }
-.input-box input:focus~ label,
-.input-box input:valid~ label{
+
+.input-box input:focus~label,
+.input-box input:valid~label {
     top: -5px;
 }
 
 
-.btn{
+.btn {
     background: #000000;
     width: 100%;
     height: 45px;
@@ -151,19 +168,65 @@ body{
     background: #412df7;
     font-size: 16px;
     color: #ffffff;
-    box-shadow: rgba(0,0,0,0.4);
+    box-shadow: rgba(0, 0, 0, 0.4);
 
 }
-.create-account{
+
+.create-account {
     font-size: 14.5px;
     text-align: center;
     margin: 25px;
 }
-.create-account p a{
+
+.create-account p a {
     color: #000000;
     font-weight: 600px;
     text-decoration: none;
 }
-.create-account p a:hover{
+
+.create-account p a:hover {
     text-decoration: underline;
+}
+
+
+/*- Animación del fondo  */
+
+.contenedorFondo {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bubbles {
+    position: relative;
+    display: flex;
+}
+
+
+.bubbles span {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #08316e;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #08316e44, 0 0 50px #08316e, 0 0 100px #08316e;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(125s / var(--i));
+}
+
+.bubbles span:nth-child(even) {
+    background: #dedcdc;
+    box-shadow: 0 0 0 10px #dedcdc44, 0 0 50px #dedcdc, 0 0 100px #dedcdc;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(110vh) scale(0) translateX(calc(var(--i) * 5px));
+    }
+
+    100% {
+        transform: translateY(-20vh) scale(1) translateX(calc(var(--i) * 5px));
+    }
 }
