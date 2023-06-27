@@ -93,8 +93,6 @@ function validarRol() {
     const contrasena = document.querySelector('#contrasenaUsuario');
 
     //- Expresiones Regulares
-    const number = /^\D*$/;
-    const text = /^[^a-zA-Z]*$/;
     const email_val =
         /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
@@ -105,17 +103,7 @@ function validarRol() {
     //* Validaciones para el nombre
 
 
-    if (contrasena.value =="colchstar" && email.value=='colchstar@gmail.com'){
-        isValidado=true
-    }else{
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Email o contraseña son incorrecta',
-             })
-         isValidado=false 
-
-    }
+    
 
    
 
@@ -145,6 +133,11 @@ function validarRol() {
         isValidado = false;
 
     }
+
+
+    validarLogin();
+
+    
     
    
 
@@ -168,3 +161,18 @@ function validarRol() {
     }
 }
 
+function validarLogin(){
+    if (
+        contrasena.value == 'colchstar' &&
+        email.value == 'colchstar@gmail.com'
+    ) {
+        isValidado = true;
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Email o contraseña son incorrecta',
+        });
+        isValidado = false;
+    }
+};
