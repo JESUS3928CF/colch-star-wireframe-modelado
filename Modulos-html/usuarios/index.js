@@ -105,7 +105,7 @@ function validarRol() {
     //* Validaciones para el nombre
 
 
-    if (contrasena.value =="colchstar" && email.value=='tomasvanegas2533@gmail.com'){
+    if (contrasena.value =="colchstar" && email.value=='colchstar@gmail.com'){
         isValidado=true
     }else{
         Swal.fire({
@@ -116,6 +116,8 @@ function validarRol() {
          isValidado=false 
 
     }
+
+   
 
 
    if (email.value == '') {
