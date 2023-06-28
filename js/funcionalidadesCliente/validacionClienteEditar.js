@@ -114,6 +114,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'Todos los campos son obligatorios',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -123,6 +125,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre es obligatorios',
+            width: '400px',
+
         });
 
         isValidado = false;
@@ -131,6 +135,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede tener numeros',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!nombre.value.trimStart()) {
@@ -138,6 +144,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (signo.test(nombre.value)) {
@@ -145,6 +153,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede tener signos',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -154,6 +164,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El apellido es obligatorios',
+            width: '400px',
+
         });
 
         isValidado = false;
@@ -162,6 +174,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El apellido no puede tener numeros',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!apellido.value.trimStart()) {
@@ -169,6 +183,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El apellido no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (signo.test(apellido.value)) {
@@ -176,6 +192,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El apellido no puede tener signos',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -185,6 +203,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El telefono es obligatorios',
+            width: '400px',
+
         });
 
         isValidado = false;
@@ -193,6 +213,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El Telefono no puede tener letras',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!telefono.value.trimStart()) {
@@ -200,6 +222,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El Telefono no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (signo.test(telefono.value)) {
@@ -207,6 +231,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El Telefono no puede tener signos',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -216,6 +242,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El email es obligatorios',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!email_val.test(email.value)) {
@@ -223,6 +251,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'Formato no valido',
+            width: '400px',
+
         });
 
         isValidado = false;
@@ -231,6 +261,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'El email no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
         //* Validaciones para dirección
@@ -239,6 +271,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'La direccion es obligatorios',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!direccion.value.trimStart()) {
@@ -246,6 +280,8 @@ function validarCliente() {
             icon: 'error',
             title: 'Error',
             text: 'La direccion no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
     }
