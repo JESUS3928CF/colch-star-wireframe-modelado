@@ -102,6 +102,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'Todos los campos son obligatorios',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -111,6 +113,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre es obligatorios',
+            width: '400px',
+
         });
 
         isValidado = false;
@@ -119,6 +123,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede tener numeros',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -127,6 +133,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -135,6 +143,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede tener signos',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -144,6 +154,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El telefono es obligatorios',
+            width: '400px',
+
         });
 
         isValidado = false;
@@ -153,6 +165,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El Telefono no puede tener letras',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -161,6 +175,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El Telefono no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -169,6 +185,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El Telefono no puede tener signos',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -178,6 +196,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'La direccion es obligatorios',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -186,6 +206,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'La direccion no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
     }
@@ -194,7 +216,9 @@ function validarProveedor() {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'El contacto es obligatorios',
+            text: 'La direccion es obligatorios',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -202,9 +226,47 @@ function validarProveedor() {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'el contacto no puede ser un espacio',
+            text: 'La direcciom no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
+    }else if (contacto.value == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el contacto es obligatoria',
+            width: '400px',
+
+        });
+        isValidado = false;
+    } else if (!contacto.value.trimStart()) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el contacto no puede ser un espacio',
+            width: '400px',
+
+        });
+        isValidado = false;
+    }else if (signo.test(contacto.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el contacto no puede contener signos',
+            width: '400px',
+        })
+        isValidado=false
+
+    }else if (!number.test(contacto.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el contacto no puede contener numeros',
+            width: '400px',
+        })
+        isValidado=false
+
     }
 
     if (isValidado) {

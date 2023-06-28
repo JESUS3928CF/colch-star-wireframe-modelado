@@ -70,6 +70,10 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'Todos los campos son obligatorios',
+            width: '400px',
+            
+            
+
         });
         isValidado = false;
 
@@ -79,6 +83,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre es obligatorios',
+            width: '400px',
+
         });
 
         isValidado = false;
@@ -87,6 +93,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede tener numeros',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!nombre.value.trimStart()) {
@@ -94,6 +102,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (signo.test(nombre.value)) {
@@ -101,6 +111,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El nombre no puede tener signos',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -110,6 +122,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El teléfono es obligatorios',
+            width: '400px',
+
         });
 
         isValidado = false;
@@ -118,6 +132,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El Teléfono no puede tener letras',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!telefono.value.trimStart()) {
@@ -125,6 +141,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El Teléfono no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (signo.test(telefono.value)) {
@@ -132,6 +150,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'El Telefono no puede tener signos',
+            width: '400px',
+
         });
         isValidado = false;
 
@@ -142,6 +162,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'La dirección es obligatoria',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!direccion.value.trimStart()) {
@@ -149,6 +171,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'La direccion no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
     }
@@ -158,6 +182,8 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'el contacto es obligatoria',
+            width: '400px',
+
         });
         isValidado = false;
     } else if (!contacto.value.trimStart()) {
@@ -165,8 +191,28 @@ function validarProveedor() {
             icon: 'error',
             title: 'Error',
             text: 'el contacto no puede ser un espacio',
+            width: '400px',
+
         });
         isValidado = false;
+    }else if (signo.test(contacto.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el contacto no puede contener signos',
+            width: '400px',
+        })
+        isValidado=false
+
+    }else if (!number.test(contacto.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el contacto no puede contener numeros',
+            width: '400px',
+        })
+        isValidado=false
+
     }
 
     if (isValidado) {
