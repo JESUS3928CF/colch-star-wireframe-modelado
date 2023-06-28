@@ -22,13 +22,11 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
     function recetearFormulario(e){
         e.preventDefault();
         formulario.reset();
+        formulario2.reset();
     }
 
     function crearUsuarios(e) {
         e.preventDefault();
-
-
-
         /// Validar el formulario
         validarUsuario();
     }
@@ -291,15 +289,7 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
     
     
 
-    function mostrarToast(mensaje) {
-        const toastDiv = document.querySelector('#toastAgregar'); //* Seleccionamos el toast que esta en nuestro HTML
-        const toastBody = document.querySelector('#toast-body-agregar'); //* Y también el body para agregar contenido a nuestro toast
-        /// Creamos la instancia
-        const toast = new bootstrap.Toast(toastDiv);
-        toastBody.textContent = mensaje;
-        /// Mostrando el mensaje
-        toast.show();
-    }
+   
 
     async function registrarUsuario(nuevoUsuario){
         // console.log(nuevoCliente);
@@ -321,9 +311,9 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
 
             listarUsuarios();
         }else{
-            mostrarToast(
+            
                 Swal.fire('El usuario no fue agregado, aparecer hubo un error', '', 'error')
-            );
+            
         }
 
 }
