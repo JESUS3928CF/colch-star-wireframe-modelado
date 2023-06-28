@@ -15,6 +15,7 @@ const RecupererSumit = document.querySelector('#RecupererSumit');
 
 const email = document.querySelector('#emailUsuario');
 const contrasena = document.querySelector('#contrasenaUsuario');
+let id = 0;
 
 registerlink.addEventListener('click', () => {
     loginsec.classList.add('active');
@@ -114,13 +115,14 @@ async function validarRol() {
         isValidado = false;
     } else {
         isValidado = await validarLogin(email.value, contrasena.value);
+        // console.log(id);
     }
 
 
     if (isValidado) {
         formulario.reset();
 
-        window.location = '../../navbar.html';
+        window.location = `../../navbar.html?${id}`;
 
         // Swal.fire('Bienvenido a colch star ');
     }
@@ -137,13 +139,16 @@ async function validarLogin(email, password) {
 
         if (usuario !== undefined) {
              if (password == usuario.contrasena && email == usuario.email) {
-                 return true;
+                id = usuario.id_usuario;
+                return true;
              } else {
                  Swal.fire({
                      icon: 'error',
                      title: 'Error',
                      text: 'la contraseña es incorrecta',
                  });
+
+                 
                  return false;
              }
         }else {
