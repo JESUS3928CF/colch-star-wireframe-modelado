@@ -54,11 +54,23 @@ header {
     transition: 0.5s;
 }
 
+
 .profile a {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
     cursor: pointer;
+    color: #020202;
+    
+}
+
+.profile span {
+    font-size: 19px;
+}
+
+.profile span:hover {
+    color: #0d1eb3;
+    font-size: 20px;
 }
 
 .profile img {

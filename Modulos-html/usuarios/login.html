@@ -1,46 +1,109 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+<head>
+    <title>Login Colch Star</title>
+    <link rel="stylesheet" href="index.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
 
-    <link rel="stylesheet" href="../../css/tailwind.min.css">
+    <div class="contenedorFondo">
+        <div class="bubbles">
+            <span style="--i:11"></span>
+            <span style="--i:12"></span>
+            <span style="--i:24"></span>
+            <span style="--i:10"></span>
+            <span style="--i:14"></span>
+            <span style="--i:23"></span>
+            <span style="--i:18"></span>
+            <span style="--i:16"></span>
+            <span style="--i:19"></span>
+            <span style="--i:20"></span>
+            <span style="--i:22"></span>
+            <span style="--i:25"></span>
+            <span style="--i:18"></span>
+            <span style="--i:21"></span>
+            <span style="--i:15"></span>
+            <span style="--i:13"></span>
+            <span style="--i:26"></span>
+            <span style="--i:17"></span>
+            <span style="--i:13"></span>
+            <span style="--i:28"></span>
 
-    <link rel="stylesheet" href="/css/estilo-usuarios/login.css" />
 
-  </head>
-  <body>
-    <div class="login_form_container" id="myModal">
-      <div class="login_form">
-        <h2>Iniciar Sesión</h2>
-        <form action="" id="formularioLogin">
-          <div class="input_group" name="divUsuario">
-            <i class="fa fa-user"></i>
-              <input type="text" placeholder="Usuario" class="input_text" autocomplete="off" id="usuarioGuardarr" name="usuarioGuardar"
-                  placeholder="Ingresar nombre">
-          </div>
+            <span style="--i:12"></span>
+            <span style="--i:13"></span>
+            <span style="--i:27"></span>
+            <span style="--i:15"></span>
+            <span style="--i:19"></span>
+            <span style="--i:23"></span>
+            <span style="--i:17"></span>
+            <span style="--i:11"></span>
+            <span style="--i:19"></span>
+            <span style="--i:20"></span>
+            <span style="--i:27"></span>
+            <span style="--i:25"></span>
+            <span style="--i:22"></span>
+            <span style="--i:21"></span>
+            <span style="--i:23"></span>
+            <span style="--i:13"></span>
+            <span style="--i:26"></span>
+            <span style="--i:17"></span>
+            <span style="--i:13"></span>
+            <span style="--i:28"></span>
 
-          <div class="input_group" name="divContraseña">
-            <i class="fa fa-unlock-alt"></i>
-              <input type="password" placeholder="Contraseña" class="input_text" autocomplete="off" id="contraseñaGuardarr" name="contraseñaGuardar"
-                  placeholder="Ingresar nombre">
-          </div>
-          </form>
-
-        <div class="button_group" id="login_button">
-          <a href="/navbar.html" id="submitIngresar">Ingresar</a>
         </div>
-        <div class="fotter">
-          <a href="/Modulos-html/usuarios/recuperarContraseña.html">Olvido su contraseña?</a>
-        </div>
-      </div>
     </div>
-    <script src="../../js/funcionalidadesLogin/validacionLogin.js"></script>
-  </body>
-</html> -->
+    <!-- LOGIN FORM CREATION -->
+    <div class="background"></div>
+    <div class="container">
+        <div class="login-section">
+            <div class="form-box login">
+                <form action="" id="login">
+                    <h2>¡Bienvenido!</h2>
+                    <br>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input type="email" id="emailUsuario">
+                        <label >Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
+                        <input type="password" id="contrasenaUsuario">
+                        <label>Contraseña</label>
+                    </div>
+                    <div class="button_group" id="login_button">
+                        <button class="btn"  id="submitIngresar">Iniciar sesión</button>
+                      </div>
+                    <div class="create-account">
+                        <p>Olvido su contraseña? <a href="#" class="register-link">Click aquí</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="form-box register">
+                <form action="">
+
+                    <h2>Recuperar contraseña</h2>
+                    <p>Ingrese su correo electrónico de recuperación</p>
+                    <br>
+                    <div class="input-box">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input type="email"  id="Recuperer">
+                        <label >Email</label>
+                    </div>
+                    <button class="btn" id="RecupererSumit">Enviar</button>
+                    <div class="create-account">
+                        <p><a href="#" class="login-link">Inicio</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+     <!-- SIGN UP FORM CREATION -->
+
+    <script type="module" src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" ></script>
+
+</body>
+
+</html>

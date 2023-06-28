@@ -28,11 +28,7 @@ const peticionesBackend = new PeticionesBackend(
             confirmButtonText: 'Si, quiero cambiarlo'
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )
+              Swal.fire('Estado cambiado', '', 'success');
     
               if (elemento.src.includes('on.svg')) {
     
