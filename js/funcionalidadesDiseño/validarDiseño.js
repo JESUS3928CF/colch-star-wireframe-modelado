@@ -94,7 +94,7 @@ function Disenos() {
         })
         Datos.Validar=false
 
-    }else if (Datos.Signos.test(Datos.NombreDiseno.value)){
+    }else  if (Datos.Signos.test(Datos.NombreDiseno.value)){
         Swal.fire({
             icon: 'error',
             title: 'Error',
