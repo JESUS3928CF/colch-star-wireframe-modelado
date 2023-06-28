@@ -135,10 +135,13 @@ async function validarLogin(email, password) {
         const usuarios = await peticionesBackend.findAll();
 
 
-        const usuario = usuarios.find((usuario) => usuario.email == email);
+        const usuario = usuarios.find(
+            (usuario) => usuario.email.toLowerCase() == email.toLowerCase()
+        );
 
-        if (usuario !== undefined) {
-             if (password == usuario.contrasena && email == usuario.email) {
+        if (usuario !== undefined && usuario.estado === true) {
+
+             if (password == usuario.contrasena && email.toLowerCase() == usuario.email.toLowerCase()) {
                 id = usuario.id_usuario;
                 return true;
              } else {
