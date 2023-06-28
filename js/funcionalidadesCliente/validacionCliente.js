@@ -76,8 +76,11 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'Todos los campos son obligatorios',
+                width: '400px',
+
             });
             isValidado = false;
+            
 
             //* Validaciones para el nombre
         } else if (nombre.value == '') {
@@ -85,6 +88,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El nombre es obligatorios',
+                width: '400px',
+
             });
 
             isValidado = false;
@@ -93,6 +98,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El nombre no puede tener numeros',
+                width: '400px',
+
             });
             isValidado = false;
         } else if (!nombre.value.trimStart()) {
@@ -100,6 +107,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El nombre no puede ser un espacio',
+                width: '400px',
+
             });
             isValidado = false;
         } else if (signo.test(nombre.value)) {
@@ -107,6 +116,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El nombre no puede tener signos',
+                width: '400px',
+
             });
             isValidado = false;
 
@@ -116,6 +127,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El apellido es obligatorios',
+                width: '400px',
+
             });
 
             isValidado = false;
@@ -124,6 +137,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El apellido no puede tener numeros',
+                width: '400px',
+
             });
             isValidado = false;
         } else if (!apellido.value.trimStart()) {
@@ -131,6 +146,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El apellido no puede ser un espacio',
+                width: '400px',
+
             });
             isValidado = false;
         } else if (signo.test(apellido.value)) {
@@ -138,6 +155,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El apellido no puede tener signos',
+                width: '400px',
+
             });
             isValidado = false;
 
@@ -147,6 +166,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El teléfono es obligatorios',
+                width: '400px',
+
             });
 
             isValidado = false;
@@ -155,6 +176,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El Teléfono no puede tener letras',
+                idth: '400px',
+
             });
             isValidado = false;
         } else if (!telefono.value.trimStart()) {
@@ -162,6 +185,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El Teléfono no puede ser un espacio',
+                width: '400px',
+
             });
             isValidado = false;
         } else if (signo.test(telefono.value)) {
@@ -169,6 +194,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El Telefono no puede tener signos',
+                width: '400px',
+
             });
             isValidado = false;
 
@@ -178,6 +205,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El email es obligatorios',
+                width: '400px',
+
             });
             isValidado = false;
         } else if (!email_val.test(email.value)) {
@@ -185,6 +214,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'Formato no valido',
+                width: '400px',
+
             });
 
             isValidado = false;
@@ -193,6 +224,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'El email no puede ser un espacio',
+                width: '400px',
+
             });
             isValidado = false;
             //* Validaciones para dirección
@@ -201,6 +234,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'La dirección es obligatoria',
+                width: '400px',
+
             });
             isValidado = false;
         } else if (!direccion.value.trimStart()) {
@@ -208,6 +243,8 @@ import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.j
                 icon: 'error',
                 title: 'Error',
                 text: 'La direccion no puede ser un espacio',
+                width: '400px',
+
             });
             isValidado = false;
         }
