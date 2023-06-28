@@ -1,6 +1,8 @@
 import PeticionesBackend from '../class_and_functions_global/PeticionesBackend.js';
 import { cambiarEstadoDB } from './cambiarEstado.js';
 import { llenarFormulario } from './validacionClienteEditar.js';
+import { cargarBuscador } from '../tableTrasn.js';
+
 const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/clientes');
 
 
@@ -21,7 +23,14 @@ function mostrarRegistros(resultado) {
 
     // Crear la tabla
     const tabla = document.createElement('table');
-    tabla.classList.add('table', 'caption-top');
+    tabla.classList.add(
+        'table',
+        'tabla-M',
+        'table-responsive-md',
+        'table-bordered',
+        'bg-gradient-lime'
+    );
+    tabla.id = 'table';
 
     // Crear el encabezado de la tabla
     const thead = document.createElement('thead');
@@ -103,6 +112,8 @@ function mostrarRegistros(resultado) {
 
     tabla.appendChild(tbody);
     tablaClientesDiv.appendChild(tabla);
+
+    cargarBuscador();
 }
 
 

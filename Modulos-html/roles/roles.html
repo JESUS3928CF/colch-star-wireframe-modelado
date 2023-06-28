@@ -21,6 +21,8 @@
     <!--/ Lines agregados reciente mente  -->
     <link rel="stylesheet" href="../../css/tailwind.min.css">
 
+    <link rel="stylesheet" href="../../css/table.min.css">
+
 </head>
 
 <body class="fondo">
@@ -122,16 +124,16 @@
 
             <!--! botón de buscar -->
 
-            <form class="d-flex">
+            <!-- <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
+            </form> -->
 
         </div>
 
         <!--! tabla para listar clientes -->
     </header>
-    <div class="tabla">
+    <!-- <div class="tabla">
         <table class="table caption-top ">
             <caption>Lista de roles</caption>
             <thead>
@@ -182,6 +184,61 @@
                             data-bs-target="#modalEditar">Editar</button></td>
                 </tr>
             </tbody>
+        </table>
+    </div> -->
+
+    <div class="tabla">
+        <table class="table tabla-M table-responsive-md table-bordered bg-gradient-lime" id="table">
+            <caption>Lista de roles</caption>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Roles</th>
+                    <th scope="col">Fecha de creación</th>
+                    <th scope="col">Permisos</th>
+                    <th scope="col">Permisos específicos</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Administrador</td>
+                    <td>10/05/2023</td>
+                    <td>Usuarios Roles-Proveedores-Productos-Clientes-Compras-Ventas-Catalogo</td>
+                    <td><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#modalPermisos">Ver</button></td>
+                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" /></td>
+        
+        
+                    <td><img width="35px" src="/imagenes/iconos/crossing_out.svg" alt=""></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Empleado</td>
+                    <td>10/05/2023</td>
+                    <td>Proveedores Productos-Clientes-Compras-Ventas-Catalogo</td>
+                    <td><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#modalPermisos">Ver</button></td>
+                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" /></td>
+                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#modalEditar">Editar</button></td>
+        
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Vendedor</td>
+                    <td>10/05/2023</td>
+                    <td>Ventas - Compras</td>
+                    <td><button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#modalPermisos">Ver</button></td>
+                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" /></td>
+                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#modalEditar">Editar</button></td>
+                </tr>
+            </tbody>
+        
         </table>
     </div>
 
@@ -312,29 +369,7 @@
                             </div>
                             
                         </div>
-                        <!-- <br>
-                        <label for="">Seleccionar permisos:</label>
-                        <br>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="proveedoresEditar">
-                            <label class="form-check-label" for="proveedoresAgregar">Proveedores</label>
-                        </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="productosEditar" checked>
-                            <label class="form-check-label" for="productosAgregar">Productos</label>
-                        </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="clientesEditar" checked>
-                            <label class="form-check-label" for="clientesAgregar">Clientes</label>
-                        </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="comprasEditar" checked>
-                            <label class="form-check-label" for="comprasAgregar">Compras</label>
-                        </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="ventasEditar" checked>
-                            <label class="form-check-label" for="ventasAgregar">Ventas</label>
-                        </div> -->
+                        
                         
                         <div class="modal-footer">
                             <button type="button" id="editarSalir" class="btn btn-info" data-bs-dismiss="modal">Salir</button>
@@ -346,6 +381,8 @@
         </div>
     </div>
 
+    
+
       
 
 
@@ -353,6 +390,15 @@
     <script src="../../js/funcionalidadesRoles/validacionRolEditar.js"></script>
     <script type="module" src="/js/funcionalidadesCliente/cambiarEstado.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jQuery -->
+    <script src="/js/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    
+    <script src="/js/table.min.js"></script>
+    <script src="/js/tableTrasn.js"></script>
+
 
 </body>
 
