@@ -32,7 +32,7 @@
                 </div>
             </li>
              <li>
-                <div class="iocn-link">
+                <div id="permisosUsuario" class="iocn-link">
                     <a href="/Modulos-html/usuarios/usuarios.html" target="marcoModulos">
                         <i class="bx bx-user"></i>
                         <span class="link_name">Usuarios</span>
@@ -40,7 +40,7 @@
                 </div>
             </li> 
              <li> 
-                <div class="iocn-link">
+                <div id="permisosRoles"  class="iocn-link">
                     <a href="/Modulos-html/roles/roles.html" target="marcoModulos">
                         <i class="bx bxs-user-detail"></i>
                         <span class="link_name">Roles</span>
@@ -101,8 +101,8 @@
                         <img src="/imagenes/1153861.png" alt="" />
                     </div>
                     <div class="perfil">
-                        <div class="nombre-usuario">Jesús Cochero</div>
-                        <div class="nombre-rol">Admin</div>
+                        <div id="nombre-usuario" class="nombre-usuario"></div>
+                        <div id="nombre-rol" class="nombre-rol"></div>
                     </div>
                     <a href="/index.html"><i class="bx bx-log-out ,salir-icono"></i> </a>
                 </div>
@@ -113,6 +113,8 @@
     <section class="home-section">
         <iframe src="/Modulos-html//inicio/inicio.html" class="marco" name="marcoModulos"></iframe>
     </section>
+
+    <script type="module" src="./js/navbar.js"></script>
 </body>
 
 </html>

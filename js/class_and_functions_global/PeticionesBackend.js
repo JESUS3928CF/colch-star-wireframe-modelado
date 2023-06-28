@@ -13,6 +13,17 @@ export default class PeticionesBackend {
         }
     }
 
+    async findOne(id) {
+        try {
+            const respuesta = await fetch(`${this.url}/findOne/${id}`);
+            const resultado = await respuesta.json();
+
+            return resultado;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async findTotalRegistros(registrosPorPagina) {
         const calcularPaginas = (total) => {
             return parseInt(Math.ceil(total / registrosPorPagina));
@@ -33,8 +44,7 @@ export default class PeticionesBackend {
     }
 
     //! agregar un registro
-     async registrarDato(registro) {
-
+    async registrarDato(registro) {
         try {
             const respuesta = await fetch(this.url, {
                 method: 'POST',
@@ -52,10 +62,9 @@ export default class PeticionesBackend {
         }
     }
 
+    //! editar un registro
 
-    //! editar un registro 
-
-    async actualizarRegistro(registro,id){
+    async actualizarRegistro(registro, id) {
         try {
             const respuesta = await fetch(`${this.url}/${id}`, {
                 method: 'PATCH',
@@ -67,16 +76,15 @@ export default class PeticionesBackend {
 
             const resultado = await respuesta.json();
 
-            return resultado.message
+            return resultado.message;
         } catch (error) {
             console.log(error);
         }
     }
 
-
     //! cambiar estado
 
-    async cambiarEstado(registro,id){
+    async cambiarEstado(registro, id) {
         try {
             // console.log(this.url);
             console.log(registro.estado);
@@ -90,7 +98,7 @@ export default class PeticionesBackend {
 
             const resultado = await respuesta.json();
 
-            return resultado.message
+            return resultado.message;
         } catch (error) {
             console.log(error);
         }

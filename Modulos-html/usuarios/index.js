@@ -122,7 +122,7 @@ async function validarRol() {
     if (isValidado) {
         formulario.reset();
 
-        window.location = `../../navbar.html?${id}`;
+        window.location = `../../navbar.html?id=${id}`;
 
         // Swal.fire('Bienvenido a colch star ');
     }
