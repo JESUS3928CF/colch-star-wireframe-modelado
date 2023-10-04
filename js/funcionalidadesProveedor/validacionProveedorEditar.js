@@ -20,8 +20,11 @@ const telefono = document.querySelector(
 const direccion = document.querySelector(
     '#formularioEditarProveedor input[name="direccionEditar"]'
 );
-const contacto = document.querySelector(
-    '#formularioEditarProveedor input[name="contactoEditar"]'
+const cedula = document.querySelector(
+    '#formularioEditarProveedor input[name="cedulaEditar"]'
+);
+const nit = document.querySelector(
+    '#formularioEditarProveedor input[name="nitEditar"]'
 );
 
 const submit = document.querySelector(
@@ -42,7 +45,8 @@ export function llenarFormulario(registro) {
     nombre.value = registro.nombre;
     telefono.value = registro.telefono;
     direccion.value = registro.direccion;
-    contacto.value = registro.contacto;
+    cedula.value = registro.cedula;
+    nit.value = registro.nit;
     console.log(registro.id_proveedor);
 
     id = registro.id_proveedor;
@@ -82,9 +86,14 @@ function validarProveedor() {
     const divDireccion = document.querySelector(
         '#formularioEditarProveedor div[name="divDireccion"]'
     );
-    const divcontacto = document.querySelector(
-        '#formularioEditarProveedor div[name="divContacto"]'
+    const divcedula = document.querySelector(
+        '#formularioEditarProveedor div[name="divCedula"]'
     );
+    const divnit = document.querySelector(
+        '#formularioEditarProveedor div[name="divNit"]'
+    );
+
+
 
     /// Lógica de validación
 
@@ -96,7 +105,8 @@ function validarProveedor() {
         nombre.value == '' &&
         telefono.value == '' &&
         direccion.value == '' &&
-        contacto.value == ''
+        cedula.value == '' &&
+        nit.value == '' 
     ) {
         Swal.fire({
             icon: 'error',
@@ -231,16 +241,7 @@ function validarProveedor() {
 
         });
         isValidado = false;
-    }else if (contacto.value == '') {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'el contacto es obligatoria',
-            width: '400px',
-
-        });
-        isValidado = false;
-    } else if (!contacto.value.trimStart()) {
+    }else if (!cedula.value.trimStart()) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -249,7 +250,7 @@ function validarProveedor() {
 
         });
         isValidado = false;
-    }else if (signo.test(contacto.value)){
+    }else if (signo.test(cedula.value)){
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -258,11 +259,21 @@ function validarProveedor() {
         })
         isValidado=false
 
-    }else if (!number.test(contacto.value)){
+    }
+    else if (!nit.value.trimStart()) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'el contacto no puede contener numeros',
+            text: 'el contacto no puede ser un espacio',
+            width: '400px',
+
+        });
+        isValidado = false;
+    }else if (signo.test(nit.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el contacto no puede contener signos',
             width: '400px',
         })
         isValidado=false
@@ -287,7 +298,8 @@ async function guardarCambiosProveedor() {
         nombre: nombre.value,
         telefono: telefono.value,
         direccion: direccion.value,
-        contacto: contacto.value,
+        cedula: cedula.value,
+        nit: nit.value,
     };
 
     // console.log(id);

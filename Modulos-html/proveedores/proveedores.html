@@ -63,10 +63,15 @@
                                     <input type="text" class="form-control" id="direccionGuardar"
                                         name="direccionGuardar" placeholder="Ingresar dirección" required>
                                 </div>
-                                <div class="mb-3" name="divContacto">
-                                    <label for="contactoGuardar" class="col-form-label">Contacto:</label>
-                                    <input type="text" class="form-control" id="contactoGuardar" name="contactoGuardar"
-                                        placeholder="Ingresar contacto" required>
+                                <div class="mb-3" name="divCedula">
+                                    <label for="cedulaGuardar" class="col-form-label">Cedula:</label>
+                                    <input type="text" class="form-control" id="cedulaGuardar" name="cedulaGuardar"
+                                        placeholder="Ingresar cedula" >
+                                </div>
+                                <div class="mb-3" name="divNit">
+                                    <label for="nitGuardar" class="col-form-label">Contacto:</label>
+                                    <input type="text" class="form-control" id="nitGuardar" name="nitGuardar"
+                                        placeholder="Ingresar Nit" >
                                 </div>
 
 
@@ -96,67 +101,6 @@
 
         <!-- tabla para listar clientes -->
     </header>
-     <!-- <div class="tabla">
-        <table class="table caption-top ">
-            <caption>Lista de proveedores</caption>
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">Contacto</th>
-                    <th scope="col">Inhabilitar</th>
-                    <th scope="col">Editar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">01</th>
-                    <td>Daniel</td>
-                    <td>3064567890</td>
-                    <td>Calle 20 #23b-1</td>
-                    <td>no</td>
-                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" /></td>
-                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#modalEditar">Editar</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">02</th>
-                    <td>Mark</td>
-                    <td>3037980012</td>
-                    <td>Calle 45 #12a-3</td>
-                    <td>no</td>
-                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" /></td>
-                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#modalEditar">Editar</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">03</th>
-                    <td>Juan</td>
-                    <td>3014442152</td>
-                    <td>Cra 45 #20-1</td>
-                    <td>no</td>
-                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" /></td>
-                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#modalEditar">Editar</button></td>
-                </tr>
-                <tr>
-
-                    <th scope="row">04
-                    <td>Felipe</td>
-                    <td>3147815859</td>
-                    <td>cr48#78-9</td>
-                    <td>no</td>
-                    <td><img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" /></td>
-                    <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#modalEditar">Editar</button></td>
-                    </th>
-
-                </tr>
-            </tbody>
-        </table>
-    </div>  -->
     <div class="tabla" id="tablaProveedor">
 
     </div>
@@ -190,10 +134,15 @@
                                 placeholder="Ingresar dirección">
                         </div>
 
-                        <div class="mb-3" name="divContacto">
-                            <label for="contactoEditar" class="col-form-label">Contacto:</label>
-                            <input type="text" class="form-control" id="contactoEditar" name="contactoEditar"
-                                placeholder="Ingresar contacto">
+                        <div class="mb-3" name="divCedula">
+                            <label for="cedulaEditar" class="col-form-label">Cedula:</label>
+                            <input type="text" class="form-control" id="cedulaEditar" name="cedulaEditar"
+                                placeholder="Ingresar cedula">
+                        </div>
+                        <div class="mb-3" name="divNit">
+                            <label for="nitEditar" class="col-form-label">NIT:</label>
+                            <input type="text" class="form-control" id="nitEditar" name="nitEditar"
+                                placeholder="Ingresar Nit">
                         </div>
 
                         <div class="modal-footer">

@@ -45,8 +45,11 @@ function validarProveedor() {
     const direccion = document.querySelector(
         '#formularioAgregarProveedor input[name="direccionGuardar"]'
     );
-    const contacto = document.querySelector(
-        '#formularioAgregarProveedor input[name="contactoGuardar"]'
+    const cedula = document.querySelector(
+        '#formularioAgregarProveedor input[name="cedulaGuardar"]'
+    );
+    const nit = document.querySelector(
+        '#formularioAgregarProveedor input[name="nitGuardar"]'
     );
 
     //- Expresiones Regulares
@@ -64,7 +67,8 @@ function validarProveedor() {
         nombre.value == '' &&
         telefono.value == '' &&
         direccion.value == '' &&
-        contacto.value == ''
+        cedula.value == '' &&
+        nit.value == ''
     ) {
         Swal.fire({
             icon: 'error',
@@ -177,38 +181,39 @@ function validarProveedor() {
         isValidado = false;
     }
     //* Validaciones para contacto
-    else if (contacto.value == '') {
+    else if (!cedula.value.trimStart()) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'el contacto es obligatoria',
+            text: 'la cedula no puede ser un espacio',
             width: '400px',
 
         });
         isValidado = false;
-    } else if (!contacto.value.trimStart()) {
+    }else if (signo.test(cedula.value)){
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'el contacto no puede ser un espacio',
-            width: '400px',
-
-        });
-        isValidado = false;
-    }else if (signo.test(contacto.value)){
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'el contacto no puede contener signos',
+            text: 'la cedula no puede contener signos',
             width: '400px',
         })
         isValidado=false
 
-    }else if (!number.test(contacto.value)){
+    }
+    else if (!nit.value.trimStart()) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'el contacto no puede contener numeros',
+            text: 'el nit no puede ser un espacio',
+            width: '400px',
+
+        });
+        isValidado = false;
+    }else if (signo.test(nit.value)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'el nit no puede contener signos',
             width: '400px',
         })
         isValidado=false
@@ -222,7 +227,8 @@ function validarProveedor() {
             nombre: nombre.value,
             telefono: telefono.value,
             direccion: direccion.value,
-            contacto: contacto.value,
+            cedula: cedula.value,
+            nit: nit.value,
         };
 
         registrarProveedor(nuevoProveedor);

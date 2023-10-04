@@ -41,7 +41,8 @@ function mostrarRegistros(resultado) {
         'Nombre',
         'Teléfono',
         'Dirección',
-        'Contacto',
+        'Cedula',
+        'Nit',
         'Estado',
         'Editar',
     ];
@@ -67,7 +68,8 @@ function mostrarRegistros(resultado) {
             registro.nombre,
             registro.telefono,
             registro.direccion,
-            registro.contacto,
+            registro.cedula,
+            registro.nit,
             registro.estado
                 ? '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch on.svg" />'
                 : '<img class="centrarIcono estado" src="/imagenes/iconos/light_switch off.svg" />',
