@@ -6,7 +6,7 @@ import {
 } from './validacionUsuarioEditar.js';
 import { cargarBuscador } from '../tableTrasn.js';
 
-const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/usuario');
+const peticionesBackend = new PeticionesBackend('http://localhost:3000/api/usuarios');
 
 
 

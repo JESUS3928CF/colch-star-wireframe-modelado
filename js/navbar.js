@@ -1,6 +1,6 @@
 import PeticionesBackend from '..//js/class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/usuario'
+    'http://localhost:3000/api/usuarios'
 );
 
 const nombre = document.querySelector('#nombre-usuario');

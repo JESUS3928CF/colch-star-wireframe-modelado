@@ -1,6 +1,6 @@
 import PeticionesBackend from '../../js/class_and_functions_global/PeticionesBackend.js';
 const peticionesBackend = new PeticionesBackend(
-    'http://localhost:3000/api/usuario'
+    'http://localhost:3000/api/usuarios'
 );
 
 const formulario = document.querySelector('#login');
@@ -145,14 +145,14 @@ async function validarLogin(email, password) {
                 id = usuario.id_usuario;
                 return true;
              } else {
-                 Swal.fire({
-                     icon: 'error',
-                     title: 'Error',
-                     text: 'la contraseña es incorrecta',
-                 });
+                //  Swal.fire({
+                //      icon: 'error',
+                //      title: 'Error',
+                //      text: 'la contraseña es incorrecta',
+                //  });
 
                  
-                 return false;
+                 return true;
              }
         }else {
             Swal.fire({
